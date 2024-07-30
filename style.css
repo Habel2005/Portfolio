@@ -310,7 +310,7 @@ nav ul li a:hover {
 
 .service-card:hover .service-content p {
     opacity: 1;
-    transform: translateY(-2px);  
+    transform: translateY(-2px);
 }
 
 .service-card img {
@@ -344,7 +344,7 @@ nav ul li a:hover {
     font-family: 'Aptos';
     margin: 0;
     opacity: 0;
-    transform:translateY(10px);
+    transform: translateY(10px);
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -380,6 +380,7 @@ footer {
 .footer-section1 h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    margin-left: 15px;
 }
 
 .footer-section2 h3 {
@@ -408,11 +409,10 @@ footer {
 .footer-section3 p {
     color: #666;
     margin-bottom: 10px;
-    font-family: 'PlayfairDisplay';  
-    display: flex;
-    align-items: center;
+    font-family: 'PlayfairDisplay';
 }
-.footer-section3 p i{
+
+.footer-section3 p i {
     font-size: 19px;
     margin-right: 8px;
     vertical-align: middle;
@@ -600,6 +600,10 @@ a,
 
     .footer-section1 {
         order: 3;
+    }
+
+    .footer-section1 h2{
+        margin-left: 0;
     }
 
     .footer-section1 .social a {
