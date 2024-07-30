@@ -124,7 +124,7 @@ nav.active {
 .hero h3 {
     font-size: 1.9em;
     margin: 0px;
-    font-family: 'Poppins';
+    font-family: 'New Caledonia';
 }
 
 .hero h1 {
@@ -134,10 +134,10 @@ nav.active {
 }
 
 .hero p {
-    font-size: 1.0em;
+    font-size: 1.2em;
     margin: 10px;
     margin-right: 250px;
-    font-family: 'PlayfairDisplay';
+    font-family: 'Neo Display';
 }
 
 .view-services-btn {
@@ -381,6 +381,7 @@ footer {
     font-size: 24px;
     margin-bottom: 20px;
     margin-left: 15px;
+    letter-spacing: 1.5px;
 }
 
 .footer-section2 h3 {
@@ -409,7 +410,8 @@ footer {
 .footer-section3 p {
     color: #666;
     margin-bottom: 10px;
-    font-family: 'PlayfairDisplay';
+    font-family: 'New Caledonia';
+    font-weight: 100;
 }
 
 .footer-section3 p i {
@@ -451,6 +453,27 @@ a,
 }
 
 /* Poppins Fonts */
+@font-face {
+    font-family: 'New Caledonia';
+    src: url('fonts/NewCaledoniaLTStdRg.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'New Caledonia Bold';
+    src: url('fonts/NewCaledoniaLTStdBold.TTF') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeoDisplay';
+    src: url('fonts/NoeDisplay-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'Aptos';
     src: url('fonts/aptos.ttf') format('truetype');
