@@ -404,6 +404,7 @@ footer {
 .footer-section1 .copyright {
     font-size: 0.8em;
     font-family: 'Arial';
+    padding: 10px;
 }
 
 a,
@@ -557,8 +558,8 @@ a,
     }
 
     .footer-section1 .social a {
-        height: 50px;
-        width: 70px;
+        height: 60px;
+        width: 60px;
     }
 }
 
