@@ -136,8 +136,8 @@ nav.active {
 .hero p {
     font-size: 1.2em;
     margin: 10px;
-    margin-right: 250px;
-    font-family: 'Neo Display';
+    margin-right: 300px;
+    font-family: 'GT Ultra';
 }
 
 .view-services-btn {
@@ -468,9 +468,16 @@ a,
 }
 
 @font-face {
-    font-family: 'NeoDisplay';
-    src: url('fonts/NoeDisplay-Bold.ttf') format('truetype');
-    font-weight: normal;
+    font-family: 'GT Ultra';
+    src: url('fonts/GTUltraMedian-Regular.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Ultra Bold';
+    src: url('fonts/GTUltraMedian-Bold.otf') format('opentype');
+    font-weight: bold;
     font-style: normal;
 }
 
