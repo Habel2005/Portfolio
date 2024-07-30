@@ -291,30 +291,61 @@ nav ul li a:hover {
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    position: relative;
+    height: 300px;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+}
+
+.service-card:hover .service-content {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.service-card:hover .service-content h3 {
+    transform: translateY(-5px);
+}
+
+.service-card:hover .service-content p {
+    opacity: 1;
+    transform: translateY(-2px);  
 }
 
 .service-card img {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
 }
 
 .service-content {
     padding: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    transform: translateY(20px);
 }
 
 .service-content h3 {
     font-family: 'Poppins';
     margin-top: 0;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .service-content p {
-    color: #666;
-    font-family: 'PlayfairDisplay';
+    color: #3b3b3b;
+    font-family: 'Aptos';
+    margin: 0;
+    opacity: 0;
+    transform:translateY(10px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .services-section h2 {
@@ -377,7 +408,14 @@ footer {
 .footer-section3 p {
     color: #666;
     margin-bottom: 10px;
-    font-family: 'PlayfairDisplay';
+    font-family: 'PlayfairDisplay';  
+    display: flex;
+    align-items: center;
+}
+.footer-section3 p i{
+    font-size: 19px;
+    margin-right: 8px;
+    vertical-align: middle;
 }
 
 .footer-section1 .social a {
@@ -413,6 +451,13 @@ a,
 }
 
 /* Poppins Fonts */
+@font-face {
+    font-family: 'Aptos';
+    src: url('fonts/aptos.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'Poppins';
     src: url('fonts/Poppins-Regular.ttf') format('truetype');
