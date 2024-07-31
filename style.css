@@ -602,7 +602,6 @@ a,
 
     .hero {
         padding-left: 20px;
-        text-align: center;
     }
 
     .hero h1 {
@@ -614,22 +613,23 @@ a,
         margin-right: 5px;
     }
 
-    .view-services-btn {
-        margin: 0;
-        align-self: center;
-    }
-
     .showcase {
         flex-direction: column;
         text-align: center;
+        padding: 20px;
     }
 
-    .showcase-content {
-        max-width: 100%;
+    .showcase-content h1 {
+        font-size: 1.5em;  
     }
 
-    .showcase-image {
-        margin-top: 20px;
+    .showcase-content p {
+        font-size: 1em;  
+    }
+
+    .showcase-image img {
+        padding-top: 10px;
+        height: auto;  
     }
 
     .services-grid {
