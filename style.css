@@ -330,7 +330,7 @@ nav ul li a:hover {
 }
 
 .service-card:hover img{
-    transform: scale(1);
+    transform: scale(0.9);
 }
 
 .service-card img {
