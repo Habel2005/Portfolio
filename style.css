@@ -638,9 +638,6 @@ a,
 
 /* Responsive Design */
 @media (max-width: 767px) {
-    .logo {
-        padding-left: 50px;
-    }
 
     .menu-icon {
         padding-left: 110px;
