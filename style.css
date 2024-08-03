@@ -36,23 +36,44 @@ header {
     justify-content: space-between;
 }
 
-.menu-icon {
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-    z-index: 1002;
-    padding: 20px;
-    margin-right: 80px;
+
+#menu-icon {
+
     display: flex;
+    flex-direction: column;
+    height: 2.5rem;
+    width: 2.5rem;
+    gap: 4.5px;
     align-items: center;
     justify-content: center;
-    box-sizing: content-box;
-    transition: opacity 0.3s ease;
+    background-color: transparent;  
+    border: none; 
+    padding: 0; 
+    position: relative; 
+    z-index: 2000; 
+    cursor: pointer;
 }
 
-.menu-icon.hidden {
+#menu-icon span {
+    width: 22px;
+    height: 2.5px;
+    background-color: rgb(255, 255, 255);  
+    display: block;  
+    transition: background-color 0.3s ease,transform .3s ease-in-out;
+}
+
+#menu-icon.hidden span:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+}
+#menu-icon.hidden span:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+}
+#menu-icon.hidden span:nth-child(2){
+    transform: scaleX(0);
     opacity: 0;
-    pointer-events: none;
+}
+#menu-icon.hidden{
+    z-index: 1002;
 }
 
 hr {
@@ -67,13 +88,11 @@ nav {
     right: -400px;
     width: 300px;
     height: 100vh;
-    background-color: rgba(28, 40, 51, 0.63);
+    background-color: rgba(28, 40, 51, 0.271);
     transition: right 0.3s ease-in-out;
     padding-top: 120px;
     z-index: 1000;
-    backdrop-filter: blur(10px);
-    box-sizing: border-box;
-    border-left: 1px solid #ffffff60;
+    backdrop-filter: blur(3px);
 }
 
 .logo {
@@ -548,6 +567,7 @@ a,
     src: url('fonts/Poppins-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -716,7 +736,7 @@ a,
 
 .loader svg text{
     font-size: 6rem;
-    font-family: 'Poppins-Bold';
+    font-family: 'Poppins-Bold','Poppins';
     stroke-width: 2;
     letter-spacing: -6px;
 
