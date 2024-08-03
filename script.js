@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const interactiveElements = document.querySelectorAll('a, button, .hover-area');
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
-    const menuIcon = document.getElementById('menuIcon');
+    const menuIcon = document.getElementById('menu-icon');
     const navMenu = document.getElementById('navMenu');
 
     // Function to update cursor style
@@ -73,6 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCursorStyle(); // Initial cursor style update
 });
+
+
 AOS.init({
     once: true
 });
+// loader
+const loader=document.querySelector('.loader')
+const home=document.querySelector('#home')
+const about=document.querySelector('#about')
+const service=document.querySelector('#services')
+const contact=document.querySelector('#contact')
+
+window.addEventListener('load', ()=>{
+    loader.classList.add('hidden')
+    home.classList.add('shown')
+    about.classList.add('shown')
+    service.classList.add('shown')
+    contact.classList.add('shown')
+})

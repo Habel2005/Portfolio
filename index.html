@@ -15,9 +15,19 @@
 </head>
 
 <body>
+<div class="loader">
+    <svg viewBox="0 0 400 160">
+        <text x="50%" y="50%" dy=".32em" text-anchor="middle" class="text-body">
+            Habel
+        </text>
+        <text x="50%" y="50%" dy=".32em" dx="1.5em" text-anchor="middle" class="text-dot">
+            .
+        </text>
+    </svg>
+</div>
     <header>
-        <div class="logo">HABEL SHAJI</div>
-        <div class="menu-icon" id="menuIcon">&#9776;</div>
+        <div class="logo" id="home">HABEL SHAJI</div>
+        <div class="menu-icon" id="menu-icon">&#9776;</div>
         <nav id="navMenu" class="hidden">
             <ul>
                 <li><a href="#home">HOME</a></li>
@@ -28,7 +38,7 @@
         </nav>
     </header>
     <main>
-        <section class="hero" id="home">
+        <section class="hero" id="about">
             <h3>Hello,</h3>
             <h1>I'm <font class="name">Habel.</font></h1>
             <hr>
@@ -67,10 +77,12 @@
                 </div>
                 <div class="service-card">
                     <img src="images/presentation.png" alt="Graphic Design">
+                        <a href="Presentation/presentation.html">
                     <div class="service-content">
-                        <h3><a href="Presentation/presentation.html">Graphic design</a></h3>
+                        <h3>Graphic design</h3>
                         <p>Transforming ideas into visually striking designs.</p>
                     </div>
+                        </a>
                 </div>
                 <div class="service-card">
                     <img src="images/painting-mountain-lake-with-mountain-background_188544-9126.jpg" alt="Content Creation">
@@ -81,10 +93,12 @@
                 </div>
                 <div class="service-card">
                     <img src="images/imag2.jpeg" alt="App Development">
-                    <div class="service-content">
+                    <a href="https://chat-a7a37.web.app/">
+                        <div class="service-content">
                         <h3>App development</h3>
                         <p>Developing innovative applications using Flutter.</p>
-                    </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="service-card">
                     <img src="images/paddy.jpeg" alt="Astrophysics Enthusiast">
@@ -108,8 +122,9 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
+<div id="contact"></div>
 <footer>
-    <div class="footer-content" id="contact">
+    <div class="footer-content">
         <div class="footer-section1">
             <h2><u>F</u>IND <u>M</u>E <u>H</u>ERE</h2>
             <div class="social">

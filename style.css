@@ -1,3 +1,16 @@
+.loader.hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+#home,#about,#contact,#services{
+    opacity: 0;
+    transform: translateY(-1rem);
+    transition: opacity .6s ease-in-out,transform .6s ease-in-out;
+}
+#home.shown,#about.shown,#contact.shown,#services.shown{
+    opacity: 1;
+    transform: translateY(0);
+}
 body,
 html {
     margin: 0;
@@ -393,6 +406,8 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    z-index: 1;
+    position: relative;
 }
 
 .footer-section1,
@@ -471,6 +486,9 @@ footer {
     padding: 10px;
 }
 
+.footer-section1 .social{
+    word-spacing: 2px;
+}
 a:visited,
 a:active,
 a:hover,
@@ -675,4 +693,72 @@ a,
 /* animation scroll*/
 [data-aos] {
     transition-duration: 0.5s;
+}
+
+/* loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #040115; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity .4s ease-in-out,visibility .4s ease-in-out;  
+}
+
+.loader svg{
+    width: 20rem;
+}
+
+.loader svg text{
+    font-size: 6rem;
+    font-family: 'Poppins-Bold';
+    stroke-width: 2;
+    letter-spacing: -6px;
+
+}
+text.text-body {
+    stroke: #e8e5ff;
+    color: #040115;
+    animation: 3.3s infinite alternate animate;
+}
+text.text-dot{
+    stroke: #e8e5ff;
+    fill: #e8e5ff;
+    animation: 3.5s alternate infinite animate-dot;
+}
+@keyframes animate {
+    0%{
+        fill: transparent;
+        stroke: #e8e5ff;
+        stroke-width: 3;
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 26%;
+    }
+    50%{
+        fill: transparent;
+        stroke: #e8e5ff;
+        stroke-width: 3;
+    }
+    80%,
+    100%{
+        fill:#e8e5ff;
+        stroke: transparent;
+        stroke-width: 0;
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 26% 0;
+    }
+}
+@keyframes animate-dot {
+    0%,
+    60%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
