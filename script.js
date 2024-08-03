@@ -92,3 +92,131 @@ window.addEventListener('load', ()=>{
     service.classList.add('shown')
     contact.classList.add('shown')
 })
+
+//button effect
+const view_button = document.querySelector('.view-services-btn');
+const button_text = document.querySelector('.view-services-btn .text');
+
+// Mouse move
+const activate_button = (event) => {
+    let boundBox = view_button.getBoundingClientRect();
+    const button_strength = 40;
+    const text_strength = 80;
+
+    const newX = ((event.clientX - boundBox.left) / view_button.offsetWidth) - 0.5;
+    const newY = ((event.clientY - boundBox.top) / view_button.offsetHeight) - 0.5;
+
+
+    // Applying new positions to button
+    gsap.to(view_button, {
+        duration: 1,
+        x: newX * button_strength,
+        y: newY * button_strength,
+        ease: Power4.easeOut
+    });
+
+    // Applying new positions to text 
+    gsap.to(button_text, {
+        duration: 1,
+        x: newX * text_strength,
+        y: newY * text_strength,
+        ease: Power4.easeOut
+    });
+}
+
+// Mouse leave
+const reset_button = (event) => {
+    gsap.to(view_button, {
+        duration: 1,
+        x: 0,
+        y: 0,
+        ease: Elastic.easeOut
+    });
+    gsap.to(button_text, {
+        duration: 1,
+        x: 0,
+        y: 0,
+        ease: Elastic.easeOut
+    });
+}
+
+view_button.addEventListener('mousemove', activate_button);
+view_button.addEventListener('mouseleave', reset_button);
+
+
+// const viewButton = document.querySelector('.view-services-btn');
+// const hoverEffect = viewButton.querySelector('.hover-effect');
+
+// viewButton.addEventListener('mouseenter', (e) => {
+//     const rect = viewButton.getBoundingClientRect();
+//     const x = e.clientX - rect.left;
+//     const y = e.clientY - rect.top;
+    
+//     hoverEffect.style.left = `${x}px`;
+//     hoverEffect.style.top = `${y}px`;
+    
+//     const size = Math.max(viewButton.offsetWidth, viewButton.offsetHeight) * 2;
+//     hoverEffect.style.width = `${size}px`;
+//     hoverEffect.style.height = `${size}px`;
+// });
+
+// viewButton.addEventListener('mouseleave', () => {
+//     hoverEffect.style.width = '0';
+//     hoverEffect.style.height = '0';
+// });
+
+// lenis
+const lenis = new Lenis()
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+lenis.on('scroll', ScrollTrigger.update)
+
+gsap.ticker.add((time)=>{
+  lenis.raf(time * 1000)
+})
+
+gsap.ticker.lagSmoothing(0)
+
+//service card
+document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const lightboxAdditionalContent = document.getElementById('lightbox-additional-content');
+    const closeBtn = document.querySelector('.close');
+    const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+
+    lightboxTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            // Set image source
+            const imageSrc = trigger.querySelector('img').src;
+            lightboxImage.src = imageSrc;
+
+            // Set description and additional content
+            const description = trigger.getAttribute('data-desc');
+            const additionalContent = trigger.getAttribute('data-additional');
+            lightboxDesc.textContent = description;
+            lightboxAdditionalContent.innerHTML = additionalContent;
+
+            lightbox.style.display = 'flex';
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+            lightbox.style.display = 'none';
+        }
+    });
+});
+
+
+

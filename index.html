@@ -16,19 +16,19 @@
 </head>
 
 <body>
-<div class="loader">
-    <svg viewBox="0 0 400 160">
-        <text x="50%" y="50%" dy=".32em" text-anchor="middle" class="text-body">
-            Habel
-        </text>
-        <text x="50%" y="50%" dy=".32em" dx="1.5em" text-anchor="middle" class="text-dot">
-            .
-        </text>
-    </svg>
-</div>
+    <div class="loader">
+        <svg viewBox="0 0 400 160">
+            <text x="50%" y="50%" dy=".32em" text-anchor="middle" class="text-body">
+                Habel
+            </text>
+            <text x="50%" y="50%" dy=".32em" dx="1.5em" text-anchor="middle" class="text-dot">
+                .
+            </text>
+        </svg>
+    </div>
     <header>
         <div class="logo" id="home">HABEL SHAJI</div>
-        <div class="menu-icon" >
+        <div class="menu-icon">
             <button class="button" id="menu-icon">
                 <span></span>
                 <span></span>
@@ -47,24 +47,37 @@
     <main>
         <section class="hero" id="about">
             <h3>Hello,</h3>
-            <h1>I'm <font class="name">Habel.</font></h1>
+            <h1>I'm <font class="name">Habel.</font>
+            </h1>
             <hr>
-            <p class="first">i'm a Enginnering student with a passion for programming and a fascination with cosmology. Currently,
+            <p class="first">i'm an Enginnering student with a passion for programming and a fascination with cosmology.
+                Currently,
                 I'm diving into the exciting worlds of App development and Web design with Flutter,HTML
                 and JavaScript.
             </p>
-                <p class="second">My ultimate dream? To navigate the skies as an Air traffic controller,
+            <p class="second">My ultimate dream? To navigate the skies as an Air traffic controller,
                 embracing the challenge and
                 precision of aviation.</p>
-            
-            <a href="#services"><button class="view-services-btn">SEE WHAT I DO</button></a>
+
+            <button class="view-services-btn">
+                <a href="#services">
+                    <span class="text">SEE WHAT I DO</span>
+                </a>
+                <!-- <div class="hover-effect"> 
+                </div> -->
+            </button>
+
         </section>
         <section class="showcase">
             <div class="showcase-content">
                 <h4>WHAT'S COOKIN'?</h4>
                 <h1 data-aos="fade-up">Building Wonders, One Pixel at a Time!</h1>
-                <p data-aos="fade-up">Welcome to My Playground, where innovation meets creativity. Dive into a collection of standout projects, significant achievements, and professional milestones, all crafted with passion and precision.</p>
-                <a href="#contact" class="get-in-touch">LET'S CONNECT!</a>
+                <p data-aos="fade-up">Welcome to My Playground, where innovation meets creativity. Dive into a
+                    collection of standout projects, significant achievements, and professional milestones, all crafted
+                    with passion and precision.</p>
+                <button class="get-in-touch">
+                    <a href="#contact"><span class="button-text">LET'S CONNECT</span></a>
+                </button>
             </div>
             <div class="showcase-image">
                 <img src="images/astro.jpeg" alt="Portfolio showcase" width="100%">
@@ -75,58 +88,87 @@
             <h2 data-aos="zoom-in">MY SKILLS & INTERESTS</h2>
             <h1>Discover my creations & capabilities</h1>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card lightbox-trigger" 
+                    data-desc="Create stunning websites that stand out from the crowd."
+                    data-additional="Additional content about web design." data-img="images/Landscape-Wallpaper-4k.jpg">
                     <img src="images/Landscape-Wallpaper-4k.jpg" alt="Web Design">
                     <div class="service-content">
                         <h3>Web design</h3>
                         <p>Create stunning websites that stand out from the crowd.</p>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card lightbox-trigger" 
+                    data-desc="Graphics Design #Presentation"
+                    data-additional="This is one of my Presentations created based on 'Planet Mars' using Keynote" data-img="images/presentation.png">
                     <img src="images/presentation.png" alt="Graphic Design">
-                        <a href="Presentation/presentation.html">
-                    <div class="service-content">
-                        <h3>Graphic design</h3>
-                        <p>Transforming ideas into visually striking designs.</p>
-                    </div>
-                        </a>
+                    <a href="https://www.icloud.com/keynote/0cedHAIuTuAPguvpv6shqiI9w#Presentation">
+                        <div class="service-content">
+                            <h3>Graphic design</h3>
+                            <p>Transforming ideas into visually striking designs.</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="service-card">
-                    <img src="images/painting-mountain-lake-with-mountain-background_188544-9126.jpg" alt="Content Creation">
+                <div class="service-card lightbox-trigger" 
+                    data-desc="Crafting compelling narratives that resonate."
+                    data-additional="Additional content about content creation."
+                    data-img="images/painting-mountain-lake-with-mountain-background_188544-9126.jpg">
+                    <img src="images/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
+                        alt="Content Creation">
                     <div class="service-content">
                         <h3>Content creation</h3>
                         <p>Crafting compelling narratives that resonate.</p>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card lightbox-trigger" 
+                    data-desc="Andriod App Development #Flutter"
+                    data-additional="I Designed and Created this application where you can play around with varoius features
+                    and Incoporates Chat Service using google Firebase" data-img="images/Untitled.png">
                     <img src="images/Untitled.png" alt="App Development">
                     <a href="https://chat-a7a37.web.app/">
                         <div class="service-content">
-                        <h3>App development</h3>
-                        <p>Developing innovative applications using Flutter.</p>
+                            <h3>App development</h3>
+                            <p>Developing innovative applications using Flutter.</p>
                         </div>
                     </a>
                 </div>
-                <div class="service-card">
+                <div class="service-card lightbox-trigger" 
+                    data-desc="Enhancing user experiences through intuitive design."
+                    data-additional="Additional content about UI/UX design." 
+                    data-img="images/paddy.jpeg">
                     <img src="images/paddy.jpeg" alt="UI/UX Design">
                     <div class="service-content">
                         <h3>UI/UX Design</h3>
                         <p>Enhancing user experiences through intuitive design.</p>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card lightbox-trigger" 
+                    data-desc="Managing and optimizing social media presence."
+                    data-additional="Additional content about social media management." 
+                    data-img="images/cat.jpeg">
                     <img src="images/cat.jpeg" alt="Social Media">
                     <div class="service-content">
                         <h3>Social Media</h3>
                         <p>Managing and optimizing social media presence.</p>
                     </div>
                 </div>
-            </div>            
+            </div>
         </section>
+
+        <div class="lightbox" id="lightbox">
+            <span class="close">&times;</span>
+            <div class="lightbox-content">
+                <img id="lightbox-image" alt="Lightbox Image">
+                <h3 id="lightbox-desc"></h3>
+                <div id="lightbox-additional-content"></div>
+            </div>
+        </div>
 
     </main>
     <div class="custom-cursor"></div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>
 <div id="contact"></div>
@@ -155,9 +197,9 @@
 
         <div class="footer-section3">
             <h3>Contact me</h3>
-            <p><i class='bx bxs-location-plus' ></i> Kochi, KL India</p>
+            <p><i class='bx bxs-location-plus'></i> Kochi, KL India</p>
             <p><i class='bx bxs-phone'></i> +91 99613 59693</p>
-            <p><i class='bx bxs-envelope' ></i> habelshaji2005@gmail.com</p>
+            <p><i class='bx bxs-envelope'></i> habelshaji2005@gmail.com</p>
         </div>
     </div>
 </footer>
