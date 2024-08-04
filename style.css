@@ -478,29 +478,26 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.85);  
     justify-content: center;
     align-items: center;
     z-index: 1002;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);  
 }
 
 /* Lightbox content */
 .lightbox-content {
     position: relative;
-    max-width: 800px;
-    max-height: 90vh;
-    background: white;
+    max-width: 70vw; 
+    max-height: 90vh;  
+    background: rgba(255, 255, 255, 0.95);  
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;  
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     text-align: left;
-    overflow-y: auto;  
-}
-#lightbox-additional-content {
-    max-height: 300px;  
-    overflow-y: auto;  
-    text-align: left;  
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;  
+    transition: transform 0.3s ease-in-out;  
 }
 
 /* Close button */
@@ -508,25 +505,76 @@ nav ul li a:hover {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 1.5em;
-    color: white;
+    font-size: 2em;  
+    color: #333;  
     cursor: pointer;
     z-index: 1003;
+    transition: color 0.3s ease-in-out;  
 }
 
-/* Lightbox image */
-.lightbox img {
-    width: 800px;
-    height: auto;
+.close:hover {
+    color: #ffffff;  
+}
+
+/* Gallery styling */
+.lightbox-gallery {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
     margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.lightbox-gallery img {
+    width: 150px;   
+    height: 150px;  
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+    border-radius: 8px;
+}
+
+.lightbox-gallery img:hover {
+    transform: scale(1.1);
+}
+
+.main-image {
+    width: 50%;  
+    height: 80%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Text inside lightbox */
-.lightbox p, .lightbox h3 {
-    font-size: 1.2em;
+.lightbox h3 {
+    font-size: 1.4em;
     color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;  
 }
 
+#lightbox-additional-content {
+    font-size: 1.1em;
+    color: #555;  
+    line-height: 1.6;  
+    overflow-y: auto;
+}
+
+/* Adding a smooth animation effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.lightbox-content {
+    animation: fadeIn 0.5s ease-in-out;
+}
 
 body.no-scroll {
     overflow: hidden;
@@ -805,6 +853,50 @@ a,
 
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .lightbox-gallery {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .lightbox-gallery img {
+        width: 120px;   
+        height: 120px;  
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s;
+        border-radius: 8px;
+    }
+
+    .lightbox-gallery img:hover {
+        transform: scale(1.1);
+    }
+
+    .main-image {
+        width: 100%;  
+        max-width: 500px;  
+        height: auto; 
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .lightbox h3 {
+        font-size: 1.2em;   
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    #lightbox-additional-content {
+        font-size: 1em;  
+        color: #555;
+        line-height: 1.6;
     }
 
     footer {

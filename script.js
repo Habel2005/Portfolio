@@ -181,42 +181,45 @@ gsap.ticker.add((time)=>{
 gsap.ticker.lagSmoothing(0)
 
 //service card
-document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxDesc = document.getElementById('lightbox-desc');
-    const lightboxAdditionalContent = document.getElementById('lightbox-additional-content');
-    const closeBtn = document.querySelector('.close');
-    const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+document.querySelectorAll('.lightbox-trigger').forEach(item => {
+    item.addEventListener('click', event => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxDesc = document.getElementById('lightbox-desc');
+        const lightboxAdditionalContent = document.getElementById('lightbox-additional-content');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxGallery = document.getElementById('lightbox-gallery');
 
-    lightboxTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (event) => {
-            event.preventDefault();
+        // Clear previous gallery images
+        lightboxGallery.innerHTML = '';
 
-            // Set image source
-            const imageSrc = trigger.querySelector('img').src;
-            lightboxImage.src = imageSrc;
+        // Get data attributes
+        const desc = item.getAttribute('data-desc');
+        const additional = item.getAttribute('data-additional');
+        const imgSrc = item.getAttribute('data-img');
+        const gallery = JSON.parse(item.getAttribute('data-gallery'));
 
-            // Set description and additional content
-            const description = trigger.getAttribute('data-desc');
-            const additionalContent = trigger.getAttribute('data-additional');
-            lightboxDesc.textContent = description;
-            lightboxAdditionalContent.innerHTML = additionalContent;
+        // Set main image and content
+        lightboxImage.src = imgSrc;
+        lightboxDesc.innerHTML = desc;
+        lightboxAdditionalContent.innerHTML = additional;
 
-            lightbox.style.display = 'flex';
+        // Add gallery images
+        gallery.forEach((img, index) => {
+            const imgElement = document.createElement('img');
+            imgElement.src = img;
+            imgElement.alt = `Gallery image ${index + 1}`;
+            imgElement.addEventListener('click', () => {
+                lightboxImage.src = img;
+            });
+            lightboxGallery.appendChild(imgElement);
         });
-    });
 
-    closeBtn.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
-
-    lightbox.addEventListener('click', (event) => {
-        if (event.target === lightbox) {
-            lightbox.style.display = 'none';
-        }
+        // Display the lightbox
+        lightbox.style.display = 'flex';
     });
 });
 
-
-
+// Close lightbox
+document.querySelector('.lightbox .close').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
+});

@@ -88,18 +88,23 @@
             <h2 data-aos="zoom-in">MY SKILLS & INTERESTS</h2>
             <h1>Discover my creations & capabilities</h1>
             <div class="services-grid">
-                <div class="service-card lightbox-trigger" 
+                <div class="service-card lightbox-trigger"
                     data-desc="Create stunning websites that stand out from the crowd."
-                    data-additional="Additional content about web design." data-img="images/Landscape-Wallpaper-4k.jpg">
-                    <img src="images/Landscape-Wallpaper-4k.jpg" alt="Web Design">
+                    data-additional="Additional content about web design." 
+                    data-img="images/web.png"
+                    data-gallery='["images/web.png","images/web2.png","images/web3.png","images/Landscape-Wallpaper-4k.jpg"]'>
+                    <img src="images/web.png" alt="Web Design">
                     <div class="service-content">
                         <h3>Web design</h3>
                         <p>Create stunning websites that stand out from the crowd.</p>
                     </div>
                 </div>
-                <div class="service-card lightbox-trigger" 
-                    data-desc="Graphics Design #Presentation"
-                    data-additional="This is one of my Presentations created based on 'Planet Mars' using Keynote" data-img="images/presentation.png">
+                <div class="service-card lightbox-trigger"
+                    data-desc="Graphics Design - Want to see Mars like never before? <i><a href='https://www.icloud.com/keynote/0cedHAIuTuAPguvpv6shqiI9w#Presentation' target='_blank' style='font-size: 1.1em;'>#Check-it-out!</a></i>"
+                    data-additional="One of my coolest presentations, crafted with Keynote, exploring the captivating wonders of 'Planet Mars'. Dive in and get mesmerized!
+                    <br> <u> <a href='Presentation/presentation.html' target='_blank'>Html Presentation</a> </u>"
+                    data-img="images/presentation.png"
+                    data-gallery='["images/presentation.png", "images/pres2.png", "images/pres3.png", "images/pres4.png","images/pres5.png"]'>
                     <img src="images/presentation.png" alt="Graphic Design">
                     <a href="https://www.icloud.com/keynote/0cedHAIuTuAPguvpv6shqiI9w#Presentation">
                         <div class="service-content">
@@ -108,10 +113,10 @@
                         </div>
                     </a>
                 </div>
-                <div class="service-card lightbox-trigger" 
-                    data-desc="Crafting compelling narratives that resonate."
+                <div class="service-card lightbox-trigger" data-desc="Crafting compelling narratives that resonate."
                     data-additional="Additional content about content creation."
-                    data-img="images/painting-mountain-lake-with-mountain-background_188544-9126.jpg">
+                    data-img="images/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
+                    data-gallery='["images/painting-mountain-lake-with-mountain-background_188544-9126.jpg"]'>
                     <img src="images/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
                         alt="Content Creation">
                     <div class="service-content">
@@ -119,22 +124,25 @@
                         <p>Crafting compelling narratives that resonate.</p>
                     </div>
                 </div>
-                <div class="service-card lightbox-trigger" 
-                    data-desc="Andriod App Development #Flutter"
-                    data-additional="I Designed and Created this application where you can play around with varoius features
-                    and Incoporates Chat Service using google Firebase" data-img="images/Untitled.png">
-                    <img src="images/Untitled.png" alt="App Development">
-                    <a href="https://chat-a7a37.web.app/">
+                <div class="service-card lightbox-trigger"
+                data-desc="Android Development - Wanna see some magic? <i><a href='https://chat-a7a37.web.app/' target='_blank' style='font-size: 1.1em;'>#Check-it-out!</a></i>"
+                data-additional="I designed and built this killer app where you can explore various features and enjoy a chat service powered by Google Firebase. Dive in and have fun!
+                <br> <u> <a href='https://mega.nz/file/GGBj0KKT#YJIFK4MJ8ViKrn7hqd6OnwKXMznKd8tP6pBzYvK6jKA' target='_blank'>Download</a> </u> " 
+                data-img="images/Untitled.png"
+                data-gallery='["images/Untitled.png", "images/app.png", "images/app2.png", "images/app3.png", "images/app4.png", "images/app5.png", "images/app6.png", "images/app7.png"]'>
+                <img src="images/Untitled.png" alt="UI/UX Design">
+                <a href="https://chat-a7a37.web.app/">
                         <div class="service-content">
                             <h3>App development</h3>
                             <p>Developing innovative applications using Flutter.</p>
                         </div>
                     </a>
                 </div>
-                <div class="service-card lightbox-trigger" 
+                <div class="service-card lightbox-trigger"
                     data-desc="Enhancing user experiences through intuitive design."
                     data-additional="Additional content about UI/UX design." 
-                    data-img="images/paddy.jpeg">
+                    data-img="images/paddy.jpeg"
+                    data-gallery='["images/paddy.jpeg"]'>
                     <img src="images/paddy.jpeg" alt="UI/UX Design">
                     <div class="service-content">
                         <h3>UI/UX Design</h3>
@@ -144,8 +152,9 @@
                 <div class="service-card lightbox-trigger" 
                     data-desc="Managing and optimizing social media presence."
                     data-additional="Additional content about social media management." 
-                    data-img="images/cat.jpeg">
-                    <img src="images/cat.jpeg" alt="Social Media">
+                    data-img="images/prof1.png"
+                    data-gallery='["images/prof1.png","images/prof2.png","images/cat.jpeg"]'>
+                    <img src="images/prof1.png" alt="Social Media">
                     <div class="service-content">
                         <h3>Social Media</h3>
                         <p>Managing and optimizing social media presence.</p>
@@ -157,9 +166,12 @@
         <div class="lightbox" id="lightbox">
             <span class="close">&times;</span>
             <div class="lightbox-content">
-                <img id="lightbox-image" alt="Lightbox Image">
-                <h3 id="lightbox-desc"></h3>
-                <div id="lightbox-additional-content"></div>
+                <div class="lightbox-gallery" id="lightbox-gallery"></div>
+                <div id="lightbox-main-content">
+                    <img id="lightbox-image" class="main-image" alt="Lightbox Image">
+                    <h3 id="lightbox-desc"></h3>
+                    <div id="lightbox-additional-content"></div>
+                </div>
             </div>
         </div>
 
