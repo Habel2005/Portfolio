@@ -488,7 +488,7 @@ nav ul li a:hover {
 /* Lightbox content */
 .lightbox-content {
     position: relative;
-    max-width: 70vw; 
+    max-width: 50vw; 
     max-height: 90vh;  
     background: rgba(255, 255, 255, 0.95);  
     padding: 20px;
@@ -838,14 +838,6 @@ a,
         padding: 20px;
     }
 
-    .showcase-content h1 {
-        font-size: 1.5em;
-    }
-
-    .showcase-content p {
-        font-size: 1em;
-    }
-
     .showcase-image img {
         padding-top: 10px;
         height: auto;
@@ -853,6 +845,11 @@ a,
 
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .lightbox-content{
+        max-height: 80vh;
+        max-width: 70vb;
     }
 
     .lightbox-gallery {
@@ -897,6 +894,10 @@ a,
         font-size: 1em;  
         color: #555;
         line-height: 1.6;
+    }
+
+    .close{
+        color: white;
     }
 
     footer {
