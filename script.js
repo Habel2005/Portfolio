@@ -74,23 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCursorStyle(); // Initial cursor style update
 });
 
-
-AOS.init({
-    once: true
-});
 // loader
 const loader=document.querySelector('.loader')
 const home=document.querySelector('#home')
 const about=document.querySelector('#about')
 const service=document.querySelector('#services')
-const contact=document.querySelector('#contact')
+const insight=document.querySelector('#insights')
 
 window.addEventListener('load', ()=>{
     loader.classList.add('hidden')
     home.classList.add('shown')
     about.classList.add('shown')
     service.classList.add('shown')
-    contact.classList.add('shown')
+    insight.classList.add('shown')
 })
 
 //button effect
@@ -222,4 +218,144 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
 // Close lightbox
 document.querySelector('.lightbox .close').addEventListener('click', () => {
     document.getElementById('lightbox').style.display = 'none';
+});
+
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
+// Animate section title and subtitle
+gsap.from(".section-title, .section-subtitle", {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    stagger: 0.3,
+    scrollTrigger: {
+        trigger: "#insights",
+        start: "top 80%",
+    }
+});
+
+// Animate insight cards
+gsap.from(".insight-card", {
+    opacity: 0,
+    y: 50,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".insights-grid",
+        start: "top 80%",
+    }
+});
+
+// Animate quote with a typewriter effect
+let quoteText = document.querySelector(".quote-text").textContent;
+let authorText = document.querySelector(".quote-author").textContent;
+
+document.querySelector(".quote-text").textContent = "";
+document.querySelector(".quote-author").textContent = "";
+
+let quoteAnimation = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".quote-container",
+        start: "top 80%",
+    }
+});
+
+quoteAnimation.to(".quote-text", {
+    duration: 2.6,
+    text: quoteText,
+    ease: "none"
+}).to(".quote-author", {
+    duration: 1.5,
+    text: authorText,
+    ease: "none",
+    delay: 0.7
+});
+
+
+
+// Animate timeline
+gsap.from(".timeline-item", {
+    opacity: 0,
+    x: (index) => index % 2 === 0 ? 50 : -50,
+    duration: 1,
+    stagger: 0.3,
+    scrollTrigger: {
+        trigger: ".journey-timeline",
+        start: "top 80%",
+    }
+});
+
+// Add hover animations to insight cards
+gsap.utils.toArray(".insight-card").forEach(card => {
+    card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+            scale: 1.05,
+            duration: 0.4,
+            ease: "power1.inOut"
+        });
+        gsap.to(card.querySelector('i'), {
+            scale: 1.2,
+            color: "#f39c12",
+            duration: 0.4,
+            ease: "power1.inOut"
+        });
+    });
+    card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+            scale: 1,
+            duration: 0.4,
+            ease: "power1.inOut"
+        });
+        gsap.to(card.querySelector('i'), {
+            scale: 1,
+            color: "#3498db", 
+            duration: 0.4,
+            ease: "power1.inOut"
+        });
+    });
+});
+
+//  tyewriter
+gsap.utils.toArray(".quote-container").forEach(container => {
+    container.addEventListener("mouseenter", () => {
+        gsap.to(container, {
+            scale: 1.05,
+            duration: 0.4,
+            ease: "circ.out"
+        });
+    });
+    container.addEventListener("mouseleave", () => {
+        gsap.to(container, {
+            scale: 1,
+            duration: 0.4,
+            ease: "circ.out"
+        });
+    });
+});
+
+
+//fadeup and sideways of titles
+
+// Animate elements with fade-up effect
+gsap.from(".animate-fade-up", {
+    opacity: 0,
+    y: 50,
+    duration: 0.7,
+    stagger: 0.3,
+    scrollTrigger: {
+        trigger: ".animate-fade-up",
+        start: "top 80%",
+    }
+});
+
+// Animate elements with zoom-in effect
+gsap.from(".animate-zoom-in", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.6,
+    scrollTrigger: {
+        trigger: ".animate-zoom-in",
+        start: "top 80%",
+    }
 });

@@ -6,7 +6,8 @@
 #home,
 #about,
 #contact,
-#services {
+#services,
+#insights {
     opacity: 0;
     transform: translateY(-1rem);
     transition: opacity .6s ease-in-out, transform .6s ease-in-out;
@@ -15,7 +16,8 @@
 #home.shown,
 #about.shown,
 #contact.shown,
-#services.shown {
+#services.shown,
+#insights.shown {
     opacity: 1;
     transform: translateY(0);
 }
@@ -44,7 +46,6 @@ header {
     box-sizing: border-box;
     justify-content: space-between;
 }
-
 
 #menu-icon {
 
@@ -580,6 +581,174 @@ body.no-scroll {
     overflow: hidden;
 }
 
+.personal-insights {
+    background-color: #1c2833;
+    color: #ffffff;
+    padding: 80px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section-title, .section-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.5em;
+    color: #3498db;
+}
+
+.section-subtitle {
+    font-size: 2.5em;
+    margin-bottom: 60px;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.insight-card {
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+}
+
+.insight-card i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #3498db;
+}
+
+.insight-card h3 {
+    margin-bottom: 15px;
+    color: #3498db;
+}
+
+.quote-container {
+    text-align: center;
+    font-style: italic;
+    font-family: 'PlayfairDisplay-Bold';
+    font-size: 1.4em;
+    margin: 60px 0;
+    padding: 20px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 15px;
+    border: 2px solid #3498db;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+ .quote-author {
+    font-family: 'ClashGrotesk';
+    padding-left: 500px;
+}
+.quote-container::before {
+    content: '“';
+    font-size: 3em;
+    color: #3498db;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    opacity: 0.2;
+}
+
+.quote-container::after {
+    content: '”';
+    font-size: 3em;
+    color: #3498db;
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+    opacity: 0.2;
+}
+
+
+.journey-timeline {
+    margin-top: 80px;
+    position: relative;
+}
+
+.journey-timeline h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2em;
+    color: #3498db;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #3498db;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: #3498db;
+    border: 4px solid #1c2833;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:nth-child(odd)::after {
+    left: -16px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: rgba(52, 152, 219, 0.1);
+    position: relative;
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 600px) {
+    .timeline-container::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-right: 25px;
+    }
+    
+    .timeline-item::after {
+        left: 15px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0%;
+    }
+}
 footer {
     background-color: #f5f5f5;
     padding: 40px 0;
