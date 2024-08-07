@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // loader
+document.body.classList.add("loading");
 const loader=document.querySelector('.loader')
 const home=document.querySelector('#home')
 const about=document.querySelector('#about')
@@ -87,6 +88,7 @@ window.addEventListener('load', ()=>{
     about.classList.add('shown')
     service.classList.add('shown')
     insight.classList.add('shown')
+    document.body.classList.remove("loading");
 })
 
 //button effect
@@ -234,57 +236,101 @@ gsap.from(".section-title, .section-subtitle", {
     }
 });
 
+// Create stars
+function createStars() {
+    const starsContainer = document.createElement('div');
+    starsContainer.classList.add('stars');
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.width = `${Math.random() * 3}px`;
+        star.style.height = star.style.width;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        
+        // Add blink class to some stars
+        if (Math.random() < 0.3) {  // Adjust the probability as needed
+            star.classList.add('blink');
+        }
+        
+        starsContainer.appendChild(star);
+    }
+    document.querySelector('.personal-insights').prepend(starsContainer);
+}
+
+// Animate rocket
+function animateRocket() {
+    const rocket = document.createElement('div');
+    rocket.classList.add('rocket');
+    document.querySelector('.personal-insights').appendChild(rocket);
+
+    gsap.to(rocket, {
+        motionPath: {
+            path: [
+                {x: 0, y: 0},
+                {x: window.innerWidth, y: -100},
+                {x: 0, y: window.innerHeight}
+            ],
+            curviness: 1.5
+        },
+        duration: 15,
+        repeat: -1,
+        ease: "power1.inOut"
+    });
+}
+
 // Animate insight cards
-gsap.from(".insight-card", {
-    opacity: 0,
-    y: 50,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out",
-    scrollTrigger: {
-        trigger: ".insights-grid",
-        start: "top 80%",
-    }
-});
+function animateInsightCards() {
+    gsap.from(".insight-card", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        scrollTrigger: {
+            trigger: ".insights-grid",
+            start: "top 80%"
+        }
+    });
 
-// Animate quote with a typewriter effect
-let quoteText = document.querySelector(".quote-text").textContent;
-let authorText = document.querySelector(".quote-author").textContent;
+    // Floating animation
+    gsap.to(".insight-card", {
+        y: "10px",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        stagger: 0.1
+    });
+}
 
-document.querySelector(".quote-text").textContent = "";
-document.querySelector(".quote-author").textContent = "";
+// Animate quote
+function animateQuote() {
+    const quoteText = document.querySelector(".quote-text").textContent;
+    const quoteElement = document.querySelector(".quote-text");
+    quoteElement.textContent = "";
 
-let quoteAnimation = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".quote-container",
-        start: "top 80%",
-    }
-});
+    gsap.to(quoteElement, {
+        duration: 4,
+        text: {
+            value: quoteText,
+            delimiter: ""
+        },
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".quote-container",
+            start: "top 80%"
+        }
+    });
 
-quoteAnimation.to(".quote-text", {
-    duration: 2.6,
-    text: quoteText,
-    ease: "none"
-}).to(".quote-author", {
-    duration: 1.5,
-    text: authorText,
-    ease: "none",
-    delay: 0.7
-});
-
-
-
-// Animate timeline
-gsap.from(".timeline-item", {
-    opacity: 0,
-    x: (index) => index % 2 === 0 ? 50 : -50,
-    duration: 1,
-    stagger: 0.3,
-    scrollTrigger: {
-        trigger: ".journey-timeline",
-        start: "top 80%",
-    }
-});
+    // Pulsing animation
+    gsap.to(".quote-container", {
+        scale: 1.05,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
+    });
+}
 
 // Add hover animations to insight cards
 gsap.utils.toArray(".insight-card").forEach(card => {
@@ -316,17 +362,34 @@ gsap.utils.toArray(".insight-card").forEach(card => {
     });
 });
 
-//  tyewriter
+// Animate timeline
+gsap.from(".timeline-item", {
+    opacity: 0,
+    x: (index) => index % 2 === 0 ? 50 : -50,
+    duration: 1,
+    stagger: 0.3,
+    scrollTrigger: {
+        trigger: ".journey-timeline",
+        start: "top 80%",
+    }
+});
+
+
+
+//  animated quote
 gsap.utils.toArray(".quote-container").forEach(container => {
+    const text = container.querySelector(".quote-text");
+
     container.addEventListener("mouseenter", () => {
-        gsap.to(container, {
-            scale: 1.05,
+        gsap.to(text, {
+            scale: 1.2,
             duration: 0.4,
             ease: "circ.out"
         });
     });
+
     container.addEventListener("mouseleave", () => {
-        gsap.to(container, {
+        gsap.to(text, {
             scale: 1,
             duration: 0.4,
             ease: "circ.out"
@@ -334,6 +397,41 @@ gsap.utils.toArray(".quote-container").forEach(container => {
     });
 });
 
+// Create stars
+function createStars() {
+    const starsContainer = document.createElement('div');
+    starsContainer.classList.add('stars');
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.width = `${Math.random() * 3}px`;
+        star.style.height = star.style.width;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        starsContainer.appendChild(star);
+    }
+    document.querySelector('.personal-insights').prepend(starsContainer);
+}
+// Animate rocket
+function animateRocket() {
+    const rocket = document.createElement('div');
+    rocket.classList.add('rocket');
+    document.querySelector('.personal-insights').appendChild(rocket);
+
+    gsap.to(rocket, {
+        motionPath: {
+            path: [
+                {x: 0, y: 0},
+                {x: window.innerWidth, y: -100},
+                {x: 0, y: window.innerHeight}
+            ],
+            curviness: 1.5
+        },
+        duration: 15,
+        repeat: -1,
+        ease: "power1.inOut"
+    });
+}
 
 //fadeup and sideways of titles
 
@@ -359,3 +457,15 @@ gsap.from(".animate-zoom-in", {
         start: "top 80%",
     }
 });
+
+// Initialize animations
+function init() {
+    createStars();
+    animateRocket();
+    animateInsightCards();
+    animateQuote();
+    animateTimeline();
+}
+
+// Run animations when the page is loaded
+window.addEventListener('load', init);

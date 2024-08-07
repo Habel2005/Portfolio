@@ -22,6 +22,10 @@
     transform: translateY(0);
 }
 
+body.loading {
+    overflow: hidden !important;
+}
+
 body,
 html {
     margin: 0;
@@ -29,7 +33,7 @@ html {
     font-family: Arial, sans-serif;
     height: 100%;
     cursor: none;
-    scroll-behavior: smooth;
+
 }
 
 header {
@@ -577,16 +581,47 @@ nav ul li a:hover {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-body.no-scroll {
-    overflow: hidden;
-}
-
 .personal-insights {
-    background-color: #1c2833;
+    background-color: #0a0a2a;
     color: #ffffff;
     padding: 80px 20px;
     font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    position: relative;
 }
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.star {
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+.blink {
+    animation: blink 2s infinite ease-in-out;
+}
+@keyframes blink {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+.rocket {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('images/ship.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 
 .section-title, .section-subtitle {
     text-align: center;
@@ -615,6 +650,7 @@ body.no-scroll {
     border-radius: 15px;
     padding: 30px;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .insight-card i {
@@ -668,10 +704,11 @@ body.no-scroll {
 
 
 .journey-timeline {
-    margin-top: 80px;
     position: relative;
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 40px 0;
 }
-
 .journey-timeline h3 {
     text-align: center;
     margin-bottom: 40px;
@@ -702,6 +739,13 @@ body.no-scroll {
     background-color: inherit;
     width: 50%;
 }
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:nth-child(odd)::after {
+    left: -16px;
+}
 
 .timeline-item::after {
     content: '';
@@ -716,13 +760,6 @@ body.no-scroll {
     z-index: 1;
 }
 
-.timeline-item:nth-child(even) {
-    left: 50%;
-}
-
-.timeline-item:nth-child(odd)::after {
-    left: -16px;
-}
 
 .timeline-content {
     padding: 20px 30px;
@@ -731,24 +768,6 @@ body.no-scroll {
     border-radius: 6px;
 }
 
-@media screen and (max-width: 600px) {
-    .timeline-container::after {
-        left: 31px;
-    }
-    
-    .timeline-item {
-        width: 100%;
-        padding-right: 25px;
-    }
-    
-    .timeline-item::after {
-        left: 15px;
-    }
-    
-    .timeline-item:nth-child(even) {
-        left: 0%;
-    }
-}
 footer {
     background-color: #f5f5f5;
     padding: 40px 0;
@@ -1068,7 +1087,25 @@ a,
     .close{
         color: white;
     }
-
+    .timeline-container::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-right: 25px;
+    }
+    
+    .timeline-item::after {
+        left: 15px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0%;
+    }
+    .timeline-content{
+        overflow-x: hidden;
+    }
     footer {
         padding: 10px;
     }
