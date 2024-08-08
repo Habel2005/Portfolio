@@ -76,13 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // loader
 document.body.classList.add("loading");
-const loader=document.querySelector('.loader')
-const home=document.querySelector('#home')
-const about=document.querySelector('#about')
-const service=document.querySelector('#services')
-const insight=document.querySelector('#insights')
+const loader = document.querySelector('.loader')
+const home = document.querySelector('#home')
+const about = document.querySelector('#about')
+const service = document.querySelector('#services')
+const insight = document.querySelector('#insights')
 
-window.addEventListener('load', ()=>{
+window.addEventListener('load', () => {
     loader.classList.add('hidden')
     home.classList.add('shown')
     about.classList.add('shown')
@@ -149,10 +149,10 @@ view_button.addEventListener('mouseleave', reset_button);
 //     const rect = viewButton.getBoundingClientRect();
 //     const x = e.clientX - rect.left;
 //     const y = e.clientY - rect.top;
-    
+
 //     hoverEffect.style.left = `${x}px`;
 //     hoverEffect.style.top = `${y}px`;
-    
+
 //     const size = Math.max(viewButton.offsetWidth, viewButton.offsetHeight) * 2;
 //     hoverEffect.style.width = `${size}px`;
 //     hoverEffect.style.height = `${size}px`;
@@ -167,13 +167,13 @@ view_button.addEventListener('mouseleave', reset_button);
 const lenis = new Lenis()
 
 lenis.on('scroll', (e) => {
-  console.log(e)
+    console.log(e)
 })
 
 lenis.on('scroll', ScrollTrigger.update)
 
-gsap.ticker.add((time)=>{
-  lenis.raf(time * 1000)
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
 })
 
 gsap.ticker.lagSmoothing(0)
@@ -186,6 +186,7 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
         const lightboxAdditionalContent = document.getElementById('lightbox-additional-content');
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxGallery = document.getElementById('lightbox-gallery');
+        document.body.classList.add("loading");
 
         // Clear previous gallery images
         lightboxGallery.innerHTML = '';
@@ -220,6 +221,7 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
 // Close lightbox
 document.querySelector('.lightbox .close').addEventListener('click', () => {
     document.getElementById('lightbox').style.display = 'none';
+    document.body.classList.remove("loading");
 });
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
@@ -247,12 +249,12 @@ function createStars() {
         star.style.height = star.style.width;
         star.style.left = `${Math.random() * 100}%`;
         star.style.top = `${Math.random() * 100}%`;
-        
+
         // Add blink class to some stars
-        if (Math.random() < 0.3) {  // Adjust the probability as needed
+        if (Math.random() < 0.5) {
             star.classList.add('blink');
         }
-        
+
         starsContainer.appendChild(star);
     }
     document.querySelector('.personal-insights').prepend(starsContainer);
@@ -264,21 +266,29 @@ function animateRocket() {
     rocket.classList.add('rocket');
     document.querySelector('.personal-insights').appendChild(rocket);
 
+    const startX = Math.random() * window.innerWidth;
+    const startY = Math.random() * window.innerHeight;
+
+    gsap.set(rocket, {
+        x: startX,
+        y: startY
+    });
+
     gsap.to(rocket, {
         motionPath: {
             path: [
-                {x: 0, y: 0},
-                {x: window.innerWidth, y: -100},
-                {x: 0, y: window.innerHeight}
+                { x: startX, y: startY },
+                { x: window.innerWidth, y: -100 },
+                { x: 0, y: window.innerHeight }
             ],
             curviness: 1.5
         },
         duration: 15,
         repeat: -1,
-        ease: "power1.inOut"
+        ease: "power1.inOut",
+        delay: Math.random() * 5 // Random delay between 0 and 5 seconds
     });
 }
-
 // Animate insight cards
 function animateInsightCards() {
     gsap.from(".insight-card", {
@@ -355,7 +365,7 @@ gsap.utils.toArray(".insight-card").forEach(card => {
         });
         gsap.to(card.querySelector('i'), {
             scale: 1,
-            color: "#3498db", 
+            color: "#3498db",
             duration: 0.4,
             ease: "power1.inOut"
         });
@@ -383,55 +393,19 @@ gsap.utils.toArray(".quote-container").forEach(container => {
     container.addEventListener("mouseenter", () => {
         gsap.to(text, {
             scale: 1.2,
-            duration: 0.4,
-            ease: "circ.out"
+            duration: 0.8,
+            ease: "slow"
         });
     });
 
     container.addEventListener("mouseleave", () => {
         gsap.to(text, {
             scale: 1,
-            duration: 0.4,
-            ease: "circ.out"
+            duration: 1,
+            ease: "elastic.out(1, 0.3)"
         });
     });
 });
-
-// Create stars
-function createStars() {
-    const starsContainer = document.createElement('div');
-    starsContainer.classList.add('stars');
-    for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
-        star.style.width = `${Math.random() * 3}px`;
-        star.style.height = star.style.width;
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        starsContainer.appendChild(star);
-    }
-    document.querySelector('.personal-insights').prepend(starsContainer);
-}
-// Animate rocket
-function animateRocket() {
-    const rocket = document.createElement('div');
-    rocket.classList.add('rocket');
-    document.querySelector('.personal-insights').appendChild(rocket);
-
-    gsap.to(rocket, {
-        motionPath: {
-            path: [
-                {x: 0, y: 0},
-                {x: window.innerWidth, y: -100},
-                {x: 0, y: window.innerHeight}
-            ],
-            curviness: 1.5
-        },
-        duration: 15,
-        repeat: -1,
-        ease: "power1.inOut"
-    });
-}
 
 //fadeup and sideways of titles
 

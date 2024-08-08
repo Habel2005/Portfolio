@@ -33,6 +33,7 @@ html {
     font-family: Arial, sans-serif;
     height: 100%;
     cursor: none;
+    scroll-behavior: smooth;
 
 }
 
@@ -483,26 +484,26 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);  
+    background-color: rgba(0, 0, 0, 0.85);
     justify-content: center;
     align-items: center;
     z-index: 1002;
-    backdrop-filter: blur(8px);  
+    backdrop-filter: blur(8px);
 }
 
 /* Lightbox content */
 .lightbox-content {
     position: relative;
-    max-width: 50vw; 
-    max-height: 90vh;  
-    background: rgba(255, 255, 255, 0.95);  
+    max-width: 50vw;
+    max-height: 80vh;
+    background: rgba(255, 255, 255, 0.95);
     padding: 20px;
-    border-radius: 12px;  
+    border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     text-align: left;
     overflow-y: auto;
-    font-family: 'Poppins', sans-serif;  
-    transition: transform 0.3s ease-in-out;  
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.3s ease-in-out;
 }
 
 /* Close button */
@@ -510,15 +511,15 @@ nav ul li a:hover {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 2em;  
-    color: #333;  
+    font-size: 2em;
+    color: #333;
     cursor: pointer;
     z-index: 1003;
-    transition: color 0.3s ease-in-out;  
+    transition: color 0.3s ease-in-out;
 }
 
 .close:hover {
-    color: #ffffff;  
+    color: #ffffff;
 }
 
 /* Gallery styling */
@@ -532,8 +533,8 @@ nav ul li a:hover {
 }
 
 .lightbox-gallery img {
-    width: 150px;   
-    height: 150px;  
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s;
@@ -545,7 +546,7 @@ nav ul li a:hover {
 }
 
 .main-image {
-    width: 50%;  
+    width: 50%;
     height: 80%;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -557,13 +558,13 @@ nav ul li a:hover {
     font-size: 1.4em;
     color: #333;
     margin-bottom: 10px;
-    font-weight: 600;  
+    font-weight: 600;
 }
 
 #lightbox-additional-content {
     font-size: 1.1em;
-    color: #555;  
-    line-height: 1.6;  
+    color: #555;
+    line-height: 1.6;
     overflow-y: auto;
 }
 
@@ -572,6 +573,7 @@ nav ul li a:hover {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -589,6 +591,7 @@ nav ul li a:hover {
     overflow: hidden;
     position: relative;
 }
+
 .stars {
     position: absolute;
     top: 0;
@@ -597,33 +600,42 @@ nav ul li a:hover {
     height: 100%;
     pointer-events: none;
 }
+
 .star {
     position: absolute;
     background-color: #ffffff;
     border-radius: 50%;
+    opacity: 0.8;
 }
+
 .blink {
     animation: blink 2s infinite ease-in-out;
 }
+
 @keyframes blink {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.8;
     }
+
     50% {
         opacity: 0.3;
     }
 }
+
 .rocket {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url('images/ship.svg');
+    background-image: url('images/ship.svg') no-repeat center center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 
-.section-title, .section-subtitle {
+.section-title,
+.section-subtitle {
     text-align: center;
     margin-bottom: 40px;
 }
@@ -678,10 +690,12 @@ nav ul li a:hover {
     position: relative;
     overflow: hidden;
 }
- .quote-author {
+
+.quote-author {
     font-family: 'ClashGrotesk';
     padding-left: 500px;
 }
+
 .quote-container::before {
     content: '“';
     font-size: 3em;
@@ -709,6 +723,7 @@ nav ul li a:hover {
     margin: 100px auto;
     padding: 40px 0;
 }
+
 .journey-timeline h3 {
     text-align: center;
     margin-bottom: 40px;
@@ -739,6 +754,7 @@ nav ul li a:hover {
     background-color: inherit;
     width: 50%;
 }
+
 .timeline-item:nth-child(even) {
     left: 50%;
 }
@@ -1035,7 +1051,7 @@ a,
         grid-template-columns: 1fr;
     }
 
-    .lightbox-content{
+    .lightbox-content {
         max-height: 80vh;
         max-width: 70vb;
     }
@@ -1050,8 +1066,8 @@ a,
     }
 
     .lightbox-gallery img {
-        width: 120px;   
-        height: 120px;  
+        width: 120px;
+        height: 120px;
         object-fit: cover;
         cursor: pointer;
         transition: transform 0.3s;
@@ -1063,49 +1079,52 @@ a,
     }
 
     .main-image {
-        width: 100%;  
-        max-width: 500px;  
-        height: auto; 
+        width: 100%;
+        max-width: 500px;
+        height: auto;
         border-radius: 8px;
         margin-bottom: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .lightbox h3 {
-        font-size: 1.2em;   
+        font-size: 1.2em;
         color: #333;
         margin-bottom: 10px;
         font-weight: 600;
     }
 
     #lightbox-additional-content {
-        font-size: 1em;  
+        font-size: 1em;
         color: #555;
         line-height: 1.6;
     }
 
-    .close{
+    .close {
         color: white;
     }
+
     .timeline-container::after {
         left: 31px;
     }
-    
+
     .timeline-item {
         width: 100%;
         padding-right: 25px;
     }
-    
+
     .timeline-item::after {
         left: 15px;
     }
-    
+
     .timeline-item:nth-child(even) {
         left: 0%;
     }
-    .timeline-content{
+
+    .timeline-content {
         overflow-x: hidden;
     }
+
     footer {
         padding: 10px;
     }
