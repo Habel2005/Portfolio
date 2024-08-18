@@ -266,29 +266,36 @@ function animateRocket() {
     rocket.classList.add('rocket');
     document.querySelector('.personal-insights').appendChild(rocket);
 
-    const startX = Math.random() * window.innerWidth;
-    const startY = Math.random() * window.innerHeight;
+    const randomizePath = (reverse = false) => {
+        // Path that covers the entire viewport with alternating directions
+        const path = reverse
+            ? [
+                  { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
+                  { x: window.innerWidth, y: 0 },
+                  { x: 0, y: Math.random() * window.innerHeight }
+              ]
+            : [
+                  { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
+                  { x: 0, y: 0 },
+                  { x: window.innerWidth, y: Math.random() * window.innerHeight }
+              ];
+        return path;
+    };
 
-    gsap.set(rocket, {
-        x: startX,
-        y: startY
-    });
-
-    gsap.to(rocket, {
-        motionPath: {
-            path: [
-                { x: startX, y: startY },
-                { x: window.innerWidth, y: -100 },
-                { x: 0, y: window.innerHeight }
-            ],
-            curviness: 1.5
-        },
-        duration: 15,
-        repeat: -1,
-        ease: "power1.inOut",
-        delay: Math.random() * 5 // Random delay between 0 and 5 seconds
-    });
+    const animate = (reverse = false) => {
+        gsap.to(rocket, {
+            motionPath: {
+                path: randomizePath(reverse),
+                curviness: 1.5
+            },
+            duration: 20,
+            ease: "power1.inOut",
+            onComplete: () => animate(!reverse) // Switch direction after each path completes
+        });
+    };
+    animate();
 }
+
 // Animate insight cards
 function animateInsightCards() {
     gsap.from(".insight-card", {
@@ -372,18 +379,42 @@ gsap.utils.toArray(".insight-card").forEach(card => {
     });
 });
 
-// Animate timeline
-gsap.from(".timeline-item", {
-    opacity: 0,
-    x: (index) => index % 2 === 0 ? 50 : -50,
-    duration: 1,
-    stagger: 0.3,
-    scrollTrigger: {
-        trigger: ".journey-timeline",
-        start: "top 80%",
-    }
-});
+function animateTimeline() {
+    // Animate the title
+    gsap.from(".journey-timeline h3", {
+        opacity: 0,
+        y: -50,
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".journey-timeline",
+            start: "top 80%",
+        }
+    });
 
+    // Animate the central line
+    gsap.to(".timeline-line", {
+        scaleY: 1, 
+        duration: 10,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".journey-timeline",
+            start: "top 100%",
+        }
+    });
+
+    // Animate timeline items
+    gsap.utils.toArray(".timeline-item").forEach((item, index) => {
+        gsap.from(item, {
+            opacity: 0,
+            x: index % 2 === 0 ? 50 : -50,
+            duration: 1,
+            scrollTrigger: {
+                trigger: item,
+                start: "top 90%",
+            }
+        });
+    });
+}
 
 
 //  animated quote
@@ -417,7 +448,7 @@ gsap.from(".animate-fade-up", {
     stagger: 0.3,
     scrollTrigger: {
         trigger: ".animate-fade-up",
-        start: "top 80%",
+        start: "top 90%",
     }
 });
 

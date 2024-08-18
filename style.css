@@ -171,6 +171,18 @@ nav.active {
     background-repeat: no-repeat;
 }
 
+/* .hero::before {
+    content: url('images/cat.jpeg');  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.15;  
+    z-index: 0;  
+    max-width: 80%;
+    max-height: 80%;
+} */
+
 .hero h3 {
     font-size: 1.9em;
     margin: 0px;
@@ -628,9 +640,11 @@ nav ul li a:hover {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url('images/ship.svg') no-repeat center center;
+    background-image: url('images/ship.svg');
     background-size: contain;
     background-repeat: no-repeat;
+    transition: transform 0.2s ease-in-out;
+    z-index: 9999;
 }
 
 
@@ -737,7 +751,7 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
-.timeline-container::after {
+.timeline-line {
     content: '';
     position: absolute;
     width: 6px;
@@ -746,6 +760,8 @@ nav ul li a:hover {
     bottom: 0;
     left: 50%;
     margin-left: -3px;
+    transform-origin: top center;
+    transform: scaleY(0);
 }
 
 .timeline-item {
@@ -755,11 +771,11 @@ nav ul li a:hover {
     width: 50%;
 }
 
-.timeline-item:nth-child(even) {
+.timeline-item:nth-child(odd) {
     left: 50%;
 }
 
-.timeline-item:nth-child(odd)::after {
+.timeline-item:nth-child(even)::after {
     left: -16px;
 }
 
@@ -775,7 +791,6 @@ nav ul li a:hover {
     border-radius: 50%;
     z-index: 1;
 }
-
 
 .timeline-content {
     padding: 20px 30px;
@@ -1104,7 +1119,7 @@ a,
         color: white;
     }
 
-    .timeline-container::after {
+    .timeline-line {
         left: 31px;
     }
 
@@ -1117,7 +1132,7 @@ a,
         left: 15px;
     }
 
-    .timeline-item:nth-child(even) {
+    .timeline-item:nth-child(odd) {
         left: 0%;
     }
 
