@@ -224,7 +224,7 @@ document.querySelector('.lightbox .close').addEventListener('click', () => {
     document.body.classList.remove("loading");
 });
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Draggable);
 
 // Animate section title and subtitle
 gsap.from(".section-title, .section-subtitle", {
@@ -380,6 +380,7 @@ gsap.utils.toArray(".insight-card").forEach(card => {
 });
 
 function animateTimeline() {
+
     // Animate the title
     gsap.from(".journey-timeline h3", {
         opacity: 0,
@@ -402,7 +403,7 @@ function animateTimeline() {
         }
     });
 
-    // Animate timeline items
+    // Animate and make timeline items draggable
     gsap.utils.toArray(".timeline-item").forEach((item, index) => {
         gsap.from(item, {
             opacity: 0,
@@ -413,9 +414,50 @@ function animateTimeline() {
                 start: "top 90%",
             }
         });
+
+        let momentum = { x: 0, y: 0 };
+        let lastX, lastY;
+
+        Draggable.create(item, {
+            type: "x,y",
+            bounds: ".timeline-container",
+            inertia: true,
+            onDragStart: function() {
+                gsap.to(this.target, {duration: 0.2, scale: 1.1, boxShadow: "0px 0px 10px rgba(0,0,0,0.2)"});
+                lastX = this.x;
+                lastY = this.y;
+            },
+            onDrag: function() {
+                momentum.x = this.x - lastX;
+                momentum.y = this.y - lastY;
+                lastX = this.x;
+                lastY = this.y;
+            },
+            onDragEnd: function() {
+                gsap.to(this.target, {duration: 0.2, scale: 1, boxShadow: "none"});
+                
+                // Apply momentum with bounce
+                gsap.to(this.target, {
+                    duration: 5,
+                    x: `+=${momentum.x * 50}`,
+                    y: `+=${momentum.y * 50}`,
+                    ease: "power1.out",
+                    onUpdate: () => {
+                        const bounds = this.target.getBoundingClientRect();
+                        const containerBounds = document.querySelector(".timeline-container").getBoundingClientRect();
+                        
+                        if (bounds.left < containerBounds.left || bounds.right > containerBounds.right) {
+                            momentum.x *= -0.8; // Reverse direction and reduce momentum
+                        }
+                        if (bounds.top < containerBounds.top || bounds.bottom > containerBounds.bottom) {
+                            momentum.y *= -0.8; // Reverse direction and reduce momentum
+                        }
+                    }
+                });
+            }
+        });
     });
 }
-
 
 //  animated quote
 gsap.utils.toArray(".quote-container").forEach(container => {
