@@ -178,6 +178,23 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0)
 
+//Showcase image parallax
+gsap.fromTo(
+    ".showcase-image img",
+    { xPercent: 30 },  
+    {
+      xPercent: 0,  
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: ".showcase",
+        start: "top bottom",  
+        end: "bottom 90%",  
+        scrub: true,  
+        once: true,  
+      }
+    }
+  );
+  
 //service card
 document.querySelectorAll('.lightbox-trigger').forEach(item => {
     item.addEventListener('click', event => {
