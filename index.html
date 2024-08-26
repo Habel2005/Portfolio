@@ -41,9 +41,28 @@
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#services">SERVICES</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="#contact-lightbox">CONTACT</a></li>
             </ul>
         </nav>
+        <!-- Contact form and lighbox -->
+        <div id="contact-lightbox" class="contact-lightbox">
+            <div class="contact-lightbox-content">
+                <span class="contact-close">&times;</span>
+                <form id="contact-form" class="contact-form">
+                    <h2>Contact Us</h2>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Your Phone (optional)">
+                    <input type="text" id="subject" name="subject" placeholder="Subject">
+                    <textarea id="message" name="message" placeholder="Your Message" required
+                        class="full-width"></textarea>
+                    <div class="button-group">
+                        <button type="submit">Send Message</button>
+                        <button type="button" class="clear-btn" id="clear-form">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </header>
     <main>
         <section class="hero" id="about">
@@ -61,7 +80,7 @@
                 precision of aviation.</p>
 
             <button class="view-services-btn">
-                <a href="#services">
+                <a href="#showcase">
                     <span class="text">SEE WHAT I DO</span>
                 </a>
                 <!-- <div class="hover-effect"> 
@@ -69,7 +88,7 @@
             </button>
 
         </section>
-        <section class="showcase">
+        <section class="showcase" id="showcase">
             <div class="showcase-content">
                 <h4>WHAT'S COOKIN'?</h4>
                 <h1 class="animate-fade-up">Building Wonders, One Pixel at a Time!</h1>
@@ -77,7 +96,7 @@
                     collection of standout projects, significant achievements, and professional milestones, all crafted
                     with passion and precision.</p>
                 <button class="get-in-touch">
-                    <a href="#contact"><span class="button-text">LET'S CONNECT</span></a>
+                    <a href="#services"><span class="button-text">LET'S CONNECT</span></a>
                 </button>
             </div>
             <div class="showcase-image">
@@ -203,7 +222,7 @@
                 <div class="timeline-container">
 
                     <div class="timeline-line"></div>
-                    
+
                     <div class="timeline-item" data-draggable>
                         <div class="timeline-content">
                             <h4>2005: The Beginning</h4>

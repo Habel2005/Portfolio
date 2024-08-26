@@ -79,6 +79,7 @@ document.body.classList.add("loading");
 const loader = document.querySelector('.loader')
 const home = document.querySelector('#home')
 const about = document.querySelector('#about')
+const showcase = document.querySelector('#showcase')
 const service = document.querySelector('#services')
 const insight = document.querySelector('#insights')
 
@@ -86,6 +87,7 @@ window.addEventListener('load', () => {
     loader.classList.add('hidden')
     home.classList.add('shown')
     about.classList.add('shown')
+    showcase.classList.add('shown')
     service.classList.add('shown')
     insight.classList.add('shown')
     document.body.classList.remove("loading");
@@ -163,6 +165,83 @@ view_button.addEventListener('mouseleave', reset_button);
 //     hoverEffect.style.height = '0';
 // });
 
+//contact form -->
+
+// Get the contact lightbox
+const contactLightbox = document.getElementById('contact-lightbox');
+
+// Get the button that opens the contact lightbox
+const contactBtn = document.querySelector('nav a[href="#contact-lightbox"]');
+
+// Get the <span> element that closes the contact lightbox
+const contactSpan = document.querySelector('.contact-close');
+
+// When the user clicks on the button, open the contact lightbox
+contactBtn.onclick = function(e) {
+    e.preventDefault();
+    contactLightbox.style.display = 'block';
+}
+
+// When the user clicks on <span> (x), close the contact lightbox
+contactSpan.onclick = function() {
+    contactLightbox.style.display = 'none';
+}
+
+// When the user clicks anywhere outside of the contact lightbox, close it
+window.onclick = function(event) {
+    if (event.target == contactLightbox) {
+        contactLightbox.style.display = 'none';
+    }
+}
+
+const contactForm = document.getElementById('contact-form');
+const clearFormBtn = document.getElementById('clear-form');
+
+// Function to clear all form fields
+function clearForm() {
+    contactForm.reset();
+}
+
+// Clear button event listener
+clearFormBtn.addEventListener('click', clearForm);
+
+// Handle form submission
+contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    // Convert form data to an object to check field names
+    const dataObject = {};
+    formData.forEach((value, key) => {
+        dataObject[key] = value;
+    });
+    console.log('Form data object:', dataObject);
+
+    // Send form data to the server
+    fetch('https://habel.freewebhostmost.com/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataObject)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Thank you for your message! We will get back to you soon.');
+            clearForm();
+            contactLightbox.style.display = 'none';
+        } else {
+            alert('There was an error sending your message. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error sending your message. Please try again.');
+    });
+});
+
 // lenis
 const lenis = new Lenis()
 
@@ -188,7 +267,7 @@ gsap.fromTo(
       scrollTrigger: {
         trigger: ".showcase",
         start: "top bottom",  
-        end: "bottom 90%",  
+        end: "bottom 95%",  
         scrub: true,  
         once: true,  
       }
