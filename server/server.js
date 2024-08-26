@@ -57,5 +57,5 @@ app.post('/send-email', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 'https://habel.freewebhostmost.com/send-email';
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

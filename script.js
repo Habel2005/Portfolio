@@ -219,7 +219,7 @@ contactForm.addEventListener('submit', function(e) {
     console.log('Form data object:', dataObject);
 
     // Send form data to the server
-    fetch('https://habel.freewebhostmost.com/send-email', {
+    fetch('https://portfolio-r2xj.onrender.com/send-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
