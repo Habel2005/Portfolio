@@ -47,6 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
         menuIcon.classList.toggle('hidden');
     });
 
+    //handle hovering of menuicon
+    menuIcon.addEventListener('mouseenter', () => {
+        menuIcon.classList.add('hover');
+    });
+    
+    menuIcon.addEventListener('mouseleave', () => {
+        menuIcon.classList.remove('hover');
+    });
+
     // Handle clicks outside of the menu
     document.addEventListener('click', (event) => {
         if (!navMenu.contains(event.target) && !menuIcon.contains(event.target)) {
@@ -196,6 +205,7 @@ window.onclick = function(event) {
 
 const contactForm = document.getElementById('contact-form');
 const clearFormBtn = document.getElementById('clear-form');
+const submitButton = contactForm.querySelector('button[type="submit"]');
 
 // Function to clear all form fields
 function clearForm() {
@@ -216,7 +226,10 @@ contactForm.addEventListener('submit', function(e) {
     formData.forEach((value, key) => {
         dataObject[key] = value;
     });
-    console.log('Form data object:', dataObject);
+
+    // Show loader and disable the submit button
+    loader.classList.remove('hidden');
+    submitButton.disabled = true;
 
     // Send form data to the server
     fetch('https://portfolio-r2xj.onrender.com/send-email', {
@@ -239,6 +252,11 @@ contactForm.addEventListener('submit', function(e) {
     .catch(error => {
         console.error('Error:', error);
         alert('There was an error sending your message. Please try again.');
+    })
+    .finally(() => {
+        // Hide loader and enable the submit button
+        loader.classList.add('hidden');
+        submitButton.disabled = false;
     });
 });
 

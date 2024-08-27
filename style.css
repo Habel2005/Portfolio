@@ -38,7 +38,22 @@ html {
     scroll-behavior: smooth;
 
 }
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 9px;
+}
 
+::-webkit-scrollbar-track {
+    background: #1b2428;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4dd0e1c4;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #00e1ffc4; 
+}
 header {
     background-color: #1c2833;
     color: white;
@@ -75,7 +90,21 @@ header {
     height: 2.5px;
     background-color: rgb(255, 255, 255);
     display: block;
-    transition: background-color 0.3s ease, transform .3s ease-in-out;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), background-color 0.3s ease;
+}
+
+#menu-icon:not(.hidden).hover span:nth-child(2) {
+    transform: scaleX(0.8);
+    transform-origin: right;
+}
+
+#menu-icon:not(.hidden).hover span:nth-child(3) {
+    transform: scaleX(0.6);
+    transform-origin: right;
+}
+
+#menu-icon.hover.hidden span {
+    background-color: rgb(56, 85, 113);
 }
 
 #menu-icon.hidden span:nth-child(1) {
@@ -1215,19 +1244,41 @@ a,
         font-size: 1.8em;
     }
 
-    .contact-form {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form .full-width,
-    .contact-form textarea,
-    .contact-form button {
-        grid-column: span 1;
-    }
-
     .contact-lightbox-content {
-        width: 95%;
-        height: 90vh;
+        width: 90%;
+        height: 85vh;
+        padding: 20px;
+        max-width: 400px;
+    }
+
+    .contact-close {
+        top: 20px;
+        right: 25px;
+        font-size: 28px;
+    }
+
+    .contact-form {
+        margin-top: 10vh;
+        gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .contact-form textarea {
+        min-height: 100px;
+    }
+
+    .contact-form button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .button-group {
+        gap: 25px;
     }
 
     .hero {
