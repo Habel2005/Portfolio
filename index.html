@@ -42,6 +42,7 @@
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#services">SERVICES</a></li>
                 <li><a href="#contact-lightbox">CONTACT</a></li>
+                <li id="playButton"><a href="#">Play</a></li>
             </ul>
         </nav>
         <!-- Contact form and lighbox -->
@@ -257,6 +258,25 @@
                 </div>
             </div>
         </section>
+
+        <!-- Game canvas -->
+        <div id="game-container" class="game-container" style="display: none;">
+            <div id="closeGame" class="close-btn">&times;</div>
+            <div id="game-info">
+                <div id="score-display">Score: 0</div>
+                <div id="timer-display">Time Left: 30</div>
+            </div>
+            <canvas id="gameCanvas"></canvas>
+            <div id="game-controls">
+                <div id="arrow-controls">
+                    <button id="left-arrow" class="arrow-button">&#8592;</button>
+                    <button id="right-arrow" class="arrow-button">&#8594;</button>
+                </div>
+                
+            </div>
+            
+        </div>
+        
     </main>
     <div class="custom-cursor"></div>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
