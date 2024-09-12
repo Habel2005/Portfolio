@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {           
     const cursor = document.querySelector('.custom-cursor');
     const sections = document.querySelectorAll('section');
     const interactiveElements = document.querySelectorAll('a, button, .hover-area');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuIcon.addEventListener('mouseenter', () => {
         menuIcon.classList.add('hover');
     });
-    
+
     menuIcon.addEventListener('mouseleave', () => {
         menuIcon.classList.remove('hover');
     });
@@ -151,7 +151,21 @@ const reset_button = (event) => {
 
 view_button.addEventListener('mousemove', activate_button);
 view_button.addEventListener('mouseleave', reset_button);
+//hero "hello" animation
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    const helloText = document.querySelector('.hero h3');
+
+    helloText.addEventListener('mouseenter', () => {
+        if (!helloText.classList.contains('wiggling')) {
+            helloText.classList.add('wiggling');
+        }
+    });
+
+    helloText.addEventListener('animationend', () => {
+        helloText.classList.remove('wiggling');
+    });
+}); 
 
 // const viewButton = document.querySelector('.view-services-btn');
 // const hoverEffect = viewButton.querySelector('.hover-effect');
@@ -186,18 +200,18 @@ const contactBtn = document.querySelector('nav a[href="#contact-lightbox"]');
 const contactSpan = document.querySelector('.contact-close');
 
 // When the user clicks on the button, open the contact lightbox
-contactBtn.onclick = function(e) {
+contactBtn.onclick = function (e) {
     e.preventDefault();
     contactLightbox.style.display = 'block';
 }
 
 // When the user clicks on <span> (x), close the contact lightbox
-contactSpan.onclick = function() {
+contactSpan.onclick = function () {
     contactLightbox.style.display = 'none';
 }
 
 // When the user clicks anywhere outside of the contact lightbox, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == contactLightbox) {
         contactLightbox.style.display = 'none';
     }
@@ -216,7 +230,7 @@ function clearForm() {
 clearFormBtn.addEventListener('click', clearForm);
 
 // Handle form submission
-contactForm.addEventListener('submit', function(e) {
+contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const formData = new FormData(contactForm);
@@ -239,25 +253,25 @@ contactForm.addEventListener('submit', function(e) {
         },
         body: JSON.stringify(dataObject)
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Thank you for your message! We will get back to you soon.');
-            clearForm();
-            contactLightbox.style.display = 'none';
-        } else {
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Thank you for your message! We will get back to you soon.');
+                clearForm();
+                contactLightbox.style.display = 'none';
+            } else {
+                alert('There was an error sending your message. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
             alert('There was an error sending your message. Please try again.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error sending your message. Please try again.');
-    })
-    .finally(() => {
-        // Hide loader and enable the submit button
-        loader.classList.add('hidden');
-        submitButton.disabled = false;
-    });
+        })
+        .finally(() => {
+            // Hide loader and enable the submit button
+            loader.classList.add('hidden');
+            submitButton.disabled = false;
+        });
 });
 
 // lenis
@@ -278,20 +292,20 @@ gsap.ticker.lagSmoothing(0)
 //Showcase image parallax
 gsap.fromTo(
     ".showcase-image img",
-    { xPercent: 30 },  
+    { xPercent: 30 },
     {
-      xPercent: 0,  
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: ".showcase",
-        start: "top bottom",  
-        end: "bottom 95%",  
-        scrub: true,  
-        once: true,  
-      }
+        xPercent: 0,
+        ease: "power1.out",
+        scrollTrigger: {
+            trigger: ".showcase",
+            start: "top bottom",
+            end: "bottom 95%",
+            scrub: true,
+            once: true,
+        }
     }
-  );
-  
+);
+
 //service card
 document.querySelectorAll('.lightbox-trigger').forEach(item => {
     item.addEventListener('click', event => {
@@ -329,6 +343,9 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
 
         // Display the lightbox
         lightbox.style.display = 'flex';
+
+        // Disable scrolling on the body
+        document.body.style.overflow = 'hidden';
     });
 });
 
@@ -336,6 +353,14 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
 document.querySelector('.lightbox .close').addEventListener('click', () => {
     document.getElementById('lightbox').style.display = 'none';
     document.body.classList.remove("loading");
+
+    // Re-enable scrolling on the body
+    document.body.style.overflow = 'auto';
+});
+
+// Prevent scroll events from propagating to the body
+document.querySelector('.lightbox-content').addEventListener('wheel', (e) => {
+    e.stopPropagation();
 });
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Draggable);
@@ -384,15 +409,15 @@ function animateRocket() {
         // Path that covers the entire viewport with alternating directions
         const path = reverse
             ? [
-                  { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
-                  { x: window.innerWidth, y: 0 },
-                  { x: 0, y: Math.random() * window.innerHeight }
-              ]
+                { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
+                { x: window.innerWidth, y: 0 },
+                { x: 0, y: Math.random() * window.innerHeight }
+            ]
             : [
-                  { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
-                  { x: 0, y: 0 },
-                  { x: window.innerWidth, y: Math.random() * window.innerHeight }
-              ];
+                { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
+                { x: 0, y: 0 },
+                { x: window.innerWidth, y: Math.random() * window.innerHeight }
+            ];
         return path;
     };
 
@@ -409,6 +434,198 @@ function animateRocket() {
     };
     animate();
 }
+// Variables for game elements
+let gameContainer = document.getElementById('game-container');
+let canvas = document.getElementById('gameCanvas');
+let ctx = canvas.getContext('2d');
+let scoreDisplay = document.getElementById('score-display');
+let timerDisplay = document.getElementById('timer-display');
+let closeGameButton = document.getElementById('closeGame');
+let leftArrow = document.getElementById('left-arrow');
+let rightArrow = document.getElementById('right-arrow');
+let rocket, energyCells = [], obstacles = [], score = 0, timeLeft = 60, gameRunning = false;
+
+// Image placeholders with SVG sources
+let rocketImg = new Image();
+rocketImg.src = 'images/gamerocket.svg';  
+
+let energyCellImg = new Image();
+energyCellImg.src = 'images/energy.svg';  
+
+let obstacleImg = new Image();
+obstacleImg.src = 'images/rock.svg';  
+
+// Game start logic
+function startGame() {
+    resetGame();
+    gameRunning = true;
+    requestAnimationFrame(updateGame);
+    updateTimer();
+}
+
+// Rocket and game objects setup
+function resetGame() {
+    // Reduce the collision hitbox size to make it smaller than the SVG size
+    rocket = { 
+        x: canvas.width / 2, 
+        y: canvas.height - 15, // Place rocket at the very bottom
+        speed: 3, 
+        width: 40,   // Width of rocket
+        height: 60,  // Height of rocket
+        hitboxWidth: 1, 
+        hitboxHeight: 40
+    };
+    energyCells = [];
+    obstacles = [];
+    score = 0;
+    timeLeft = 60;
+    for (let i = 0; i < 5; i++) {
+        energyCells.push(generateRandomPosition(15, true)); // More spacing
+        obstacles.push(generateRandomPosition(22, true));
+    }
+    scoreDisplay.innerText = `Score: ${score}`;
+    timerDisplay.innerText = `Time Left: ${timeLeft}`;
+}
+
+// Adjust obstacle size and speed
+const obstacleSpeed = 1; // Slower speed for obstacles
+const energySpeed = 1; // Slower speed for energy cells
+
+// Reduced sizes for obstacles and energy cells
+function generateRandomPosition(radius, isObstacle) {
+    return { 
+        x: Math.random() * (canvas.width - 2 * radius) + radius, 
+        y: Math.random() * (canvas.height - 2 * radius) + radius, 
+        radius: isObstacle ? 15 : radius, // Smaller radius for obstacles
+        hitboxWidth: isObstacle ? 1 : 0, // Adjust for obstacles
+        hitboxHeight: isObstacle ? 15 : 0 // Adjust for obstacles
+    };
+}
+
+function updateGame() {
+    if (!gameRunning) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw rocket with adjusted hitbox
+    ctx.drawImage(rocketImg, rocket.x - rocket.width / 2, rocket.y - rocket.height / 2, rocket.width, rocket.height);
+
+    // Move energy cells and obstacles
+    energyCells.forEach(cell => {
+        cell.y += energySpeed;
+        if (cell.y - cell.radius > canvas.height) {
+            cell.y = -cell.radius;
+        }
+        ctx.drawImage(energyCellImg, cell.x - cell.radius, cell.y - cell.radius, 20, 20);
+    });
+
+    obstacles.forEach(obstacle => {
+        obstacle.y += obstacleSpeed;
+        if (obstacle.y - obstacle.radius > canvas.height) {
+            obstacle.y = -obstacle.radius;
+        }
+        ctx.drawImage(obstacleImg, obstacle.x - obstacle.radius, obstacle.y - obstacle.radius, 30, 30); // Smaller obstacles
+    });
+
+    // Check collisions
+    checkCollisions();
+
+    // Update score display
+    scoreDisplay.innerText = `Score: ${score}`;
+
+    // Continue game loop
+    requestAnimationFrame(updateGame);
+}
+
+// Check for collisions with energy cells and obstacles
+function checkCollisions() {
+    // Check energy cells
+    energyCells = energyCells.filter(cell => {
+        if (isColliding(rocket, cell)) {
+            score += 10; // Increase score
+            return false; // Remove energy cell
+        }
+        return true;
+    });
+
+    // Check obstacles
+    obstacles.forEach(obstacle => {
+        if (isColliding(rocket, obstacle)) {
+            gameRunning = false; // Stop the game
+            endGame(false); // End game if hit obstacle
+        }
+    });
+
+    // Check win condition
+    if (energyCells.length === 0) endGame(true); // Win if all energy cells are collected
+}
+
+// Circle-based collision detection
+function isColliding(a, b) {
+    const aLeft = a.x - a.hitboxWidth / 2;
+    const aRight = a.x + a.hitboxWidth / 2;
+    const aTop = a.y - a.hitboxHeight / 2;
+    const aBottom = a.y + a.hitboxHeight / 2;
+
+    const bLeft = b.x - b.radius;
+    const bRight = b.x + b.radius;
+    const bTop = b.y - b.radius;
+    const bBottom = b.y + b.radius;
+
+    return !(aLeft > bRight || 
+             aRight < bLeft || 
+             aTop > bBottom || 
+             aBottom < bTop);
+}
+
+// Timer and end game logic
+function updateTimer() {
+    if (!gameRunning) return;
+    if (timeLeft > 0) {
+        timeLeft--;
+        timerDisplay.innerText = `Time Left: ${timeLeft}`;
+        setTimeout(updateTimer, 1000);
+    } else {
+        endGame(true); // Win if time runs out
+    }
+}
+
+function endGame(win) {
+    gameRunning = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let message = win ? `You Won! Score: ${score}` : `Game Over! Score: ${score}`;
+    ctx.fillStyle = 'white';
+    ctx.font = '24px Arial';
+    ctx.fillText(message, canvas.width / 2 - 100, canvas.height / 2);
+}
+
+// Event listeners for starting and closing the game
+document.getElementById('playButton').addEventListener('click', () => {
+    gameContainer.style.display = 'flex';
+    startGame();
+});
+
+closeGameButton.addEventListener('click', () => {
+    gameContainer.style.display = 'none';
+    gameRunning = false;
+});
+
+// Add event listeners for on-screen arrow controls
+leftArrow.addEventListener('click', () => {
+    if (rocket.x - rocket.width / 2 > 0) rocket.x -= rocket.speed;
+});
+
+rightArrow.addEventListener('click', () => {
+    if (rocket.x + rocket.width / 2 < canvas.width) rocket.x += rocket.speed;
+});
+document.getElementById('left-arrow').addEventListener('click', () => {
+    if (rocket.x - rocket.width / 2 > 0) rocket.x -= rocket.speed;
+});
+
+document.getElementById('right-arrow').addEventListener('click', () => {
+    if (rocket.x + rocket.width / 2 < canvas.width) rocket.x += rocket.speed;
+});
+
 
 // Animate insight cards
 function animateInsightCards() {
@@ -508,7 +725,7 @@ function animateTimeline() {
 
     // Animate the central line
     gsap.to(".timeline-line", {
-        scaleY: 1, 
+        scaleY: 1,
         duration: 10,
         ease: "power2.out",
         scrollTrigger: {
@@ -536,20 +753,20 @@ function animateTimeline() {
             type: "x,y",
             bounds: ".timeline-container",
             inertia: true,
-            onDragStart: function() {
-                gsap.to(this.target, {duration: 0.2, scale: 1.1, boxShadow: "0px 0px 10px rgba(0,0,0,0.2)"});
+            onDragStart: function () {
+                gsap.to(this.target, { duration: 0.2, scale: 1.1, boxShadow: "0px 0px 10px rgba(0,0,0,0.2)" });
                 lastX = this.x;
                 lastY = this.y;
             },
-            onDrag: function() {
+            onDrag: function () {
                 momentum.x = this.x - lastX;
                 momentum.y = this.y - lastY;
                 lastX = this.x;
                 lastY = this.y;
             },
-            onDragEnd: function() {
-                gsap.to(this.target, {duration: 0.2, scale: 1, boxShadow: "none"});
-                
+            onDragEnd: function () {
+                gsap.to(this.target, { duration: 0.2, scale: 1, boxShadow: "none" });
+
                 // Apply momentum with bounce
                 gsap.to(this.target, {
                     duration: 5,
@@ -559,7 +776,7 @@ function animateTimeline() {
                     onUpdate: () => {
                         const bounds = this.target.getBoundingClientRect();
                         const containerBounds = document.querySelector(".timeline-container").getBoundingClientRect();
-                        
+
                         if (bounds.left < containerBounds.left || bounds.right > containerBounds.right) {
                             momentum.x *= -0.8; // Reverse direction and reduce momentum
                         }

@@ -5,8 +5,7 @@
 
 #home,
 #about,
-#showcase
-#contact,
+#showcase #contact,
 #services,
 #insights {
     opacity: 0;
@@ -16,8 +15,7 @@
 
 #home.shown,
 #about.shown,
-#showcase.shown
-#contact.shown,
+#showcase.shown #contact.shown,
 #services.shown,
 #insights.shown {
     opacity: 1;
@@ -38,6 +36,7 @@ html {
     scroll-behavior: smooth;
 
 }
+
 /* scrollbar */
 ::-webkit-scrollbar {
     width: 9px;
@@ -51,9 +50,11 @@ html {
     background: #4dd0e1c4;
     border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-    background: #00e1ffc4; 
+    background: #00e1ffc4;
 }
+
 header {
     background-color: #1c2833;
     color: white;
@@ -170,7 +171,7 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-family: 'LouizeDisplay', serif;
-    font-size: 2.5em; 
+    font-size: 2.5em;
     display: inline-block;
     cursor: pointer;
     position: relative;
@@ -178,7 +179,7 @@ nav ul li a {
     transition: color 0.2s ease-in-out;
 }
 
-nav ul li a:hover{
+nav ul li a:hover {
     color: #00467b;
 }
 
@@ -374,10 +375,39 @@ nav.active {
     max-height: 80%;
 } */
 
+@keyframes gentleWiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(2deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
 .hero h3 {
     font-size: 1.9em;
     margin: 0px;
+    width: fit-content;
+    display: inline-block;
     font-family: 'New Caledonia';
+}
+
+.hero {
+    overflow: hidden;
+}
+
+.hero h3.wiggling {
+    animation: gentleWiggle 0.7s ease-in-out;
 }
 
 .hero h1 {
@@ -448,8 +478,8 @@ nav.active {
     pointer-events: none;
 } */
 section {
-    position: relative;  
-    z-index: 1;  
+    position: relative;
+    z-index: 1;
 }
 
 .showcase {
@@ -490,14 +520,14 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;  
-    z-index: 1;  
+    object-fit: cover;
+    z-index: 1;
 }
 
 .showcase-content,
 .showcase-image {
     position: relative;
-    z-index: 3;  
+    z-index: 3;
 }
 
 .showcase-content h1,
@@ -723,6 +753,10 @@ nav ul li a:hover {
     margin-bottom: 0;
 }
 
+body.lightbox-open {
+    overflow: hidden;
+}
+
 /* Lightbox container */
 .lightbox {
     display: none;
@@ -736,6 +770,7 @@ nav ul li a:hover {
     align-items: center;
     z-index: 1002;
     backdrop-filter: blur(8px);
+    overflow: hidden;
 }
 
 /* Lightbox content */
@@ -965,7 +1000,6 @@ nav ul li a:hover {
     opacity: 0.2;
 }
 
-
 .journey-timeline {
     position: relative;
     max-width: 800px;
@@ -1007,10 +1041,25 @@ nav ul li a:hover {
     border-radius: 10px;
 }
 
-.timeline-item:nth-child(2) { top: 0%; right: 50%; }
-.timeline-item:nth-child(3) { top: 25%; left: 50%; }
-.timeline-item:nth-child(4) { top: 55%; right: 50%; }
-.timeline-item:nth-child(5) { top: 85%; left: 50%; }
+.timeline-item:nth-child(2) {
+    top: 0%;
+    right: 50%;
+}
+
+.timeline-item:nth-child(3) {
+    top: 25%;
+    left: 50%;
+}
+
+.timeline-item:nth-child(4) {
+    top: 55%;
+    right: 50%;
+}
+
+.timeline-item:nth-child(5) {
+    top: 85%;
+    left: 50%;
+}
 
 .timeline-item:nth-child(3)::after {
     left: -16px;
@@ -1038,6 +1087,128 @@ nav ul li a:hover {
     background-color: rgba(52, 152, 219, 0.1);
     position: relative;
     border-radius: 6px;
+}
+
+/* Game Container */
+#game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+/* Game Info (Score & Timer) */
+#game-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #ffffff;
+    font-size: 20px;
+    z-index: 10001;
+}
+
+#score-display,
+#timer-display {
+    margin-bottom: 10px;
+}
+
+/* Canvas Styling */
+canvas {
+    background-color: #001f3f;
+    border: 2px solid #ffffff;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10002;
+}
+
+#gameCanvas {
+    width: 90%;
+    height: 90%;
+    background-color: #002B36;
+    border-radius: 15px;
+    border: 2px solid white;
+}
+
+#closeGame {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: white;
+    font-size: 50px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+#game-controls {
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10001; /* Make sure controls are on top of everything */
+}
+
+.control-button {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.control-button:hover {
+    background-color: #0056b3;
+}
+#arrow-controls {
+    position: absolute;
+    bottom: 10%; /* Adjust this value to position the arrows correctly */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    z-index: 10001; /* Ensure it's above other content */
+}
+
+/* Arrow Buttons */
+.arrow-button {
+    width: 60px; /* Adjust size for desktop */
+    height: 60px;
+    background-color: #004d40; /* Darker green-blue */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.arrow-button:active {
+    background-color: #00332d; /* Slightly darker when pressed */
 }
 
 footer {
@@ -1412,35 +1583,67 @@ a,
 
     .timeline-container {
         width: 100%;
-        height: auto;  
+        height: auto;
         position: relative;
-        left: 0;  
+        left: 0;
     }
 
     .timeline-line {
-        left: 6px;  
-        width: 4px;  
+        left: 6px;
+        width: 4px;
     }
 
     .timeline-item {
-        width: calc(100% - 20px);  
+        width: calc(100% - 20px);
         padding: 10px;
-        margin: 10px auto;  
-        position: relative;  
+        margin: 10px auto;
+        position: relative;
     }
 
     .timeline-item:nth-child(odd) {
-        left: 0; 
+        left: 0;
     }
 
     .timeline-item:nth-child(even) {
-        left: 0; 
+        left: 0;
     }
 
     .timeline-item::after {
-        left: -10px; 
+        left: -10px;
     }
 
+    #gameCanvas {
+        position: fixed;
+        top: 20%;
+        width: 95%;
+        height: 50%;
+        background-color: #002B36;
+        z-index: 999;
+        border-radius: 15px;
+    }
+
+    #game-container {
+        position: fixed;  
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;  
+        overflow: hidden;  
+    }
+    #arrow-controls {
+        bottom: 15%; /* Adjust bottom spacing for mobile */
+    }
+
+    .arrow-button {
+        width: 50px; /* Smaller size for mobile */
+        height: 50px;
+        font-size: 20px;
+    }
     footer {
         padding: 10px;
     }
