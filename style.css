@@ -148,39 +148,42 @@ nav {
     height: 100vh;
     background: #1c2833fd;
     transition: right 0.6s ease-in-out;
-    padding-top: 20px;
+    padding: 20px;
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 /* Navigation List Styling */
 nav ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin-left: 130px;
     text-align: center;
 }
 
 nav ul li {
-    margin: 50px 0;
+    margin: 40px 0;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
     font-family: 'LouizeDisplay', serif;
-    font-size: 2.5em;
+    font-size: 5em;
     display: inline-block;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: color 0.2s ease-in-out;
+    letter-spacing: 0;
+    transition: color 0.2s ease-in-out ,font-size 0.5s ease,letter-spacing 0.3s ease;
 }
 
 nav ul li a:hover {
     color: #00467b;
+    letter-spacing: 10px;
+    font-size: 7em;
 }
 
 nav ul li a::after {
@@ -190,10 +193,10 @@ nav ul li a::after {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: rgb(30, 56, 79);
+    background-color: rgb(80, 115, 146);
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform 0.4s ease;
+    transition: transform 0.6s ease;
 }
 
 nav ul li a:hover::after {
@@ -591,7 +594,7 @@ section {
     right: 100%;
     bottom: 0;
     left: 0;
-    background-color: #32564f;
+    background-color: #2a3c39;
     transition: right 0.3s ease-in-out;
     z-index: 1;
 }
@@ -1106,8 +1109,8 @@ body.lightbox-open {
 /* Game Info (Score & Timer) */
 #game-info {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 60px;
+    left: 90px;
     color: #ffffff;
     font-size: 20px;
     z-index: 10001;
@@ -1124,17 +1127,6 @@ canvas {
     border: 2px solid #ffffff;
 }
 
-/* Close Button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: #ffffff;
-    cursor: pointer;
-    z-index: 10002;
-}
-
 #gameCanvas {
     width: 90%;
     height: 90%;
@@ -1146,20 +1138,21 @@ canvas {
 #closeGame {
     position: absolute;
     top: 5%;
-    right: 5%;
+    right: 6%;
     color: white;
     font-size: 50px;
     padding: 10px;
     cursor: pointer;
     z-index: 1000;
 }
+
 #game-controls {
     position: absolute;
     bottom: 10%;
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 10001; /* Make sure controls are on top of everything */
+    z-index: 10001; 
 }
 
 .control-button {
@@ -1196,7 +1189,7 @@ canvas {
 .arrow-button {
     width: 60px; /* Adjust size for desktop */
     height: 60px;
-    background-color: #004d40; /* Darker green-blue */
+    background-color: #03424c; /* Darker green-blue */
     color: white;
     border: none;
     border-radius: 50%;
@@ -1208,7 +1201,7 @@ canvas {
 }
 
 .arrow-button:active {
-    background-color: #00332d; /* Slightly darker when pressed */
+    background-color: #006575; /* Slightly darker when pressed */
 }
 
 footer {
@@ -1450,16 +1443,21 @@ a,
     }
 
     nav {
-        padding-top: 20px;
+        padding: 5px;
         width: 100vw;
     }
 
     nav ul {
         gap: 30px;
+        margin-left: 60px;
     }
 
     nav ul li a {
-        font-size: 1.8em;
+        font-size: 3.5em;
+    }
+
+    nav ul li a:hover{
+        font-size: 5em;
     }
 
     .contact-lightbox-content {

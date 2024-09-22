@@ -443,7 +443,7 @@ let timerDisplay = document.getElementById('timer-display');
 let closeGameButton = document.getElementById('closeGame');
 let leftArrow = document.getElementById('left-arrow');
 let rightArrow = document.getElementById('right-arrow');
-let rocket, energyCells = [], obstacles = [], score = 0, timeLeft = 60, gameRunning = false;
+let rocket, energyCells = [], obstacles = [], score = 0, timeLeft = 30, gameRunning = false;
 
 // Image placeholders with SVG sources
 let rocketImg = new Image();
@@ -478,7 +478,7 @@ function resetGame() {
     energyCells = [];
     obstacles = [];
     score = 0;
-    timeLeft = 60;
+    timeLeft = 30;
     for (let i = 0; i < 5; i++) {
         energyCells.push(generateRandomPosition(15, true)); // More spacing
         obstacles.push(generateRandomPosition(22, true));
