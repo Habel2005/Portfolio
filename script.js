@@ -1,4 +1,5 @@
     document.addEventListener('DOMContentLoaded', () => {           
+    document.addEventListener('DOMContentLoaded', () => {           
     const cursor = document.querySelector('.custom-cursor');
     const sections = document.querySelectorAll('section');
     const interactiveElements = document.querySelectorAll('a, button, .hover-area');
@@ -51,6 +52,7 @@
     menuIcon.addEventListener('mouseenter', () => {
         menuIcon.classList.add('hover');
     });
+
 
     menuIcon.addEventListener('mouseleave', () => {
         menuIcon.classList.remove('hover');
@@ -166,6 +168,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
         helloText.classList.remove('wiggling');
     });
 }); 
+//hero "hello" animation
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const helloText = document.querySelector('.hero h3');
+
+    helloText.addEventListener('mouseenter', () => {
+        if (!helloText.classList.contains('wiggling')) {
+            helloText.classList.add('wiggling');
+        }
+    });
+
+    helloText.addEventListener('animationend', () => {
+        helloText.classList.remove('wiggling');
+    });
+}); 
 
 // const viewButton = document.querySelector('.view-services-btn');
 // const hoverEffect = viewButton.querySelector('.hover-effect');
@@ -201,16 +218,19 @@ const contactSpan = document.querySelector('.contact-close');
 
 // When the user clicks on the button, open the contact lightbox
 contactBtn.onclick = function (e) {
+contactBtn.onclick = function (e) {
     e.preventDefault();
     contactLightbox.style.display = 'block';
 }
 
 // When the user clicks on <span> (x), close the contact lightbox
 contactSpan.onclick = function () {
+contactSpan.onclick = function () {
     contactLightbox.style.display = 'none';
 }
 
 // When the user clicks anywhere outside of the contact lightbox, close it
+window.onclick = function (event) {
 window.onclick = function (event) {
     if (event.target == contactLightbox) {
         contactLightbox.style.display = 'none';
@@ -230,6 +250,7 @@ function clearForm() {
 clearFormBtn.addEventListener('click', clearForm);
 
 // Handle form submission
+contactForm.addEventListener('submit', function (e) {
 contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -272,6 +293,25 @@ contactForm.addEventListener('submit', function (e) {
             loader.classList.add('hidden');
             submitButton.disabled = false;
         });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Thank you for your message! We will get back to you soon.');
+                clearForm();
+                contactLightbox.style.display = 'none';
+            } else {
+                alert('There was an error sending your message. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error sending your message. Please try again.');
+        })
+        .finally(() => {
+            // Hide loader and enable the submit button
+            loader.classList.add('hidden');
+            submitButton.disabled = false;
+        });
 });
 
 // lenis
@@ -293,6 +333,7 @@ gsap.ticker.lagSmoothing(0)
 gsap.fromTo(
     ".showcase-image img",
     { xPercent: 30 },
+    { xPercent: 30 },
     {
         xPercent: 0,
         ease: "power1.out",
@@ -303,7 +344,18 @@ gsap.fromTo(
             scrub: true,
             once: true,
         }
+        xPercent: 0,
+        ease: "power1.out",
+        scrollTrigger: {
+            trigger: ".showcase",
+            start: "top bottom",
+            end: "bottom 95%",
+            scrub: true,
+            once: true,
+        }
     }
+);
+
 );
 
 //service card
@@ -346,6 +398,9 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
 
         // Disable scrolling on the body
         document.body.style.overflow = 'hidden';
+
+        // Disable scrolling on the body
+        document.body.style.overflow = 'hidden';
     });
 });
 
@@ -353,6 +408,14 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
 document.querySelector('.lightbox .close').addEventListener('click', () => {
     document.getElementById('lightbox').style.display = 'none';
     document.body.classList.remove("loading");
+
+    // Re-enable scrolling on the body
+    document.body.style.overflow = 'auto';
+});
+
+// Prevent scroll events from propagating to the body
+document.querySelector('.lightbox-content').addEventListener('wheel', (e) => {
+    e.stopPropagation();
 
     // Re-enable scrolling on the body
     document.body.style.overflow = 'auto';
@@ -413,7 +476,15 @@ function animateRocket() {
                 { x: window.innerWidth, y: 0 },
                 { x: 0, y: Math.random() * window.innerHeight }
             ]
+                { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
+                { x: window.innerWidth, y: 0 },
+                { x: 0, y: Math.random() * window.innerHeight }
+            ]
             : [
+                { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
+                { x: 0, y: 0 },
+                { x: window.innerWidth, y: Math.random() * window.innerHeight }
+            ];
                 { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
                 { x: 0, y: 0 },
                 { x: window.innerWidth, y: Math.random() * window.innerHeight }
@@ -726,6 +797,7 @@ function animateTimeline() {
     // Animate the central line
     gsap.to(".timeline-line", {
         scaleY: 1,
+        scaleY: 1,
         duration: 10,
         ease: "power2.out",
         scrollTrigger: {
@@ -755,15 +827,21 @@ function animateTimeline() {
             inertia: true,
             onDragStart: function () {
                 gsap.to(this.target, { duration: 0.2, scale: 1.1, boxShadow: "0px 0px 10px rgba(0,0,0,0.2)" });
+            onDragStart: function () {
+                gsap.to(this.target, { duration: 0.2, scale: 1.1, boxShadow: "0px 0px 10px rgba(0,0,0,0.2)" });
                 lastX = this.x;
                 lastY = this.y;
             },
+            onDrag: function () {
             onDrag: function () {
                 momentum.x = this.x - lastX;
                 momentum.y = this.y - lastY;
                 lastX = this.x;
                 lastY = this.y;
             },
+            onDragEnd: function () {
+                gsap.to(this.target, { duration: 0.2, scale: 1, boxShadow: "none" });
+
             onDragEnd: function () {
                 gsap.to(this.target, { duration: 0.2, scale: 1, boxShadow: "none" });
 
@@ -776,6 +854,7 @@ function animateTimeline() {
                     onUpdate: () => {
                         const bounds = this.target.getBoundingClientRect();
                         const containerBounds = document.querySelector(".timeline-container").getBoundingClientRect();
+
 
                         if (bounds.left < containerBounds.left || bounds.right > containerBounds.right) {
                             momentum.x *= -0.8; // Reverse direction and reduce momentum
