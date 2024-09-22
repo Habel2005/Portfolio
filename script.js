@@ -1,5 +1,4 @@
     document.addEventListener('DOMContentLoaded', () => {           
-    document.addEventListener('DOMContentLoaded', () => {           
     const cursor = document.querySelector('.custom-cursor');
     const sections = document.querySelectorAll('section');
     const interactiveElements = document.querySelectorAll('a, button, .hover-area');
@@ -218,19 +217,16 @@ const contactSpan = document.querySelector('.contact-close');
 
 // When the user clicks on the button, open the contact lightbox
 contactBtn.onclick = function (e) {
-contactBtn.onclick = function (e) {
     e.preventDefault();
     contactLightbox.style.display = 'block';
 }
 
 // When the user clicks on <span> (x), close the contact lightbox
 contactSpan.onclick = function () {
-contactSpan.onclick = function () {
     contactLightbox.style.display = 'none';
 }
 
 // When the user clicks anywhere outside of the contact lightbox, close it
-window.onclick = function (event) {
 window.onclick = function (event) {
     if (event.target == contactLightbox) {
         contactLightbox.style.display = 'none';
@@ -250,7 +246,6 @@ function clearForm() {
 clearFormBtn.addEventListener('click', clearForm);
 
 // Handle form submission
-contactForm.addEventListener('submit', function (e) {
 contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -292,7 +287,7 @@ contactForm.addEventListener('submit', function (e) {
             // Hide loader and enable the submit button
             loader.classList.add('hidden');
             submitButton.disabled = false;
-        });
+        })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -344,18 +339,7 @@ gsap.fromTo(
             scrub: true,
             once: true,
         }
-        xPercent: 0,
-        ease: "power1.out",
-        scrollTrigger: {
-            trigger: ".showcase",
-            start: "top bottom",
-            end: "bottom 95%",
-            scrub: true,
-            once: true,
-        }
     }
-);
-
 );
 
 //service card
@@ -476,15 +460,7 @@ function animateRocket() {
                 { x: window.innerWidth, y: 0 },
                 { x: 0, y: Math.random() * window.innerHeight }
             ]
-                { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
-                { x: window.innerWidth, y: 0 },
-                { x: 0, y: Math.random() * window.innerHeight }
-            ]
             : [
-                { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
-                { x: 0, y: 0 },
-                { x: window.innerWidth, y: Math.random() * window.innerHeight }
-            ];
                 { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
                 { x: 0, y: 0 },
                 { x: window.innerWidth, y: Math.random() * window.innerHeight }
@@ -827,21 +803,15 @@ function animateTimeline() {
             inertia: true,
             onDragStart: function () {
                 gsap.to(this.target, { duration: 0.2, scale: 1.1, boxShadow: "0px 0px 10px rgba(0,0,0,0.2)" });
-            onDragStart: function () {
-                gsap.to(this.target, { duration: 0.2, scale: 1.1, boxShadow: "0px 0px 10px rgba(0,0,0,0.2)" });
                 lastX = this.x;
                 lastY = this.y;
             },
-            onDrag: function () {
             onDrag: function () {
                 momentum.x = this.x - lastX;
                 momentum.y = this.y - lastY;
                 lastX = this.x;
                 lastY = this.y;
             },
-            onDragEnd: function () {
-                gsap.to(this.target, { duration: 0.2, scale: 1, boxShadow: "none" });
-
             onDragEnd: function () {
                 gsap.to(this.target, { duration: 0.2, scale: 1, boxShadow: "none" });
 
