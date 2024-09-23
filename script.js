@@ -167,22 +167,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         helloText.classList.remove('wiggling');
     });
 }); 
-//hero "hello" animation
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    const helloText = document.querySelector('.hero h3');
-
-    helloText.addEventListener('mouseenter', () => {
-        if (!helloText.classList.contains('wiggling')) {
-            helloText.classList.add('wiggling');
-        }
-    });
-
-    helloText.addEventListener('animationend', () => {
-        helloText.classList.remove('wiggling');
-    });
-}); 
-
 // const viewButton = document.querySelector('.view-services-btn');
 // const hoverEffect = viewButton.querySelector('.hover-effect');
 
@@ -328,7 +312,6 @@ gsap.ticker.lagSmoothing(0)
 gsap.fromTo(
     ".showcase-image img",
     { xPercent: 30 },
-    { xPercent: 30 },
     {
         xPercent: 0,
         ease: "power1.out",
@@ -383,8 +366,6 @@ document.querySelectorAll('.lightbox-trigger').forEach(item => {
         // Disable scrolling on the body
         document.body.style.overflow = 'hidden';
 
-        // Disable scrolling on the body
-        document.body.style.overflow = 'hidden';
     });
 });
 
