@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0a0a0a;
+            --text-color: #ffffff;
+            --subtle-text-color: #a0a0a0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            --tag-background: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Using a fallback to system sans-serif if Gilroy fonts are not loaded */
+            font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            font-family: Gilroy-m;
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .main-content {
+            margin-top: 100px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+        }
+
+        /* Keyframe animations for hero content */
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Hero section always visible, its content changes */
+        #hero {
+            padding: 2rem 0 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 0;
+            display: flex;
+            /* Use flexbox for layout */
+            align-items: center;
+            /* Vertically center items */
+            justify-content: space-between;
+            /* Space out content */
+            gap: 2rem;
+            /* Gap between sections */
+            flex-wrap: wrap;
+            /* Allow wrapping on smaller screens */
+        }
+
+        #hero .hero-text-content {
+            flex: 1;
+            /* Allows text to take available space */
+            min-width: 300px;
+            /* Ensure it doesn't shrink too much */
+            text-align: left;
+            /* Align text to the left */
+            opacity: 0;
+            /* Hidden by default for animation */
+            animation: slideInFromLeft 0.8s ease-out forwards;
+        }
+
+        #hero .hero-heading {
+            font-family: Gilroy-m;
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            /* Slightly smaller for dynamic content */
+            margin-bottom: 0.5rem;
+            color: var(--subtle-text-color);
+            /* More subtle */
+        }
+
+        #hero .hero-tagline {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .hero-separator {
+            width: 1px;
+            height: 120px;
+            /* Height of the separator */
+            background-color: var(--border-color);
+            align-self: stretch;
+            /* Stretch to fill container height */
+            margin: 0 2rem;
+            /* Spacing around the separator */
+        }
+
+        .hero-tags-container {
+            flex: 1;
+            /* Allows tags to take available space */
+            min-width: 250px;
+            /* Ensure tags don't shrink too much */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: flex-end;
+            /* Align tags to the right */
+            opacity: 0;
+            /* Hidden by default for animation */
+            animation: slideInFromRight 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+            /* Slight delay for staggered effect */
+        }
+
+        .hero-category-tag {
+            font-family: 'ClashGrotesk', sans-serif !important;
+            /* Ensure fallback */
+            padding: 0.8rem 1.5rem;
+            /* Larger padding */
+            background: var(--tag-background);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            /* More rounded */
+            font-size: 1rem;
+            /* Slightly larger font */
+            font-weight: 500;
+            white-space: nowrap;
+            /* Prevent tags from breaking */
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero-category-tag:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Project Navigation */
+        .project-navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2rem auto;
+            /* Adjusted margin */
+            max-width: 1400px;
+            padding: 0 2rem;
+        }
+
+        .nav-arrow {
+            background: rgba(255, 255, 255, 0.08);
+            /* Subtle background */
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-arrow:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-counter {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--subtle-text-color);
+            min-width: 80px;
+            /* Ensure space for numbers like "1 / 3" */
+            text-align: center;
+        }
+
+
+        .project {
+            display: none;
+            /* Hidden by default, shown by JS when a project is loaded */
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 0;
+            /* Added animation for project appearance */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .project.visible {
+            display: grid;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-content {
+            padding: 2rem 0;
+        }
+
+        .project-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            color: var(--subtle-text-color);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-tag {
+            font-family: 'Poppins', sans-serif !important;
+            /* Ensure fallback */
+            padding: 0.5rem 1rem;
+            background: var(--tag-background);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--text-color);
+            color: #000;
+            border: 1px solid var(--text-color);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--text-color);
+        }
+
+        /* --- Project Details Grid --- */
+        .project-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .details-box h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--subtle-text-color);
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .info-label {
+            color: #888;
+        }
+
+        .info-value {
+            font-family: 'Gilroy-m', sans-serif;
+            /* Ensure fallback */
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .dependencies-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .dependency-tag {
+            font-family: 'Poppins-b', sans-serif;
+            /* Ensure fallback */
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.85rem;
+        }
+
+
+        /* --- Project Media & Gallery --- */
+        .project-media {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            /* Increased size slightly */
+            height: 600px;
+            background: #222;
+            /* Darker background for depth */
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow:
+                inset 0 0 10px rgba(0, 0, 0, 0.5),
+                /* Inner shadow */
+                0 0 0 5px #111,
+                /* Outer border */
+                0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            /* Drop shadow */
+            position: relative;
+            z-index: 10;
+            /* Added realistic elements */
+            border: 6px solid #333;
+            /* Frame thickness */
+            background-image: linear-gradient(to bottom, #333, #111);
+        }
+
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            /* Adjusted to fit the new frame */
+            overflow: hidden;
+            position: relative;
+            background: #f8f8f8;
+            cursor: grab;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+            /* Slight inner screen shadow */
+        }
+
+        .phone-screen:active {
+            cursor: grabbing;
+        }
+
+        .screenshot-slider {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .screenshot-slide {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .screenshot-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+            /* Prevent image selection while dragging */
+        }
+
+        .screenshot-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 20;
+        }
+
+        .screenshot-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-dot.active {
+            background: #000;
+            transform: scale(1.2);
+        }
+
+
+        @media (max-width: 992px) {
+            .project {
+                grid-template-columns: 1fr;
+            }
+
+            .project:nth-child(even) .project-media {
+                order: 1;
+            }
+
+            .project:nth-child(even) .project-content {
+                order: 2;
+            }
+
+            #hero {
+                flex-direction: column;
+                /* Stack vertically on smaller screens */
+                text-align: center;
+                gap: 1rem;
+            }
+
+            #hero .hero-text-content {
+                text-align: center;
+                width: 100%;
+            }
+
+            .hero-separator {
+                width: 80%;
+                height: 1px;
+                margin: 1rem auto;
+                /* Horizontal separator on small screens */
+            }
+
+            .hero-tags-container {
+                justify-content: center;
+                /* Center tags on small screens */
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 1rem;
+            }
+
+            .phone-mockup {
+                width: 220px;
+                height: 440px;
+            }
+
+            .project-navigation {
+                margin: 1.5rem auto;
+            }
+
+            .nav-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 1.2rem;
+            }
+
+            .project-counter {
+                font-size: 1rem;
+            }
+        }
+
+        /* Font-face declarations (assuming these font files are available or linked externally) */
+        /* It's better to link Google Fonts or similar services for broader compatibility */
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('fonts/Gilroy-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Gilroy-m';
+            src: url('fonts/Gilroy-Medium.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ClashGrotesk';
+            src: url('fonts/ClashGrotesk-Regular.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('fonts/Poppins-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Poppins-b';
+            src: url('fonts/Poppins-Italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <!-- Link to the main page (empty project param) to show the first project by default -->
+                <li><a href="index.html">Go Back</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section id="hero">
+            <div class="hero-text-content">
+                <p class="hero-heading">Featured Project</p>
+                <h1 class="hero-tagline" id="heroTagline"></h1>
+            </div>
+            <div class="hero-separator"></div>
+            <div class="hero-tags-container" id="heroTagsContainer">
+                <!-- Tags will be injected here -->
+            </div>
+        </section>
+
+        <div class="project-navigation">
+            <button class="nav-arrow prev-project" id="prevProjectBtn"><svg
+                    class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m15 19-7-7 7-7" />
+                </svg>
+            </button>
+            <div class="project-counter"><span id="currentProjectIndex">1</span> / <span id="totalProjects"></span>
+            </div>
+            <button class="nav-arrow next-project" id="nextProjectBtn"><svg
+                    class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m9 5 7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <section class="project-grid" id="projects">
+            <!-- Project content will be dynamically loaded here -->
+        </section>
+    </main>
+
+    <script>
+        // --- Centralized Project Data ---
+        const projectDetails = {
+            learnquest: {
+                title: "LearnQuest",
+                tagline: "Empowering Minds Through Interactive Learning.",
+                description: "An AI-powered e-learning app that delivers personalized content based on user interests. It curates videos, articles, summaries, and GitHub resources using AI APIs. Features include progress tracking, user preference handling, and community discussion.",
+                techTags: ["Flutter", "Dart", "Firebase", "Python", "REST APIs", "Groq", "GeminiAPI","Web Scraping"],
+                heroCategories: ["E-Learning", "AI Integration", "Mobile App", "Firebase DataBase", "Python Backend"],
+                // Updated to include Mega.nz download URL
+                apkDownloadUrl: "https://mega.nz/file/zPZh2SAD#3D7gFE000XyOMJF8npwjR8HqQGkTbKe35ezecgxd8rA",
+                screenshots: [
+                    'images/Apps/a1.png',
+                    'images/Apps/a2.png',
+                    'images/Apps/a3.png',
+                    'images/Apps/a4.png',
+                    'images/Apps/a5.png',
+                    'images/Apps/a6.png',
+                    'images/Apps/a7.png',
+                    'images/Apps/a8.png',
+                    'images/Apps/a9.png',
+                    'images/Apps/a10.png',
+                    'images/Apps/a11.png',
+                    'images/Apps/a12.png',
+                    'images/Apps/a13.png',
+                    'images/Apps/a14.png',
+                    'images/Apps/a15.png',
+                    'images/Apps/a16.png',
+                    'images/Apps/a17.png',
+                    'images/Apps/a18.png',
+                    'images/Apps/a19.png',
+                    'images/Apps/a20.png'
+                ],
+                specs: {
+                    Platform: "Android/iOS",
+                    Version: "1.1.0",
+                    Size: "92.4 MB"
+                },
+                flutter: {
+                    "SDK Version": "3.26.0-0.1.pre",
+                    "Dart Version": "3.6.0",
+                    Dependencies: ["firebase_core", "firebase_auth", "cloud_firestore", "http", "provider", "google_sign_in", "flutter_local_notifications", "google_generative_ai", "lottie", "url_launcher"]
+                }
+            },
+            acdemics: {
+                title: "Academics",
+                tagline: "Bridging Communication Between Teachers and Students.",
+                description: "A centralized portal for teachers and students to manage announcements, assignments, and feedback. Built for educational institutions to streamline interaction and tracking.",
+                techTags: ["Flutter", "Firebase", "Firestore", "Email Login"],
+                heroCategories: ["EdTech", "Admin Dashboard", "Firebase Auth", "Real-time Sync", "User-Friendly"],
+                apkDownloadUrl: "https://mega.nz/file/PGInmYgQ#ahHf48MV8af4RQWglnkorK6qbnZ69zf9Gn98ISPrsrA",
+                screenshots: [
+                    'images/Apps/1.jpg',
+                    'images/Apps/2.jpg',
+                    'images/Apps/3.jpg',
+                    'images/Apps/4.jpg',
+                    'images/Apps/5.jpg',
+                    'images/Apps/6.jpg',
+                    'images/Apps/7.jpg',
+                    'images/Apps/8.jpg'
+                ],
+                specs: {
+                    Platform: "Android/iOS",
+                    Version: "1.0.0",
+                    Size: "18.2 MB"
+                },
+                flutter: {
+                    "SDK Version": "3.16.9",
+                    "Dart Version": "3.2.0",
+                    Dependencies: ["firebase_core", "firebase_auth", "cloud_firestore", "intl", "path_provider", "provider"]
+                }
+            },
+            chatApp: {
+                title: "Chat App",
+                tagline: "Real-Time Messaging Simplified.",
+                description: "A lightweight and secure chat application supporting real-time messaging, authentication, and user presence using Firebase backend. Built for mobile devices with clean UI.",
+                techTags: ["Flutter", "Dart", "Firebase", "Realtime Database","Firebase Auth"],
+                heroCategories: ["Chat App", "Realtime Messaging", "ChatRooms","Contact Saving","User Authentication"],
+                apkDownloadUrl: "https://mega.nz/file/mGgCzKqR#-L3YmGZlWrubqlxPGmi9ArqZQPONDMmWn_VXmL5c_eA",
+                screenshots: [
+                    'images/Apps/app.png',
+                    'images/Apps/app2.png',
+                    'images/Apps/app3.png',
+                    'images/Apps/app4.png',
+                    'images/Apps/app5.png',
+                    'images/Apps/app6.png',
+                    'images/Apps/app7.png',
+                ],
+                specs: {
+                    Platform: "Android/iOS",
+                    Version: "1.0.1",
+                    Size: "14.8 MB"
+                },
+                flutter: {
+                    "SDK Version": "3.13",
+                    "Dart Version": "3.1.0",
+                    Dependencies: ["firebase_core", "firebase_auth", "provider", "cloud_firestore", "firebase_messaging",
+                        "google_nav_bar", "google_sign_in", "flutter_chat_bubble"
+                    ]
+                }
+            }
+        };
+
+        // Convert projectDetails object into an array for easy indexing
+    const projectIds = Object.keys(projectDetails);
+    let currentProjectIndex = 0;
+
+    // --- Gallery State Manager ---
+    const galleryState = {};
+
+    function setupGallery(projectId) {
+        galleryState[projectId] = {
+            currentIndex: 0,
+            isDragging: false,
+            startX: 0,
+            startY: 0, // Added for tap detection
+            tapStartTime: 0, // Added for tap detection
+            currentTranslate: 0,
+            prevTranslate: 0,
+        };
+        
+        const projectEl = document.getElementById(projectId);
+        const slider = projectEl.querySelector('.screenshot-slider');
+        const phoneScreen = projectEl.querySelector('.phone-screen'); // Get the phone screen element
+        const dots = projectEl.querySelectorAll('.screenshot-dot');
+
+        function updateGallery() {
+            const state = galleryState[projectId];
+            slider.style.transform = `translateX(-${state.currentIndex * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === state.currentIndex);
+            });
+        }
+
+        // Helper function for screenshot navigation
+        function navigateScreenshot(direction) {
+            const state = galleryState[projectId];
+            if (direction === 'next' && state.currentIndex < dots.length - 1) {
+                state.currentIndex++;
+            } else if (direction === 'prev' && state.currentIndex > 0) {
+                state.currentIndex--;
+            }
+            updateGallery();
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                galleryState[projectId].currentIndex = index;
+                updateGallery();
+            });
+        });
+        
+        // --- Drag/Swipe Functionality ---
+        // Changed to pointerdown/move/up for better touch/mouse unified handling
+        phoneScreen.addEventListener('pointerdown', startInteraction);
+        phoneScreen.addEventListener('pointermove', dragInteraction);
+        phoneScreen.addEventListener('pointerup', endInteraction);
+        phoneScreen.addEventListener('pointerleave', endInteraction); // End interaction if pointer leaves
+
+        function getPositionX(event) {
+            return event.clientX;
+        }
+        function getPositionY(event) {
+            return event.clientY;
+        }
+
+        function startInteraction(event) {
+            const state = galleryState[projectId];
+            state.isDragging = true;
+            state.startX = getPositionX(event);
+            state.startY = getPositionY(event);
+            state.tapStartTime = Date.now();
+            slider.style.transition = 'none'; // Disable transition while dragging
+            phoneScreen.setPointerCapture(event.pointerId); // Capture pointer for consistent dragging
+            event.preventDefault(); // Prevent default browser actions like image dragging
+        }
+
+        function dragInteraction(event) {
+            const state = galleryState[projectId];
+            if (state.isDragging) {
+                const currentPositionX = getPositionX(event);
+                const moveX = currentPositionX - state.startX;
+                const baseTranslate = -state.currentIndex * slider.offsetWidth;
+                state.currentTranslate = baseTranslate + moveX;
+                slider.style.transform = `translateX(${state.currentTranslate}px)`;
+            }
+        }
+
+        function endInteraction(event) {
+            const state = galleryState[projectId];
+            if (!state.isDragging) return;
+            state.isDragging = false;
+            phoneScreen.releasePointerCapture(event.pointerId); // Release pointer capture
+
+            const movedX = getPositionX(event) - state.startX;
+            const movedY = getPositionY(event) - state.startY;
+            const distance = Math.sqrt(movedX * movedX + movedY * movedY);
+            const timeElapsed = Date.now() - state.tapStartTime;
+
+            const swipeThreshold = slider.offsetWidth * 0.2; // 20% of the slider width
+            const tapThresholdDistance = 10; // Max distance for a tap
+            const tapThresholdTime = 200; // Max time for a tap (ms)
+
+            if (distance < tapThresholdDistance && timeElapsed < tapThresholdTime) {
+                // This was a tap/click, not a drag
+                const clickX = event.clientX - phoneScreen.getBoundingClientRect().left;
+                if (clickX < phoneScreen.offsetWidth / 2) {
+                    navigateScreenshot('prev'); // Click on left half
+                } else {
+                    navigateScreenshot('next'); // Click on right half
+                }
+            } else {
+                // This was a drag
+                if (movedX < -swipeThreshold && state.currentIndex < dots.length - 1) {
+                    state.currentIndex++;
+                } else if (movedX > swipeThreshold && state.currentIndex > 0) {
+                    state.currentIndex--;
+                }
+            }
+            
+            slider.style.transition = 'transform 0.5s ease-in-out';
+            updateGallery();
+        }
+
+        updateGallery(); // Initial setup
+    }
+    
+    // --- Dynamic Project Display Function ---
+    function displayProject(projectId) {
+        const data = projectDetails[projectId];
+        if (!data) {
+            console.error("Project not found:", projectId);
+            return;
+        }
+
+        const projectContainer = document.getElementById('projects');
+        const heroTaglineElement = document.getElementById('heroTagline');
+        const heroTagsContainer = document.getElementById('heroTagsContainer');
+        const currentProjectIndexElement = document.getElementById('currentProjectIndex');
+        const totalProjectsElement = document.getElementById('totalProjects');
+        const prevProjectBtn = document.getElementById('prevProjectBtn');
+        const nextProjectBtn = document.getElementById('nextProjectBtn');
+
+        // Update hero section text
+        heroTaglineElement.textContent = data.tagline;
+
+        // Update hero section categories
+        const createHeroCategories = (categories) => categories.map(cat => `<span class="hero-category-tag">${cat}</span>`).join('');
+        heroTagsContainer.innerHTML = createHeroCategories(data.heroCategories || []);
+
+        // Find current index
+        currentProjectIndex = projectIds.indexOf(projectId);
+        currentProjectIndexElement.textContent = currentProjectIndex + 1;
+        totalProjectsElement.textContent = projectIds.length;
+
+        // Enable/disable navigation buttons
+        prevProjectBtn.disabled = currentProjectIndex === 0;
+        nextProjectBtn.disabled = currentProjectIndex === projectIds.length - 1;
+
+        // Clear previous project and inject new one
+        projectContainer.innerHTML = '';
+        const createTags = (tags, className) => tags.map(tag => `<span class="${className}">${tag}</span>`).join('');
+        const createInfoItems = (items) => Object.entries(items).map(([label, value]) => `
+            <div class="info-item">
+                <span class="info-label">${label}</span>
+                <span class="info-value">${value}</span>
+            </div>`).join('');
+        
+        // Modified createScreenshots to include loading="lazy" for all but the first image
+        const createScreenshots = (screenshots) => screenshots.map((src, index) => `
+            <div class="screenshot-slide">
+                <img src="${src}" alt="${data.title} screenshot ${index + 1}" 
+                     onerror="this.src='https://placehold.co/300x600/333333/FFFFFF?text=Image+Error';"
+                     ${index > 0 ? 'loading="lazy"' : ''}>
+            </div>`).join('');
+        const createDots = (screenshots) => screenshots.map((_, index) => `
+            <div class="screenshot-dot ${index === 0 ? 'active' : ''}"></div>`).join('');
+
+        const projectHTML = `
+            <div class="project" id="${projectId}">
+                <div class="project-content">
+                    <h2 class="project-title">${data.title}</h2>
+                    <p class="project-description">${data.description}</p>
+                    <div class="tech-tags">${createTags(data.techTags, 'tech-tag')}</div>
+                    <div class="project-actions">
+                        <!-- Updated the href attribute to use apkDownloadUrl -->
+                        <a href="${data.apkDownloadUrl}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download APK</a>
+                    </div>
+
+                    <div class="project-details-grid">
+                        <div class="details-box" id="project-specs">
+                            <h3>Specifications</h3>
+                            ${createInfoItems(data.specs)}
+                        </div>
+                        <div class="details-box" id="flutter-details">
+                            <h3>Flutter Details</h3>
+                            ${createInfoItems({ "SDK Version": data.flutter["SDK Version"], "Dart Version": data.flutter["Dart Version"] })}
+                            <div class="info-item"><span class="info-label">Dependencies</span></div>
+                            <div class="dependencies-list">${createTags(data.flutter.Dependencies, 'dependency-tag')}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-media">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="screenshot-slider">${createScreenshots(data.screenshots)}</div>
+                        </div>
+                    </div>
+                    <div class="screenshot-nav">${createDots(data.screenshots)}</div>
+                </div>
+            </div>
+        `;
+        projectContainer.innerHTML = projectHTML;
+        // Trigger reflow to restart animation for new project
+        void projectContainer.offsetHeight; 
+        document.getElementById(projectId).classList.add('visible');
+
+        // Initialize the gallery for this project
+        setupGallery(projectId);
+    }
+    
+    // --- Navigation Logic ---
+    function navigateProject(direction) {
+        let newIndex = currentProjectIndex;
+        if (direction === 'next') {
+            newIndex = Math.min(projectIds.length - 1, currentProjectIndex + 1);
+        } else if (direction === 'prev') {
+            newIndex = Math.max(0, currentProjectIndex - 1);
+        }
+        
+        if (newIndex !== currentProjectIndex) {
+            const newProjectId = projectIds[newIndex];
+            history.pushState(null, '', `${window.location.pathname}?project=${newProjectId}`);
+            displayProject(newProjectId);
+        }
+    }
+
+    // --- Page Load Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        let projectToShow = urlParams.get('project');
+
+        // If no project specified in URL, default to the first one
+        if (!projectToShow || !projectDetails[projectToShow]) {
+            projectToShow = projectIds[0];
+            history.replaceState(null, '', `${window.location.pathname}?project=${projectToShow}`);
+        }
+        
+        displayProject(projectToShow);
+
+        // Add event listeners for navigation buttons
+        document.getElementById('prevProjectBtn').addEventListener('click', () => navigateProject('prev'));
+        document.getElementById('nextProjectBtn').addEventListener('click', () => navigateProject('next'));
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            const newUrlParams = new URLSearchParams(window.location.search);
+            const newProjectToShow = newUrlParams.get('project');
+            if (newProjectToShow && projectDetails[newProjectToShow]) {
+                displayProject(newProjectToShow);
+            } else {
+                history.replaceState(null, '', `${window.location.pathname}?project=${projectIds[0]}`);
+                displayProject(projectIds[0]);
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -7,7 +7,7 @@
 #about,
 #showcase #contact,
 #showcase #contact,
-#services,
+#creative-universe-portfolio,
 #insights {
     opacity: 0;
     transform: translateY(-1rem);
@@ -18,7 +18,7 @@
 #about.shown,
 #showcase.shown #contact.shown,
 #showcase.shown #contact.shown,
-#services.shown,
+#creative-universe-portfolio.shown,
 #insights.shown {
     opacity: 1;
     transform: translateY(0);
@@ -170,7 +170,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
 nav ul li a {
@@ -183,7 +183,7 @@ nav ul li a {
     position: relative;
     overflow: hidden;
     letter-spacing: 0;
-    transition: color 0.2s ease-in-out ,font-size 0.5s ease,letter-spacing 0.3s ease;
+    transition: color 0.2s ease-in-out, font-size 0.5s ease, letter-spacing 0.3s ease;
 }
 
 nav ul li a:hover {
@@ -267,7 +267,6 @@ nav.active {
 
 .contact-form input,
 .contact-form textarea {
-    width: 94%;
     padding: 12px 16px;
     background-color: #263238;
     border: 1px solid #37474f;
@@ -299,11 +298,11 @@ nav.active {
     flex: 1;
     background-color: #378c97;
     color: #1a2a2d;
-    padding: 12px 20px;
+    padding: 12px 10px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
@@ -384,24 +383,6 @@ nav.active {
     max-height: 80%;
 } */
 
-@keyframes gentleWiggle {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(2deg);
-    }
-
-    75% {
-        transform: rotate(-2deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
 
 @keyframes gentleWiggle {
     0% {
@@ -427,17 +408,7 @@ nav.active {
     margin: 0px;
     width: fit-content;
     display: inline-block;
-    width: fit-content;
-    display: inline-block;
     font-family: 'New Caledonia';
-}
-
-.hero {
-    overflow: hidden;
-}
-
-.hero h3.wiggling {
-    animation: gentleWiggle 0.7s ease-in-out;
 }
 
 .hero {
@@ -466,7 +437,7 @@ nav.active {
 }
 
 .name {
-    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+    -webkit-text-stroke: 1.2px rgb(255, 255, 255);
     color: transparent;
 }
 
@@ -573,16 +544,14 @@ section {
     z-index: 3;
 }
 
-.showcase-content h1,
-.services-section h1 {
+.showcase-content h1 {
     font-size: 2em;
     font-family: 'Poppins';
     margin-top: 5px;
     margin-bottom: 10px;
 }
 
-.showcase-content h4,
-.services-section h2 {
+.showcase-content h4 {
     font-size: 0.9em;
     font-family: 'Poppins';
     margin-bottom: 5px;
@@ -608,7 +577,7 @@ section {
 .get-in-touch {
     position: relative;
     border: 1.3px solid #1c2833;
-    padding: 10px 20px;
+    padding: 8px 20px;
     text-decoration: none;
     color: black;
     background-color: #ffffff;
@@ -623,7 +592,7 @@ section {
 .get-in-touch .button-text {
     position: relative;
     z-index: 2;
-    font-size: 1.2em;
+    font-size: 0.9em;
     transition: color 0.3s ease-in-out;
 }
 
@@ -664,10 +633,7 @@ nav ul li a:hover {
     mix-blend-mode: difference;
 }
 
-.services-section-cursor {
-    background-color: white;
-    border: 2px solid #c7e0e4;
-}
+
 
 .footer-cursor {
     background-color: black;
@@ -695,222 +661,631 @@ nav ul li a:hover {
     border: 2px solid white;
 }
 
-.services-section {
-    background-color: #c7e0e4;
-}
-
-.services-section h2,
-.services-section h1 {
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-
-.services-grid {
-    padding: 50px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    gap: 20px;
-}
-
-.service-card {
-    background-color: white;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    position: relative;
-    height: 300px;
-    flex: 1 1 calc(33.333% - 40px);
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    cursor: none;
-}
-
-.service-card:hover .service-content {
-    opacity: 1;
-    transform: translateY(0px);
-}
-
-.service-card:hover .service-content h3 {
-    transform: translateY(-5px);
-}
-
-.service-card:hover .service-content p {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-.service-card:hover img {
-    transform: scale(1);
-}
-
-.service-card img {
+#creative-universe-portfolio {
+    /* Inherit font and background from the section style directly */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+    /* Ensure section behaves like a block element */
     width: 100%;
-    height: 300px;
-    object-fit: cover;
-    transform: scale(1.1);
+    overflow-x: hidden;
+    /* Prevent horizontal scroll due to grid */
+}
+
+#creative-universe-portfolio .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#creative-universe-portfolio .section-title {
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #8b92b3 0%, #1e003c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Bento Grid Styling - Adjusted for larger tiles */
+#creative-universe-portfolio .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    grid-auto-rows: minmax(200px, auto);
+    /* Allows rows to grow with content */
+    grid-auto-flow: dense;
+    /* Fills in empty spaces with smaller tiles */
+}
+
+/* Specific grid layout for larger screens */
+@media (min-width: 1024px) {
+    #creative-universe-portfolio .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+        /* Enforce 4 columns on large screens */
+    }
+}
+
+#creative-universe-portfolio .bento-tile {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000b25 100%);
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#creative-universe-portfolio .bento-tile:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(102, 126, 234, 0.15);
+    border-color: #667eea;
+}
+
+#creative-universe-portfolio .bento-tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transform: scaleX(0);
     transition: transform 0.4s ease;
 }
 
-.service-content {
-    padding: 15px;
-    position: absolute;
-    bottom: 0;
+#creative-universe-portfolio .bento-tile:hover::before {
+    transform: scaleX(1);
+}
+
+/* Large Presentation Showcase */
+#creative-universe-portfolio .showcase-large {
+    grid-column: span 4;
+    /* Span 4 columns (full width) */
+    grid-row: span 1;
+    /* Small height (1 row) */
+    min-height: 280px;
+    /* Adjusted min-height for small size */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Ensures content pushes to edges */
+}
+
+#creative-universe-portfolio .presentation-viewer {
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 1;
-    transform: translateY(20px);
-}
-
-.service-content h3 {
-    font-family: 'Poppins';
-    margin-top: 0;
-    margin-bottom: 5px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.service-content p {
-    color: #3b3b3b;
-    font-family: 'Aptos';
-    margin: 0;
-    margin-right: 12px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.services-section h2 {
-    margin-bottom: 0;
-    padding-top: 60px;
-}
-
-.services-section h1 {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-body.lightbox-open {
+    height: 200px;
+    /* Keeping this height for image preview */
+    background: #000;
+    border-radius: 15px;
+    position: relative;
     overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    /* For centering slide text */
+    align-items: center;
+    justify-content: center;
 }
 
-body.lightbox-open {
-    overflow: hidden;
+#creative-universe-portfolio .slide-preview {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    /* Cover ensures the image fills the area */
+    background-repeat: no-repeat;
+    display: flex;
+    /* For centering slide title text */
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    /* Ensure text is readable over image */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* Add shadow for text visibility */
 }
 
-/* Lightbox container */
-.lightbox {
-    display: none;
-    position: fixed;
+/* Central overlay controls for presentation viewer */
+#creative-universe-portfolio .viewer-overlay-controls {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 1002;
-    backdrop-filter: blur(8px);
-    overflow: hidden;
-    overflow: hidden;
-}
-
-/* Lightbox content */
-.lightbox-content {
-    position: relative;
-    max-width: 50vw;
-    max-height: 80vh;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    text-align: left;
-    overflow-y: auto;
-    font-family: 'Poppins', sans-serif;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Close button */
-.close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2em;
-    color: #333;
-    cursor: pointer;
-    z-index: 1003;
-    transition: color 0.3s ease-in-out;
-}
-
-.close:hover {
-    color: #ffffff;
-}
-
-/* Gallery styling */
-.lightbox-gallery {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    /* Space between buttons */
+    background: rgba(0, 0, 0, 0.4);
+    /* Semi-transparent overlay */
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.3s ease;
+    z-index: 5;
+    /* Above slide-preview */
 }
 
-.lightbox-gallery img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+#creative-universe-portfolio .presentation-viewer:hover .viewer-overlay-controls {
+    opacity: 1;
+    /* Show on hover over viewer */
+}
+
+#creative-universe-portfolio .play-pause-btn,
+#creative-universe-portfolio .nav-arrow {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 15px;
+    /* Larger hit area */
+    border-radius: 50%;
     cursor: pointer;
-    transition: transform 0.3s;
-    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.lightbox-gallery img:hover {
+#creative-universe-portfolio .play-pause-btn:hover,
+#creative-universe-portfolio .nav-arrow:hover {
+    background: rgba(255, 255, 255, 0.4);
     transform: scale(1.1);
 }
 
-.main-image {
-    width: 50%;
-    height: 80%;
+#creative-universe-portfolio .play-pause-btn svg {
+    pointer-events: none;
+}
+
+/* Bottom controls for presentation tile */
+#creative-universe-portfolio .bottom-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    /* Space from viewer */
+}
+
+#creative-universe-portfolio .presentation-details-popup {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 15px;
+    max-height: 0;
+    /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
+}
+
+#creative-universe-portfolio .presentation-details-popup.active {
+    max-height: 150px;
+    /* Max height when active */
+    padding: 15px;
+    opacity: 1;
+}
+
+#creative-universe-portfolio .control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 10px 15px;
     border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* Text inside lightbox */
-.lightbox h3 {
-    font-size: 1.4em;
+#creative-universe-portfolio .control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* My Certifications Tile - Mid-size height with Floating Cards */
+#creative-universe-portfolio .certificates-large {
+    grid-column: span 3;
+    /* Changed to span 3 columns */
+    grid-row: span 2;
+    /* Mid-size height (1 row) */
+    min-height: 350px;
+    /* Adjusted min-height for mid-size height */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* For absolute positioning of children */
+    overflow: hidden;
+    /* Hide cards outside boundaries */
+    /* Removed transform and box-shadow transitions from here for performance */
+    transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Only border transition */
+}
+
+/* Explicitly ensure no transform or box-shadow on hover for this tile */
+#creative-universe-portfolio .certificates-large:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #667eea;
+    /* Keep the border color change on hover */
+}
+
+/* Ensure the ::before animation is still active */
+#creative-universe-portfolio .certificates-large:hover::before {
+    transform: scaleX(1);
+}
+
+
+/* Floating Certificate Wrapper */
+#creative-universe-portfolio .floating-certificate-wrapper {
+    position: absolute;
+    width: 350px;
+    /* Adjusted width for more landscape certificates */
+    height: 250px;
+    /* Adjusted height for more landscape certificates */
+    transition: transform 0.5s ease-out, z-index 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+    /* Default z-index */
+    /* Initial random positions will be set by JS */
+}
+
+#creative-universe-portfolio .floating-certificate-wrapper:hover {
+    z-index: 10;
+    /* Bring to front on hover */
+    /* Animation pause handled by JS for more control */
+}
+
+#creative-universe-portfolio .certificate-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    /* Soft gradient for certificates */
+    border: 3px solid #fff;
+    border-radius: 12px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#creative-universe-portfolio .certificate-card.flipped {
+    transform: rotateY(180deg);
+}
+
+#creative-universe-portfolio .certificate-front,
+#creative-universe-portfolio .certificate-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 9px;
+    /* Slightly smaller than parent for border effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Removed padding from front to allow image to fill fully */
+    font-size: 0.9rem;
+    text-align: center;
     color: #333;
-    margin-bottom: 10px;
+    /* Darker text for readability on lighter background */
+}
+
+#creative-universe-portfolio .certificate-front img {
+    width: 100%;
+    /* Make image fill the entire front */
+    height: 100%;
+    /* Make image fill the entire front */
+    border-radius: 5px;
+    /* Apply border radius to image */
+    object-fit: cover;
+    /* Crop to fill if aspect ratio differs */
+    /* Removed margin-bottom */
+}
+
+#creative-universe-portfolio .certificate-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    /* Darker gradient for back */
+    color: white;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 15px;
+    /* Keep padding for text on back */
+}
+
+/* Removed .certificate-title-front and .certificate-issuer styling as they are removed from HTML */
+
+/* Creative Toolkit / Tech Playground */
+#creative-universe-portfolio .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+#creative-universe-portfolio .tool-item {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+#creative-universe-portfolio .tool-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: scale(1.05);
+}
+
+#creative-universe-portfolio .tool-icon {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+#creative-universe-portfolio .tool-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    /* Ensure long names wrap well */
+}
+
+/* Stats Counter / Learning Metrics */
+#creative-universe-portfolio .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Can adjust to 2 or 3 based on content density */
+    gap: 10px;
+    /* Reduced gap for more compactness */
+    margin: 15px 0;
+    /* Reduced margin */
+}
+
+#creative-universe-portfolio .stat-item {
+    text-align: center;
+    padding: 10px;
+    /* Reduced padding */
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#creative-universe-portfolio .stat-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#creative-universe-portfolio .stat-icon {
+    font-size: 1.6rem;
+    /* Slightly reduced icon size */
+    color: #4ade80;
+    /* Consistent highlight color */
+    margin-bottom: 3px;
+    /* Reduced margin */
+}
+
+#creative-universe-portfolio .stat-number {
+    font-size: 1.8rem;
+    /* Slightly reduced number size */
+    font-weight: bold;
+    color: #4ade80;
+    display: block;
+}
+
+#creative-universe-portfolio .stat-label {
+    font-size: 0.8rem;
+    /* Slightly reduced label size */
+    opacity: 0.8;
+    margin-top: 3px;
+    /* Reduced margin */
+}
+
+/* Currently Section */
+#creative-universe-portfolio .current-focus {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 4px solid #667eea;
+}
+
+#creative-universe-portfolio .focus-title {
+    font-size: 1.1rem;
     font-weight: 600;
+    margin-bottom: 10px;
+    color: #667eea;
 }
 
-#lightbox-additional-content {
-    font-size: 1.1em;
-    color: #555;
-    line-height: 1.6;
-    overflow-y: auto;
+#creative-universe-portfolio .focus-content {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    line-height: 1.4;
 }
 
-/* Adding a smooth animation effect */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+/* 3D Elements */
+#creative-universe-portfolio .floating-element {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #96a5e7, #351458);
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+    z-index: 0;
+    /* Ensure it stays behind content */
+}
+
+#creative-universe-portfolio .floating-element:nth-child(1) {
+    top: 20px;
+    right: 20px;
+    animation-delay: 0s;
+}
+
+#creative-universe-portfolio .floating-element:nth-child(2) {
+    bottom: 20px;
+    left: 20px;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
     }
 
-    to {
-        opacity: 1;
+    50% {
+        transform: translateY(-20px) rotate(180deg);
     }
 }
 
-.lightbox-content {
-    animation: fadeIn 0.5s ease-in-out;
+/* --- STYLES FOR THE "DOOR TO THE VOID" TILE ITSELF (#void-container) --- */
+/* These styles are applied directly to the #void-container to avoid conflicts */
+#void-container {
+    border: 1px solid #333;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    max-width: 600px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    text-align: center;
+    background: #000 !important;
+    /* Force pure black background, crucial for the void effect */
+    grid-column: span 2 !important;
+    /* Force this tile to span 2 columns */
+    padding: 0 !important;
+    /* Force no padding for the internal canvas to fill */
+    /* Ensure general .bento-tile hover effects don't apply, handled by #void-container:hover */
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Hover state for the specific void tile */
+#void-container:hover {
+    box-shadow: 0 0 40px rgba(187, 134, 252, 0.3), 0 0 15px rgba(255, 255, 255, 0.1) inset;
+    border-color: #bb86fc;
+}
+
+/* The 3D canvas will live here */
+#void-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: transform 0.5s ease-out;
+    pointer-events: none;
+    /* Allow clicks to pass through canvas to the link */
+    border: none !important;
+    /* Removes any default canvas border */
+    display: block;
+    /* Ensures no whitespace beneath inline canvas */
+}
+
+#void-container:hover #void-canvas {
+    transform: scale(1.1);
+    /* Canvas scales slightly on hover */
+}
+
+/* The link wrapper for content */
+#void-container .door-link {
+    cursor: none !important;
+    /* Scoped to #void-container */
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    cursor: none;
+    /* Ensure cursor is hidden on the link too */
+}
+
+/* Text styling */
+#void-container .abyss-text {
+    /* Scoped to #void-container */
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    pointer-events: none;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    transform-style: preserve-3d;
+    /* Needed for smooth 3D transform */
+    transition: color 0.8s ease-in-out, text-shadow 0.8s ease-in-out, transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+/* Text now falls into the void on hover */
+#void-container:hover .abyss-text {
+    /* Scoped to #void-container */
+    opacity: 0;
+    transform: translateZ(-120px) scale(0.6);
+    /* Move backward and shrink */
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+
+    #void-container {
+        /* Scoped to #void-container */
+        grid-column: span 1 !important;
+        /* On smaller screens, revert to single column, also !important */
+        max-width: 100%;
+        /* Allow it to take full width on small screens */
+    }
+
+    /* Adjust breakpoint for smaller screens */
+    #creative-universe-portfolio .bento-grid {
+        grid-template-columns: 1fr;
+        /* Single column on mobile/tablet */
+    }
+
+    #creative-universe-portfolio .showcase-large,
+    #creative-universe-portfolio .certificates-large {
+        grid-column: span 1;
+        /* Revert to single column */
+        grid-row: span 1;
+        /* Revert to single row */
+        min-height: 300px;
+        /* Adjust min height for mobile */
+    }
+
+    #creative-universe-portfolio .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #creative-universe-portfolio .floating-certificate-wrapper {
+        width: 180px;
+        /* Slightly smaller for mobile */
+        height: 250px;
+    }
+
+    #creative-universe-portfolio .empty-space-animation {
+        grid-column: span 1;
+        /* Single column on small screens */
+    }
 }
 
 .personal-insights {
@@ -1048,112 +1423,716 @@ body.lightbox-open {
     opacity: 0.2;
 }
 
+/* General container for the whole section */
 .journey-timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 100px auto;
-    padding: 40px 0;
+    flex-grow: 1;
+    /* Allow it to grow and take available space */
+    width: 100%;
+    /* Take full width */
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Center content vertically */
+    padding-bottom: 1rem;
+    /* Space for the mini-map */
+    padding-top: 1rem;
+    /* Added padding to ensure title visibility */
 }
 
 .journey-timeline h3 {
+    font-family: 'Orbitron';
+    /* More impactful font for titles */
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 2em;
+    margin-bottom: 0.5rem;
+    font-size: 3.2em;
+    font-weight: 800;
+    color: #6ee7b7;
+    text-shadow: 0 0 15px rgba(110, 231, 183, 0.7);
+    flex-shrink: 0;
+}
+
+/* Spaceship window frame - NOW USING IMAGE AS BACKGROUND */
+.spaceship-window-frame {
+    background-image: url('images/img1.png');
+    /* Your spaceship window image */
+    background-size: 100% 100%;
+    /* Cover the entire element, stretching if needed */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: calc(100% - 1rem);
+    /* Fill screen width with small padding */
+    height: calc(100vh - 7rem);
+    /* Dynamic height, accounting for title and mini-map */
+    max-width: 1600px;
+    /* Max width for very large screens */
+    max-height: 900px;
+    /* Max height for very large screens */
+    aspect-ratio: 16 / 9;
+    /* Maintain aspect ratio of the image */
+    margin: 0 auto;
+    /* Center horizontally */
+    display: flex;
+    /* Using flex for inner positioning */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Crucial for containing inner elements */
+    border-radius: 2rem;
+    /* Keep a slight border-radius for the outer container */
+}
+
+/* Inner content area for the actual "viewscreen" */
+.inner-viewscreen {
+    position: absolute;
+    top: 50%;
+    /* Center vertically */
+    left: 48%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Adjust for centering */
+    width: 72%;
+    /* Make it larger to fill more of the frame */
+    height: 80%;
+    /* Make it larger */
+    overflow: hidden;
+    /* Always hidden to prevent content overflow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1);
+    /* Clip-path for polygonal shape */
+    clip-path: polygon(20% 0%,
+            /* Top-left diagonal edge */
+            80% 0%,
+            /* Top-right diagonal edge */
+            100% 20%,
+            /* Right-top diagonal */
+            100% 80%,
+            /* Right-bottom diagonal */
+            80% 100%,
+            /* Bottom-right diagonal */
+            20% 100%,
+            /* Bottom-left diagonal */
+            0% 80%,
+            /* Left-bottom diagonal */
+            0% 20%
+            /* Left-top diagonal */
+        );
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Below HUD grid */
+}
+
+/* New Linear Directional Scale */
+.linear-scale-bar {
+    position: absolute;
+    top: 5%;
+    /* Adjust as needed, relative to inner-viewscreen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    /* Span across the top */
+    height: 30px;
+    /* Height of the bar */
+    background-color: rgba(0, 255, 255, 0.05);
+    /* Subtle background */
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    z-index: 3;
+    /* Above grid, below navigation buttons */
+    pointer-events: none;
+    /* Non-interactive */
+}
+
+.scale-marker {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: #6ee7b7;
+    text-shadow: 0 0 5px rgba(110, 231, 183, 0.5);
+    position: relative;
+    padding-bottom: 5px;
+    /* Space for indicator */
+}
+
+.scale-marker.middle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background-color: #0ff;
+    box-shadow: 0 0 8px #0ff;
+}
+
+.scale-indicator {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 15px;
+    background-color: #f39c12;
+    /* Orange for indicator */
+    box-shadow: 0 0 10px #f39c12;
+    transition: left 0.5s ease-out;
+    /* Smooth movement */
+    left: 50%;
+    /* Start at 0 degrees */
+    transform: translateX(-50%);
+}
+
+/* Main HUD Grid Wrapper */
+.hud-grid-wrapper {
+    position: absolute;
+    /* Occupy the full inner-viewscreen area */
+    top: 0;
+    left: 0;
+    width: 104%;
+    height: 104%;
+    display: grid;
+    /* Adjusted grid template to remove the top row for HUD panels */
+    grid-template-columns: 0.18fr 1fr 0.18fr;
+    /* Sidebars, main content */
+    grid-template-rows: 1fr 0.12fr;
+    /* Main content row, bottom bar row */
+    grid-template-areas:
+        "left-sidebar main-content-area right-sidebar"
+        ". bottom-bar .";
+    /* Bottom bar spans middle column */
+    gap: 0.8%;
+    pointer-events: none;
+    z-index: 2;
+    padding-top: 50px;
+    /* Add padding to account for the new linear scale bar at the top */
+    box-sizing: border-box;
+    /* Include padding in height calculation */
+}
+
+/* Individual HUD Panel Styling */
+.hud-panel {
+    background-color: rgba(0, 255, 255, 0.03);
+    /* Very subtle transparent background */
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    /* Thin, glowing border */
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.05);
+    /* Subtle glow */
+    backdrop-filter: blur(1px);
+    /* Very subtle blur for depth */
+    position: relative;
+    /* For pseudo-elements like scanning lines */
+    overflow: hidden;
+    /* Important for contained animations */
+    pointer-events: auto;
+    /* Allow interaction for content within panels */
+    top: 1.5rem;
+    padding: 0.8rem;
+
+    color: #a7f3d0;
+    /* Light green for general text */
+    font-size: 0.85rem;
+    display: flex;
+    /* For internal content alignment */
+    flex-direction: column;
+}
+
+/* Grid Area Assignments */
+/* Removed top-left-corner and top-right-corner from grid areas */
+.hud-panel-top-bar {
+    grid-area: top-bar;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+}
+
+.hud-panel-bottom-bar {
+    grid-area: bottom-bar;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+}
+
+.hud-panel-left-sidebar {
+    grid-area: left-sidebar;
+}
+
+.hud-panel-right-sidebar {
+    grid-area: right-sidebar;
+}
+
+/* The main content area where planet and text will reside */
+.hud-panel-main-content-area {
+    grid-area: main-content-area;
+    background-color: transparent;
+    /* This area primarily holds your content */
+    border: none;
+    /* No border for the main area */
+    box-shadow: none;
+    backdrop-filter: none;
+    display: flex;
+    /* To manage planet/text inside */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Crucial for positioning planet/text inside it */
+    overflow: hidden;
+}
+
+/* Adjust your existing planet and text to be positioned relative to .main-content-area */
+.project-content-overlay,
+.text-details-container {
+    position: absolute;
+    /* Now absolute relative to .main-content-area */
+}
+
+.project-content-overlay {
+    z-index: 2;
+    /* Ensure planet is behind text */
+    opacity: 0.6;
+    /* Increased opacity for more visibility */
+    border-radius: 50%;
+    /* Make it circular */
+
+
+    /* Sizing and positioning handled by JS */
+    width: 80%;
+    /* Default size, will be overridden by JS */
+    height: 80%;
+    /* Default size, will be overridden by JS */
+    bottom: 2%;
+    /* Offset from bottom corner */
+    left: 2%;
+    /* Offset from left corner (or right) */
+    transform: none;
+    /* No transforms */
+}
+
+.text-details-container {
+    z-index: 3;
+    /* Text details always on top */
+    justify-content: flex-start;
+    /* Ensure content starts from top */
+    padding: 1.5rem;
+    /* Consistent padding */
+    box-sizing: border-box;
+    opacity: 0;
+    /* Animated in */
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /* Essential for scrolling */
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+
+    /* Positioning will be handled by JS for precise placement */
+    top: 5%;
+    /* Position from top edge of main-content-area */
+    bottom: 5%;
+    /* Position from bottom edge of main-content-area */
+    left: auto;
+    /* Let JS handle left/right */
+    right: auto;
+    /* Let JS handle left/right */
+    width: auto;
+    /* Let flex/absolute positioning handle width */
+    height: auto;
+    /* Let flex/absolute positioning handle height */
+    transform: none;
+    /* Remove any transform */
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow tags to wrap to next line */
+    margin-top: 0.8rem;
+    /* Space above tags */
+    margin-bottom: 1rem;
+    /* Space below tags */
+}
+
+/* Styling for the tech stack tags */
+.tech-stack span {
+    display: inline-block;
+    /* Allows padding and margin */
+    background-color: rgba(110, 231, 183, 0.15);
+    /* Subtle green transparent background */
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.75rem;
+    color: #a7f3d0;
+    box-shadow: 0 0 5px rgba(110, 231, 183, 0.3);
+    /* Subtle glow for tags */
+    opacity: 0;
+    /* Start invisible for animation */
+    transform: translateY(10px);
+    /* Start slightly below for animation */
+}
+
+/* Styling for project description paragraph */
+#projectDescription {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 3px rgba(226, 232, 240, 0.3);
+    /* Subtle glow */
+}
+
+/* Project Link Button Styling */
+.project-link-button {
+    background: linear-gradient(145deg, #00BCD4, #0097A7);
+    /* Cyan gradient */
+    color: white;
+    padding: 0.4rem 1.2rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+    /* Cyan glow shadow */
+    align-self: flex-start;
+    /* Align to start of flex container */
+    margin-top: auto;
+    /* Pushes button to bottom of text container */
+    opacity: 0;
+    /* Start invisible for animation */
+}
+
+.project-link-button:hover {
+    background: linear-gradient(145deg, #005b65, #000707);
+    transform: translateY(-2px) scale(1.02);
+    /* Slight lift and scale */
+    box-shadow: 0 0 15px rgba(0, 121, 136, 0.8);
+}
+
+.project-link-button:active {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 5px rgba(0, 188, 212, 0.4);
+}
+
+/* Example internal panel content styles */
+.hud-section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #6ee7b7;
+    /* Bright green */
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px rgba(110, 231, 183, 0.5);
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(110, 231, 183, 0.3);
+    padding-bottom: 0.3rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    /* Adjusted font size to prevent clipping */
+}
+
+.data-line {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+    font-size: 0.7rem;
+    /* Adjusted font size to prevent clipping */
+    padding: 0 0.2rem;
+}
+
+.data-value {
+    font-weight: 600;
+}
+
+.data-value.green {
+    color: #6ee7b7;
+}
+
+.data-value.blue {
     color: #3498db;
 }
 
-.timeline-container {
-    position: relative;
-    width: 200%;
-    height: 1000px;
-    left: -50%;
+.data-value.red {
+    color: #f87171;
 }
 
-.timeline-line {
+.data-value.yellow {
+    color: #fbbf24;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(0, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    padding: 0 0.2rem;
+    /* Align with data lines */
+}
+
+.progress-bar div {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.5), #0ff);
+    transition: width 0.5s ease-out;
+    /* For animated progress */
+}
+
+.log-entry {
+    font-size: 0.65rem;
+    /* Reduced font size for less distraction */
+    color: #e2e8f0;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+    padding: 0 0.2rem;
+    opacity: 0.8;
+    /* Slightly reduced opacity */
+}
+
+.log-entry.warning {
+    color: #fbbf24;
+    text-shadow: 0 0 3px rgba(251, 191, 36, 0.7);
+}
+
+.hud-info-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    color: #6ee7b7;
+    text-shadow: 0 0 8px rgba(110, 231, 183, 0.7);
+}
+
+/* Geometric Details with pseudo-elements */
+.hud-panel::before,
+.hud-panel::after {
     content: '';
     position: absolute;
-    width: 6px;
-    background-color: #3498db;
+    background-color: #0ff;
+    /* Cyan glow */
+    box-shadow: 0 0 5px #0ff;
+    opacity: 0.7;
+}
+
+/* Subtle animated scanning line to panels */
+.hud-panel-left-sidebar::before,
+.hud-panel-right-sidebar::before {
+    content: '';
+    position: absolute;
     top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
-    transform-origin: top center;
-    transform: scaleY(0);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Thin line */
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent);
+    animation: scanLine 4s infinite linear;
 }
 
-.timeline-item {
-    padding: 20px;
+@keyframes scanLine {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(calc(100% + 1px));
+    }
+
+    /* Move past the bottom edge */
+}
+
+/* Subtle border glow animation */
+.hud-panel {
+    animation: borderPulse 5s infinite ease-in-out;
+}
+
+@keyframes borderPulse {
+
+    0%,
+    100% {
+        border-color: rgba(0, 255, 255, 0.1);
+        box-shadow: 0 0 8px rgba(0, 255, 255, 0.05);
+    }
+
+    50% {
+        border-color: rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+}
+
+/* Glitch/Flicker effect on specific elements (e.g., .hud-clock) */
+.hud-info-text {
+    animation: flicker 1s infinite alternate;
+}
+
+.hud-section-title {
+    animation: flicker 1.4s infinite alternate;
+}
+
+.hud-panel-main-content-area .text-details-container h2 {
+    text-decoration: underline;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(110, 231, 183, 0.7);
+    }
+
+    5%,
+    25% {
+        opacity: 0.8;
+        text-shadow: 0 0 5px rgba(110, 231, 183, 0.5);
+    }
+
+    10% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(110, 231, 183, 0.7);
+    }
+
+    20% {
+        opacity: 0.9;
+        text-shadow: 0 0 6px rgba(110, 231, 183, 0.6);
+    }
+
+    30% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(110, 231, 183, 0.7);
+    }
+}
+
+/* Loading indicator styles */
+.loading-indicator {
     position: absolute;
-    background-color: inherit;
-    border-radius: 10px;
-}
-
-.timeline-item:nth-child(2) {
-    top: 0%;
-    right: 50%;
-}
-
-.timeline-item:nth-child(3) {
-    top: 25%;
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    color: #6ee7b7;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: none;
 }
 
-.timeline-item:nth-child(4) {
-    top: 55%;
-    right: 50%;
+.loading-indicator.active {
+    display: block;
 }
 
-.timeline-item:nth-child(5) {
-    top: 85%;
-    left: 50%;
-}
-.timeline-item:nth-child(2) {
-    top: 0%;
-    right: 50%;
-}
-
-.timeline-item:nth-child(3) {
-    top: 25%;
-    left: 50%;
-}
-
-.timeline-item:nth-child(4) {
-    top: 55%;
-    right: 50%;
-}
-
-.timeline-item:nth-child(5) {
-    top: 85%;
-    left: 50%;
-}
-
-.timeline-item:nth-child(3)::after {
-    left: -16px;
-}
-
-.timeline-item:nth-child(5)::after {
-    left: -16px;
-}
-
-.timeline-item::after {
-    content: '';
+/* Navigation Buttons (Inside the frame, at the bottom) */
+.navigation-buttons-inside {
     position: absolute;
-    width: 25px;
-    height: 25px;
-    right: -17px;
-    background-color: #3498db;
-    border: 4px solid #1c2833;
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
+    bottom: 1.5rem;
+    /* Adjusted to fit the image's console area */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    /* Above text container */
+    display: flex;
+    gap: 0.6rem;
+    /* Reduced gap */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.3rem 0.6rem;
+    /* Reduced padding */
+    border-radius: 9999px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    pointer-events: auto;
+    /* Ensure buttons are clickable */
 }
 
-.timeline-content {
-    padding: 20px 30px;
-    background-color: rgba(52, 152, 219, 0.1);
+.nav-button-inside {
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    /* Reduced padding */
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    /* Reduced font size */
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-button-inside:hover {
+    background: linear-gradient(145deg, #2980b9, #3498db);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.nav-button-inside:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button-inside svg {
+    width: 0.8em;
+    /* Reduced icon size */
+    height: 0.8em;
+    fill: currentColor;
+}
+
+/* Mini Flight Path Map */
+.mini-map-container {
+    margin-top: 1rem;
+    width: calc(100% - 1rem);
+    max-width: 800px;
+    padding: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
     position: relative;
-    border-radius: 6px;
+    flex-shrink: 0;
+    z-index: 5;
+}
+
+.mini-map-svg {
+    width: 100%;
+    height: 35px;
+    display: block;
+}
+
+.mini-map-line {
+    stroke: rgba(52, 152, 219, 0.9);
+    stroke-width: 2;
+}
+
+.mini-map-node {
+    fill: #3498db;
+    stroke: #2980b9;
+    stroke-width: 1;
+}
+
+.mini-map-node.active {
+    fill: #a7f3d0;
+    stroke: #6ee7b7;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 2px rgba(167, 243, 208, 0.9));
 }
 
 /* Game Container */
@@ -1216,7 +2195,7 @@ canvas {
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 10001; 
+    z-index: 10001;
 }
 
 .control-button {
@@ -1237,23 +2216,28 @@ canvas {
 .control-button:hover {
     background-color: #0056b3;
 }
+
 #arrow-controls {
     position: absolute;
-    bottom: 10%; /* Adjust this value to position the arrows correctly */
+    bottom: 10%;
+    /* Adjust this value to position the arrows correctly */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    z-index: 10001; /* Ensure it's above other content */
+    z-index: 10001;
+    /* Ensure it's above other content */
 }
 
 /* Arrow Buttons */
 .arrow-button {
-    width: 60px; /* Adjust size for desktop */
+    width: 60px;
+    /* Adjust size for desktop */
     height: 60px;
-    background-color: #03424c; /* Darker green-blue */
+    background-color: #03424c;
+    /* Darker green-blue */
     color: white;
     border: none;
     border-radius: 50%;
@@ -1265,7 +2249,8 @@ canvas {
 }
 
 .arrow-button:active {
-    background-color: #006575; /* Slightly darker when pressed */
+    background-color: #006575;
+    /* Slightly darker when pressed */
 }
 
 footer {
@@ -1383,12 +2368,6 @@ a,
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'New Caledonia Bold';
-    src: url('fonts/NewCaledoniaLTStdBold.TTF') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
 
 @font-face {
     font-family: 'GT Ultra';
@@ -1397,12 +2376,6 @@ a,
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'GT Ultra Bold';
-    src: url('fonts/GTUltraMedian-Bold.otf') format('opentype');
-    font-weight: bold;
-    font-style: normal;
-}
 
 @font-face {
     font-family: 'Aptos';
@@ -1455,12 +2428,6 @@ a,
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'PlayfairDisplay-Italic';
-    src: url('fonts/PlayfairDisplay-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-}
 
 /* Clash Grotesk Fonts */
 @font-face {
@@ -1491,6 +2458,19 @@ a,
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Orbitron';
+    src: url('fonts/Orbitron-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TitlingGothic';
+    src: url('fonts/TitlingGothic.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* Responsive Design */
 @media (max-width: 767px) {
@@ -1520,7 +2500,7 @@ a,
         font-size: 3.5em;
     }
 
-    nav ul li a:hover{
+    nav ul li a:hover {
         font-size: 5em;
     }
 
@@ -1585,64 +2565,6 @@ a,
         height: auto;
     }
 
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .lightbox-content {
-        max-height: 80vh;
-        max-width: 70vb;
-    }
-
-    .lightbox-gallery {
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .lightbox-gallery img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        cursor: pointer;
-        transition: transform 0.3s;
-        border-radius: 8px;
-    }
-
-    .lightbox-gallery img:hover {
-        transform: scale(1.1);
-    }
-
-    .main-image {
-        width: 100%;
-        max-width: 500px;
-        height: auto;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .lightbox h3 {
-        font-size: 1.2em;
-        color: #333;
-        margin-bottom: 10px;
-        font-weight: 600;
-    }
-
-    #lightbox-additional-content {
-        font-size: 1em;
-        color: #555;
-        line-height: 1.6;
-    }
-
-    .close {
-        top: 5px;
-        color: white;
-    }
-
     .timeline-container {
         width: 100%;
         height: auto;
@@ -1684,70 +2606,7 @@ a,
         left: -10px;
     }
 
-    #gameCanvas {
-        position: fixed;
-        top: 20%;
-        width: 95%;
-        height: 50%;
-        background-color: #002B36;
-        z-index: 999;
-        border-radius: 15px;
-    }
 
-    #game-container {
-        position: fixed;  
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;  
-        overflow: hidden;  
-    }
-    #arrow-controls {
-        bottom: 15%; /* Adjust bottom spacing for mobile */
-    }
-
-    .arrow-button {
-        width: 50px; /* Smaller size for mobile */
-        height: 50px;
-        font-size: 20px;
-    }
-    #gameCanvas {
-        position: fixed;
-        top: 20%;
-        width: 95%;
-        height: 50%;
-        background-color: #002B36;
-        z-index: 999;
-        border-radius: 15px;
-    }
-
-    #game-container {
-        position: fixed;  
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;  
-        overflow: hidden;  
-    }
-    #arrow-controls {
-        bottom: 15%; /* Adjust bottom spacing for mobile */
-    }
-
-    .arrow-button {
-        width: 50px; /* Smaller size for mobile */
-        height: 50px;
-        font-size: 20px;
-    }
     footer {
         padding: 10px;
     }
