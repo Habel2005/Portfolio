@@ -729,11 +729,12 @@ function updateHudData() {
     if (powerAux) powerAux.textContent = `${(Math.random() * 100).toFixed(1)}%`;
 
 }
-
+let lastAnimatedProjectIndex = -1;
 
 // Function to update project content and position elements
 async function updateProjectContent(index) {
     const project = projects[index];
+    const isMobile = window.innerWidth <= 768;
 
     // Update dynamic HUD elements that relate to the project
     if (hudTarget) hudTarget.textContent = `TARGET: ${project.title.toUpperCase()}`;
@@ -745,6 +746,30 @@ async function updateProjectContent(index) {
     // --- Planet Positioning (Bottom Corner, visible) ---
     // Planet size: 80% of the main content area's height
     currentPlanetDiameter = mainContentAreaHeight * 0.8;
+
+    if (window.innerWidth <= 768) {
+        // Clear or set explicit mobile-friendly inline styles for text container
+        textDetailsContainer.style.width = ''; // Let CSS define width
+        textDetailsContainer.style.height = ''; // Let CSS define height
+        textDetailsContainer.style.left = ''; // Let CSS define position
+        textDetailsContainer.style.right = '';
+        textDetailsContainer.style.top = '';
+        textDetailsContainer.style.bottom = '';
+        textDetailsContainer.style.transform = '';
+
+        // Clear or set explicit mobile-friendly inline styles for planet
+        projectContentDiv.style.width = ''; // Let CSS define width
+        projectContentDiv.style.height = ''; // Let CSS define height
+        projectContentDiv.style.left = ''; // Let CSS define position
+        projectContentDiv.style.right = '';
+        projectContentDiv.style.top = '';
+        projectContentDiv.style.bottom = '';
+        projectContentDiv.style.transform = '';
+        projectContentDiv.style.opacity = ''; // Let CSS define opacity
+        projectContentDiv.style.boxShadow = ''; // Let CSS define box-shadow
+        projectContentDiv.style.background = ''; // Let CSS define background
+
+    } else {
 
     projectContentDiv.style.width = `${currentPlanetDiameter}px`;
     projectContentDiv.style.height = `${currentPlanetDiameter}px`;
@@ -806,7 +831,7 @@ async function updateProjectContent(index) {
     textDetailsContainer.style.left = `${textCardCalculatedLeft}px`;
     textDetailsContainer.style.right = `${textCardCalculatedRight}px`;
     textDetailsContainer.style.transform = `none`; // Remove any transforms
-
+    }
 
     // Reset content and opacity for internal elements before animation
     projectTitle.textContent = '';
@@ -815,6 +840,26 @@ async function updateProjectContent(index) {
     projectLinkBtn.style.opacity = 0; // Start button invisible
     projectLinkBtn.style.display = 'none'; // Hide it initially
 
+        if (isMobile && index === lastAnimatedProjectIndex) {
+        projectTitle.textContent = project.title;
+        projectDescription.textContent = project.description;
+        projectTechStack.innerHTML = project.techStack.map(tech => `<span>${tech}</span>`).join('');
+        if (project.link) {
+            projectLinkBtn.href = project.link;
+            projectLinkBtn.style.display = 'inline-flex';
+            gsap.to(projectLinkBtn, { opacity: 1, duration: 0 }); // Ensure visible instantly
+        } else {
+            projectLinkBtn.style.display = 'none';
+            gsap.to(projectLinkBtn, { opacity: 0, duration: 0 });
+        }
+        gsap.to(textDetailsContainer, { opacity: 1, duration: 0 }); // Ensure container is visible
+        updateNavigationButtons();
+        updateMiniMap();
+        return; // Exit the function early
+    }
+
+    // Update the last animated project index ONLY if we are proceeding with the animation
+    lastAnimatedProjectIndex = index;
     // Hide the whole container before starting sequential reveal
     gsap.to(textDetailsContainer, { opacity: 0, duration: 0 });
 
@@ -1302,6 +1347,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
         setupCertificateAnimations();
     }, 100);
+    
 
     // Technical Tidbit cycling
     const tidbits = [
@@ -1334,6 +1380,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentTidbitIndex = (currentTidbitIndex + 1) % tidbits.length;
     }
 
+    
     // Initial tidbit display
     updateTidbit();
     // Start cycling tidbits

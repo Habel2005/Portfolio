@@ -1247,46 +1247,92 @@ nav ul li a:hover {
 
 /* Responsive */
 @media (max-width: 1023px) {
+        #creative-universe-portfolio .bento-grid {
+            grid-template-columns: 1fr; /* Stack all tiles in a single column */
+            gap: 15px; /* Slightly reduced gap for mobile compactness */
+        }
 
-    #void-container {
-        /* Scoped to #void-container */
-        grid-column: span 1 !important;
-        /* On smaller screens, revert to single column, also !important */
-        max-width: 100%;
-        /* Allow it to take full width on small screens */
-    }
+        /* General adjustments for all bento tiles on mobile */
+        #creative-universe-portfolio .bento-tile {
+            padding: 20px; /* Slightly less padding on mobile */
+            min-height: 200px; /* Default min-height for most tiles (e.g., Tech Playground, Stats) */
+            /* Ensure they span 1 column */
+            grid-column: span 1 !important;
+            grid-row: auto !important; /* Allow rows to size naturally */
+        }
+        
+        /* Specific height for Presentation Studio (showcase-large) */
+        #creative-universe-portfolio .showcase-large {
+            min-height: 280px; /* Keep it slightly larger for the viewer */
+        }
 
-    /* Adjust breakpoint for smaller screens */
-    #creative-universe-portfolio .bento-grid {
-        grid-template-columns: 1fr;
-        /* Single column on mobile/tablet */
-    }
+        /* Specific height for My Certifications (certificates-large) - make it taller */
+        #creative-universe-portfolio .certificates-large {
+            min-height: 500px; /* Increased height for certificates */
+        }
 
-    #creative-universe-portfolio .showcase-large,
-    #creative-universe-portfolio .certificates-large {
-        grid-column: span 1;
-        /* Revert to single column */
-        grid-row: span 1;
-        /* Revert to single row */
-        min-height: 300px;
-        /* Adjust min height for mobile */
-    }
+       /* Tech Playground internal grid adjustments - FOCUS ON SHRINKING INDIVIDUAL ITEMS */
+        #creative-universe-portfolio .tools-grid {
+            grid-template-columns: repeat(3, 1fr); /* Keep 3 columns if space allows */
+            gap: 8px; /* Reduced gap for more compactness */
+        }
+        /* --- CRUCIAL CHANGE: Force shrink the individual tool items (Python, React etc.) --- */
+        #creative-universe-portfolio .tool-item {
+            padding: 8px !important; /* Significantly reduced and forced padding for smaller items */
+            min-height: 70px; /* Set a smaller minimum height for tool items */
+            font-size: 0.7rem; /* Smaller text for tool names */
+        }
+        #creative-universe-portfolio .tool-icon {
+            font-size: 1.2rem; /* Smaller icons to match reduced padding */
+            margin-bottom: 3px; /* Adjust margin */
+        }
 
-    #creative-universe-portfolio .tools-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+        /* For very small screens, revert Tech Playground to 2 columns */
+        @media (max-width: 480px) {
+            #creative-universe-portfolio .tools-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+            }
+            #creative-universe-portfolio .tool-item {
+                font-size: 0.7rem; /* Smaller text for tool items */
+            }
+            #creative-universe-portfolio .tool-icon {
+                font-size: 1.2rem; /* Smaller icons */
+            }
+        }
 
-    #creative-universe-portfolio .floating-certificate-wrapper {
-        width: 180px;
-        /* Slightly smaller for mobile */
-        height: 250px;
-    }
 
-    #creative-universe-portfolio .empty-space-animation {
-        grid-column: span 1;
-        /* Single column on small screens */
+        /* Floating Certificates adjustments for mobile */
+        #creative-universe-portfolio .floating-certificate-wrapper {
+            width: 160px; /* Smaller certificate cards */
+            height: 110px; /* Smaller certificate cards */
+        }
+        #creative-universe-portfolio .certificate-front img {
+            border-radius: 5px; /* Ensure image border radius is applied */
+        }
+        #creative-universe-portfolio .certificate-back {
+            padding: 10px; /* Adjust padding for smaller back content */
+            font-size: 0.75rem;
+        }
+        #creative-universe-portfolio .certificates-large p { /* Adjust bottom text for certificates tile */
+            font-size: 0.8rem;
+            bottom: 15px; /* Move text up slightly */
+        }
+
+        /* Abyss tile responsiveness (ensure it's here and uses !important) */
+        #creative-universe-portfolio .door-to-abyss-tile {
+            grid-column: span 1 !important; /* Ensure it's single column on mobile */
+            max-width: 100%; /* Allow it to take full width on small screens */
+            min-height: 220px; /* Maintain its specific min-height */
+        }
+
+        /* Adjust font sizes for general text within tiles on mobile if needed */
+        #creative-universe-portfolio .bento-tile h3 {
+            font-size: 1.1rem;
+        }
+        #creative-universe-portfolio .bento-tile p {
+            font-size: 0.85rem;
+        }
     }
-}
 
 .personal-insights {
     background-color: #0a0a2a;
@@ -2606,6 +2652,134 @@ a,
         left: -10px;
     }
 
+    /* General adjustments for the overall frame on smaller screens */
+    .journey-timeline h3 {
+        font-size: 2em; /* Smaller title font */
+    }
+
+    .spaceship-window-frame {
+        width: 98%; /* Make the frame almost full width */
+        height: 95vh; /* Increase height to give a grander feel */
+        max-width: none; /* Remove max-width constraint to allow it to be larger */
+        aspect-ratio: 16 / 9; /* Maintain a rectangular shape to avoid stretching */
+        margin: 0.5rem auto; /* Center horizontally and add minimal vertical margin */
+        border-radius: 0.8rem; /* Slightly smaller border-radius for mobile */
+    }
+
+    .inner-viewscreen {
+        width: 98%; /* Expand the inner viewscreen to fill more of the frame */
+        height: 98%; /* Expand to fill more of the frame */
+    }
+
+    /* HIDE ALL UNWANTED HUD ELEMENTS ON MOBILE */
+    .linear-scale-bar,
+    .hud-panel-left-sidebar,
+    .hud-panel-right-sidebar,
+    .hud-panel-bottom-bar {
+        display: none; /* Completely hide these distracting HUD elements */
+    }
+
+    /* Reconfigure the grid to make the main content area the sole focus */
+    .hud-grid-wrapper {
+        grid-template-columns: 1fr; /* Force a single column */
+        grid-template-rows: 1fr; /* Force a single row */
+        grid-template-areas: "main-content-area"; /* Only the main content area occupies the grid */
+        padding-top: 0; /* Remove top padding as the linear scale bar is hidden */
+        gap: 0; /* Remove any gaps between non-existent grid items */
+    }
+
+    /* Ensure the main content area fills its new, larger grid space */
+    .hud-panel-main-content-area {
+        width: 100%; /* Take full width of its parent (.inner-viewscreen) */
+        height: 100%; /* Take full height of its parent (.inner-viewscreen) */
+        position: relative; /* Keep relative for internal absolute positioning of planet/text */
+    }
+
+    /* Text container (already good, maintaining previous settings) */
+    .text-details-container {
+        top: 5%;      /* Offset from top */
+        bottom: 5%;   /* Offset from bottom */
+        left: 5%;     /* Offset from left (making it about 90% width) */
+        right: 5%;    /* Offset from right */
+        width: auto;  /* Allow left/right to define width */
+        height: auto; /* Allow top/bottom to define height */
+        margin: 0;    /* Ensure no conflicting margins */
+        transform: none; /* Ensure no conflicting transforms */
+        
+        padding: 1.2rem; /* Consistent internal padding */
+        font-size: 0.95rem; /* Good base font size for readability */
+        line-height: 1.6; /* Good line spacing */
+        box-sizing: border-box; /* Include padding in the element's total width and height */
+    }
+
+    #projectTitle {
+        font-size: 2em; /* Prominent title size */
+        margin-bottom: 0.8rem; /* Space below title */
+    }
+
+    #projectDescription {
+        font-size: 1rem; /* Clear and readable description text */
+        line-height: 1.6;
+        margin-bottom: 1.2rem; /* Space below description */
+    }
+
+    .tech-stack {
+        margin-top: 1rem; /* Space above tags */
+        margin-bottom: 1.2rem; /* Space below tags */
+    }
+    .tech-stack span {
+        font-size: 0.85rem; /* Readable tech stack tags */
+        padding: 0.25rem 0.7rem; /* Adjust padding */
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Project Link Button Styling - REMOVED margin-top: auto */
+    .project-link-button {
+        font-size: 1.05rem; /* Maintain a good readable size for the button */
+        padding: 0.8rem 2rem; /* Adjust padding for the button */
+        border-radius: 0.8rem;
+        margin-top: 1.5rem; /* Controlled margin-top to create desired space */
+    }
+
+    /* Adjust planet position and size for mobile to be in the bottom center and visible */
+    .project-content-overlay {
+        width: 60%; /* Medium size for the planet */
+        height: 60%;
+        bottom: 3%; /* Slightly off the bottom edge */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust for perfect horizontal centering */
+        right: auto; /* Reset right property */
+        opacity: 0.6; /* Balanced opacity for presence without distraction */
+        box-shadow: 0 0 30px rgba(74, 144, 226, 0.8); /* Maintain a good glow */
+        /* Ensure the gradient is centered for a horizontally centered planet */
+        background: radial-gradient(circle at 50% 70%, #4a90e2, #2e62a4, #1a3a60);
+    }
+
+    /* Navigation buttons adjustments for mobile */
+    .navigation-buttons-inside {
+        bottom: 0.8rem; /* Position closer to the bottom */
+        padding: 0.2rem 0.4rem; /* Reduce padding */
+        gap: 0.4rem; /* Reduce gap */
+    }
+    .nav-button-inside {
+        padding: 0.15rem 0.4rem; /* Further reduce button padding */
+        font-size: 0.6rem; /* Smaller button text */
+    }
+    .nav-button-inside svg {
+        width: 0.7em; /* Smaller icon size */
+        height: 0.7em;
+    }
+
+    /* Mini map adjustments for mobile */
+    .mini-map-container {
+        width: 90%; /* Adjust width */
+        padding: 0.6rem; /* Reduce padding */
+        margin-top: 0.8rem; /* Reduce top margin */
+    }
+    .mini-map-svg {
+        height: 25px; /* Adjust height */
+    }
 
     footer {
         padding: 10px;
