@@ -641,7 +641,7 @@
                 title: "LearnQuest",
                 tagline: "Empowering Minds Through Interactive Learning.",
                 description: "An AI-powered e-learning app that delivers personalized content based on user interests. It curates videos, articles, summaries, and GitHub resources using AI APIs. Features include progress tracking, user preference handling, and community discussion.",
-                techTags: ["Flutter", "Dart", "Firebase", "Python", "REST APIs", "Groq", "GeminiAPI","Web Scraping"],
+                techTags: ["Flutter", "Dart", "Firebase", "Python", "REST APIs", "Groq", "GeminiAPI", "Web Scraping"],
                 heroCategories: ["E-Learning", "AI Integration", "Mobile App", "Firebase DataBase", "Python Backend"],
                 // Updated to include Mega.nz download URL
                 apkDownloadUrl: "https://mega.nz/file/zPZh2SAD#3D7gFE000XyOMJF8npwjR8HqQGkTbKe35ezecgxd8rA",
@@ -710,8 +710,8 @@
                 title: "Chat App",
                 tagline: "Real-Time Messaging Simplified.",
                 description: "A lightweight and secure chat application supporting real-time messaging, authentication, and user presence using Firebase backend. Built for mobile devices with clean UI.",
-                techTags: ["Flutter", "Dart", "Firebase", "Realtime Database","Firebase Auth"],
-                heroCategories: ["Chat App", "Realtime Messaging", "ChatRooms","Contact Saving","User Authentication"],
+                techTags: ["Flutter", "Dart", "Firebase", "Realtime Database", "Firebase Auth"],
+                heroCategories: ["Chat App", "Realtime Messaging", "ChatRooms", "Contact Saving", "User Authentication"],
                 apkDownloadUrl: "https://mega.nz/file/mGgCzKqR#-L3YmGZlWrubqlxPGmi9ArqZQPONDMmWn_VXmL5c_eA",
                 screenshots: [
                     'images/Apps/app.png',
@@ -734,186 +734,216 @@
                         "google_nav_bar", "google_sign_in", "flutter_chat_bubble"
                     ]
                 }
+            },
+            zentryai: {
+                title: "Zentry AI Assistant",
+                tagline: "Human-Like Voice, Real-Time Intelligence.",
+                description: "A real-time AI voice assistant optimized for telephony and institutional automation. Combines high-accuracy speech-to-text (Whisper CTranslate2), lightweight reasoning (Phi-3 Mini + RAG), and future-ready TTS to deliver human-like conversations in multiple languages. Integrates FreeSWITCH for call handling and is fully edge-deployable.",
+                techTags: ["FreeSWITCH", "CTranslate2 Whisper", "Phi-3 Mini", "RAG", "Meta MMS", "Python", "FastAPI", "Docker"],
+                heroCategories: ["Voice Assistant", "Real-Time AI", "STT & TTS", "Multilingual Support", "Telephony Automation", "RAG Reasoning"],
+                apkDownloadUrl: "", // Optional: add if you have a build
+                screenshots: [
+                    'images/Apps/zen.png'
+                ],
+                specs: {
+                    Platform: "Android / Web / Edge Devices",
+                    Version: "0.9.5-beta",
+                    Size: "Varies (depends on deployed models)"
+                },
+                backend: {
+                    "Python Version": "3.9+",
+                    "Dependencies": [
+                        "ct2-transformers",
+                        "fastapi",
+                        "uvicorn",
+                        "aiohttp",
+                        "pydantic",
+                        "websockets",
+                        "numpy",
+                        "ffmpeg-python"
+                    ]
+                }
             }
+
         };
 
         // Convert projectDetails object into an array for easy indexing
-    const projectIds = Object.keys(projectDetails);
-    let currentProjectIndex = 0;
+        const projectIds = Object.keys(projectDetails);
+        let currentProjectIndex = 0;
 
-    // --- Gallery State Manager ---
-    const galleryState = {};
+        // --- Gallery State Manager ---
+        const galleryState = {};
 
-    function setupGallery(projectId) {
-        galleryState[projectId] = {
-            currentIndex: 0,
-            isDragging: false,
-            startX: 0,
-            startY: 0, // Added for tap detection
-            tapStartTime: 0, // Added for tap detection
-            currentTranslate: 0,
-            prevTranslate: 0,
-        };
-        
-        const projectEl = document.getElementById(projectId);
-        const slider = projectEl.querySelector('.screenshot-slider');
-        const phoneScreen = projectEl.querySelector('.phone-screen'); // Get the phone screen element
-        const dots = projectEl.querySelectorAll('.screenshot-dot');
+        function setupGallery(projectId) {
+            galleryState[projectId] = {
+                currentIndex: 0,
+                isDragging: false,
+                startX: 0,
+                startY: 0, // Added for tap detection
+                tapStartTime: 0, // Added for tap detection
+                currentTranslate: 0,
+                prevTranslate: 0,
+            };
 
-        function updateGallery() {
-            const state = galleryState[projectId];
-            slider.style.transform = `translateX(-${state.currentIndex * 100}%)`;
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === state.currentIndex);
-            });
-        }
+            const projectEl = document.getElementById(projectId);
+            const slider = projectEl.querySelector('.screenshot-slider');
+            const phoneScreen = projectEl.querySelector('.phone-screen'); // Get the phone screen element
+            const dots = projectEl.querySelectorAll('.screenshot-dot');
 
-        // Helper function for screenshot navigation
-        function navigateScreenshot(direction) {
-            const state = galleryState[projectId];
-            if (direction === 'next' && state.currentIndex < dots.length - 1) {
-                state.currentIndex++;
-            } else if (direction === 'prev' && state.currentIndex > 0) {
-                state.currentIndex--;
+            function updateGallery() {
+                const state = galleryState[projectId];
+                slider.style.transform = `translateX(-${state.currentIndex * 100}%)`;
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === state.currentIndex);
+                });
             }
-            updateGallery();
-        }
 
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                galleryState[projectId].currentIndex = index;
-                updateGallery();
-            });
-        });
-        
-        // --- Drag/Swipe Functionality ---
-        // Changed to pointerdown/move/up for better touch/mouse unified handling
-        phoneScreen.addEventListener('pointerdown', startInteraction);
-        phoneScreen.addEventListener('pointermove', dragInteraction);
-        phoneScreen.addEventListener('pointerup', endInteraction);
-        phoneScreen.addEventListener('pointerleave', endInteraction); // End interaction if pointer leaves
-
-        function getPositionX(event) {
-            return event.clientX;
-        }
-        function getPositionY(event) {
-            return event.clientY;
-        }
-
-        function startInteraction(event) {
-            const state = galleryState[projectId];
-            state.isDragging = true;
-            state.startX = getPositionX(event);
-            state.startY = getPositionY(event);
-            state.tapStartTime = Date.now();
-            slider.style.transition = 'none'; // Disable transition while dragging
-            phoneScreen.setPointerCapture(event.pointerId); // Capture pointer for consistent dragging
-            event.preventDefault(); // Prevent default browser actions like image dragging
-        }
-
-        function dragInteraction(event) {
-            const state = galleryState[projectId];
-            if (state.isDragging) {
-                const currentPositionX = getPositionX(event);
-                const moveX = currentPositionX - state.startX;
-                const baseTranslate = -state.currentIndex * slider.offsetWidth;
-                state.currentTranslate = baseTranslate + moveX;
-                slider.style.transform = `translateX(${state.currentTranslate}px)`;
-            }
-        }
-
-        function endInteraction(event) {
-            const state = galleryState[projectId];
-            if (!state.isDragging) return;
-            state.isDragging = false;
-            phoneScreen.releasePointerCapture(event.pointerId); // Release pointer capture
-
-            const movedX = getPositionX(event) - state.startX;
-            const movedY = getPositionY(event) - state.startY;
-            const distance = Math.sqrt(movedX * movedX + movedY * movedY);
-            const timeElapsed = Date.now() - state.tapStartTime;
-
-            const swipeThreshold = slider.offsetWidth * 0.2; // 20% of the slider width
-            const tapThresholdDistance = 10; // Max distance for a tap
-            const tapThresholdTime = 200; // Max time for a tap (ms)
-
-            if (distance < tapThresholdDistance && timeElapsed < tapThresholdTime) {
-                // This was a tap/click, not a drag
-                const clickX = event.clientX - phoneScreen.getBoundingClientRect().left;
-                if (clickX < phoneScreen.offsetWidth / 2) {
-                    navigateScreenshot('prev'); // Click on left half
-                } else {
-                    navigateScreenshot('next'); // Click on right half
-                }
-            } else {
-                // This was a drag
-                if (movedX < -swipeThreshold && state.currentIndex < dots.length - 1) {
+            // Helper function for screenshot navigation
+            function navigateScreenshot(direction) {
+                const state = galleryState[projectId];
+                if (direction === 'next' && state.currentIndex < dots.length - 1) {
                     state.currentIndex++;
-                } else if (movedX > swipeThreshold && state.currentIndex > 0) {
+                } else if (direction === 'prev' && state.currentIndex > 0) {
                     state.currentIndex--;
                 }
+                updateGallery();
             }
-            
-            slider.style.transition = 'transform 0.5s ease-in-out';
-            updateGallery();
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    galleryState[projectId].currentIndex = index;
+                    updateGallery();
+                });
+            });
+
+            // --- Drag/Swipe Functionality ---
+            // Changed to pointerdown/move/up for better touch/mouse unified handling
+            phoneScreen.addEventListener('pointerdown', startInteraction);
+            phoneScreen.addEventListener('pointermove', dragInteraction);
+            phoneScreen.addEventListener('pointerup', endInteraction);
+            phoneScreen.addEventListener('pointerleave', endInteraction); // End interaction if pointer leaves
+
+            function getPositionX(event) {
+                return event.clientX;
+            }
+            function getPositionY(event) {
+                return event.clientY;
+            }
+
+            function startInteraction(event) {
+                const state = galleryState[projectId];
+                state.isDragging = true;
+                state.startX = getPositionX(event);
+                state.startY = getPositionY(event);
+                state.tapStartTime = Date.now();
+                slider.style.transition = 'none'; // Disable transition while dragging
+                phoneScreen.setPointerCapture(event.pointerId); // Capture pointer for consistent dragging
+                event.preventDefault(); // Prevent default browser actions like image dragging
+            }
+
+            function dragInteraction(event) {
+                const state = galleryState[projectId];
+                if (state.isDragging) {
+                    const currentPositionX = getPositionX(event);
+                    const moveX = currentPositionX - state.startX;
+                    const baseTranslate = -state.currentIndex * slider.offsetWidth;
+                    state.currentTranslate = baseTranslate + moveX;
+                    slider.style.transform = `translateX(${state.currentTranslate}px)`;
+                }
+            }
+
+            function endInteraction(event) {
+                const state = galleryState[projectId];
+                if (!state.isDragging) return;
+                state.isDragging = false;
+                phoneScreen.releasePointerCapture(event.pointerId); // Release pointer capture
+
+                const movedX = getPositionX(event) - state.startX;
+                const movedY = getPositionY(event) - state.startY;
+                const distance = Math.sqrt(movedX * movedX + movedY * movedY);
+                const timeElapsed = Date.now() - state.tapStartTime;
+
+                const swipeThreshold = slider.offsetWidth * 0.2; // 20% of the slider width
+                const tapThresholdDistance = 10; // Max distance for a tap
+                const tapThresholdTime = 200; // Max time for a tap (ms)
+
+                if (distance < tapThresholdDistance && timeElapsed < tapThresholdTime) {
+                    // This was a tap/click, not a drag
+                    const clickX = event.clientX - phoneScreen.getBoundingClientRect().left;
+                    if (clickX < phoneScreen.offsetWidth / 2) {
+                        navigateScreenshot('prev'); // Click on left half
+                    } else {
+                        navigateScreenshot('next'); // Click on right half
+                    }
+                } else {
+                    // This was a drag
+                    if (movedX < -swipeThreshold && state.currentIndex < dots.length - 1) {
+                        state.currentIndex++;
+                    } else if (movedX > swipeThreshold && state.currentIndex > 0) {
+                        state.currentIndex--;
+                    }
+                }
+
+                slider.style.transition = 'transform 0.5s ease-in-out';
+                updateGallery();
+            }
+
+            updateGallery(); // Initial setup
         }
 
-        updateGallery(); // Initial setup
-    }
-    
-    // --- Dynamic Project Display Function ---
-    function displayProject(projectId) {
-        const data = projectDetails[projectId];
-        if (!data) {
-            console.error("Project not found:", projectId);
-            return;
-        }
+        // --- Dynamic Project Display Function ---
+        function displayProject(projectId) {
+            const data = projectDetails[projectId];
+            if (!data) {
+                console.error("Project not found:", projectId);
+                return;
+            }
 
-        const projectContainer = document.getElementById('projects');
-        const heroTaglineElement = document.getElementById('heroTagline');
-        const heroTagsContainer = document.getElementById('heroTagsContainer');
-        const currentProjectIndexElement = document.getElementById('currentProjectIndex');
-        const totalProjectsElement = document.getElementById('totalProjects');
-        const prevProjectBtn = document.getElementById('prevProjectBtn');
-        const nextProjectBtn = document.getElementById('nextProjectBtn');
+            const projectContainer = document.getElementById('projects');
+            const heroTaglineElement = document.getElementById('heroTagline');
+            const heroTagsContainer = document.getElementById('heroTagsContainer');
+            const currentProjectIndexElement = document.getElementById('currentProjectIndex');
+            const totalProjectsElement = document.getElementById('totalProjects');
+            const prevProjectBtn = document.getElementById('prevProjectBtn');
+            const nextProjectBtn = document.getElementById('nextProjectBtn');
 
-        // Update hero section text
-        heroTaglineElement.textContent = data.tagline;
+            // Update hero section text
+            heroTaglineElement.textContent = data.tagline;
 
-        // Update hero section categories
-        const createHeroCategories = (categories) => categories.map(cat => `<span class="hero-category-tag">${cat}</span>`).join('');
-        heroTagsContainer.innerHTML = createHeroCategories(data.heroCategories || []);
+            // Update hero section categories
+            const createHeroCategories = (categories) => categories.map(cat => `<span class="hero-category-tag">${cat}</span>`).join('');
+            heroTagsContainer.innerHTML = createHeroCategories(data.heroCategories || []);
 
-        // Find current index
-        currentProjectIndex = projectIds.indexOf(projectId);
-        currentProjectIndexElement.textContent = currentProjectIndex + 1;
-        totalProjectsElement.textContent = projectIds.length;
+            // Find current index
+            currentProjectIndex = projectIds.indexOf(projectId);
+            currentProjectIndexElement.textContent = currentProjectIndex + 1;
+            totalProjectsElement.textContent = projectIds.length;
 
-        // Enable/disable navigation buttons
-        prevProjectBtn.disabled = currentProjectIndex === 0;
-        nextProjectBtn.disabled = currentProjectIndex === projectIds.length - 1;
+            // Enable/disable navigation buttons
+            prevProjectBtn.disabled = currentProjectIndex === 0;
+            nextProjectBtn.disabled = currentProjectIndex === projectIds.length - 1;
 
-        // Clear previous project and inject new one
-        projectContainer.innerHTML = '';
-        const createTags = (tags, className) => tags.map(tag => `<span class="${className}">${tag}</span>`).join('');
-        const createInfoItems = (items) => Object.entries(items).map(([label, value]) => `
+            // Clear previous project and inject new one
+            projectContainer.innerHTML = '';
+            const createTags = (tags, className) => tags.map(tag => `<span class="${className}">${tag}</span>`).join('');
+            const createInfoItems = (items) => Object.entries(items).map(([label, value]) => `
             <div class="info-item">
                 <span class="info-label">${label}</span>
                 <span class="info-value">${value}</span>
             </div>`).join('');
-        
-        // Modified createScreenshots to include loading="lazy" for all but the first image
-        const createScreenshots = (screenshots) => screenshots.map((src, index) => `
+
+            // Modified createScreenshots to include loading="lazy" for all but the first image
+            const createScreenshots = (screenshots) => screenshots.map((src, index) => `
             <div class="screenshot-slide">
                 <img src="${src}" alt="${data.title} screenshot ${index + 1}" 
                      onerror="this.src='https://placehold.co/300x600/333333/FFFFFF?text=Image+Error';"
                      ${index > 0 ? 'loading="lazy"' : ''}>
             </div>`).join('');
-        const createDots = (screenshots) => screenshots.map((_, index) => `
+            const createDots = (screenshots) => screenshots.map((_, index) => `
             <div class="screenshot-dot ${index === 0 ? 'active' : ''}"></div>`).join('');
 
-        const projectHTML = `
+            const projectHTML = `
             <div class="project" id="${projectId}">
                 <div class="project-content">
                     <h2 class="project-title">${data.title}</h2>
@@ -948,60 +978,60 @@
                 </div>
             </div>
         `;
-        projectContainer.innerHTML = projectHTML;
-        // Trigger reflow to restart animation for new project
-        void projectContainer.offsetHeight; 
-        document.getElementById(projectId).classList.add('visible');
+            projectContainer.innerHTML = projectHTML;
+            // Trigger reflow to restart animation for new project
+            void projectContainer.offsetHeight;
+            document.getElementById(projectId).classList.add('visible');
 
-        // Initialize the gallery for this project
-        setupGallery(projectId);
-    }
-    
-    // --- Navigation Logic ---
-    function navigateProject(direction) {
-        let newIndex = currentProjectIndex;
-        if (direction === 'next') {
-            newIndex = Math.min(projectIds.length - 1, currentProjectIndex + 1);
-        } else if (direction === 'prev') {
-            newIndex = Math.max(0, currentProjectIndex - 1);
+            // Initialize the gallery for this project
+            setupGallery(projectId);
         }
-        
-        if (newIndex !== currentProjectIndex) {
-            const newProjectId = projectIds[newIndex];
-            history.pushState(null, '', `${window.location.pathname}?project=${newProjectId}`);
-            displayProject(newProjectId);
-        }
-    }
 
-    // --- Page Load Logic ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        let projectToShow = urlParams.get('project');
-
-        // If no project specified in URL, default to the first one
-        if (!projectToShow || !projectDetails[projectToShow]) {
-            projectToShow = projectIds[0];
-            history.replaceState(null, '', `${window.location.pathname}?project=${projectToShow}`);
-        }
-        
-        displayProject(projectToShow);
-
-        // Add event listeners for navigation buttons
-        document.getElementById('prevProjectBtn').addEventListener('click', () => navigateProject('prev'));
-        document.getElementById('nextProjectBtn').addEventListener('click', () => navigateProject('next'));
-
-        // Handle browser back/forward buttons
-        window.addEventListener('popstate', () => {
-            const newUrlParams = new URLSearchParams(window.location.search);
-            const newProjectToShow = newUrlParams.get('project');
-            if (newProjectToShow && projectDetails[newProjectToShow]) {
-                displayProject(newProjectToShow);
-            } else {
-                history.replaceState(null, '', `${window.location.pathname}?project=${projectIds[0]}`);
-                displayProject(projectIds[0]);
+        // --- Navigation Logic ---
+        function navigateProject(direction) {
+            let newIndex = currentProjectIndex;
+            if (direction === 'next') {
+                newIndex = Math.min(projectIds.length - 1, currentProjectIndex + 1);
+            } else if (direction === 'prev') {
+                newIndex = Math.max(0, currentProjectIndex - 1);
             }
+
+            if (newIndex !== currentProjectIndex) {
+                const newProjectId = projectIds[newIndex];
+                history.pushState(null, '', `${window.location.pathname}?project=${newProjectId}`);
+                displayProject(newProjectId);
+            }
+        }
+
+        // --- Page Load Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let projectToShow = urlParams.get('project');
+
+            // If no project specified in URL, default to the first one
+            if (!projectToShow || !projectDetails[projectToShow]) {
+                projectToShow = projectIds[0];
+                history.replaceState(null, '', `${window.location.pathname}?project=${projectToShow}`);
+            }
+
+            displayProject(projectToShow);
+
+            // Add event listeners for navigation buttons
+            document.getElementById('prevProjectBtn').addEventListener('click', () => navigateProject('prev'));
+            document.getElementById('nextProjectBtn').addEventListener('click', () => navigateProject('next'));
+
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', () => {
+                const newUrlParams = new URLSearchParams(window.location.search);
+                const newProjectToShow = newUrlParams.get('project');
+                if (newProjectToShow && projectDetails[newProjectToShow]) {
+                    displayProject(newProjectToShow);
+                } else {
+                    history.replaceState(null, '', `${window.location.pathname}?project=${projectIds[0]}`);
+                    displayProject(projectIds[0]);
+                }
+            });
         });
-    });
     </script>
 </body>
 

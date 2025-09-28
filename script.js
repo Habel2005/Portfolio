@@ -531,6 +531,12 @@ const projects = [
         description: "An academic management app designed to streamline communication and task handling between students and teachers. It includes features like assignment tracking, attendance management, announcements, and personal feedback systems.",
         techStack: ["Flutter", "Firebase", "Cloud Functions", "Firestore", "Role-based Access Control"],
         link: "project.html?project=acdemics"
+    },
+    {
+    title: "Zentry AI Assistant",
+    description: "A real-time AI voice assistant designed for telephony and institutional automation. It integrates high-accuracy speech-to-text, lightweight reasoning with RAG, and future-ready TTS to deliver human-like conversations in multiple languages. Built around FreeSWITCH and optimized for local deployment, it enables scalable use in education, healthcare, and enterprise support systems.",
+    techStack: ["FreeSWITCH", "CTranslate2 Whisper", "Phi-3 Mini", "RAG", "Meta MMS", "Python", "FastAPI", "Docker"],
+    link: "project.html?project=zentryai"
     }
 ];
 
